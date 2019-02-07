@@ -1,18 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_mov.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/07 11:14:20 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/07 11:17:45 by judumay          ###   ########.fr       */
+/*   Created: 2019/02/07 22:41:17 by judumay           #+#    #+#             */
+/*   Updated: 2019/02/07 22:55:57 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int main(int ac, char **av)
+#include <ft_push_swap.h>
+
+t_checker		*checker_movements(t_checker *c)
 {
-	(void)ac;
-	(void)av;
-	return (0);
+	/*while (get_next_line(c->fd, &c->line) > 0)
+	{
+		c = checker_parsing_movements(c);
+		if (c->error)
+		{
+			ft_strdel(&c->line);
+			break ;
+		}
+		ft_strdel(&c->line);
+	}
+	dprintf(1, "apres gnl\n");
+	ft_strdel(&c->line);
+	if (!c->error && (!ft_tabisdescending(c->a) || c->b->len))
+		c->error = -1;
+	*/return (c);
 }
