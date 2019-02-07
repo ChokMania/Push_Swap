@@ -6,7 +6,7 @@
 #    By: judumay <judumay@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 18:30:56 by anmauffr          #+#    #+#              #
-#    Updated: 2019/02/07 11:01:10 by judumay          ###   ########.fr        #
+#    Updated: 2019/02/07 11:31:08 by judumay          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -137,7 +137,7 @@ OBJS = $(patsubst $(SRCS_PATH)%.c, $(OBJS_PATH)%.o, $(SRCS))
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 CPPFLAGS = -I $(INCS_PATH)
-LDFLAGS = ./
+LDFLAGS = ./libft/
 
 # Text format
 _DEF = $'\033[0m
