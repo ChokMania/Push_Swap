@@ -5,139 +5,44 @@
 #                                                     +:+ +:+         +:+      #
 #    By: judumay <judumay@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/11/06 18:30:56 by anmauffr          #+#    #+#              #
-#    Updated: 2019/02/07 11:31:08 by judumay          ###   ########.fr        #
+#    Created: 2019/02/18 15:28:18 by judumay           #+#    #+#              #
+#    Updated: 2019/02/18 16:03:04 by judumay          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SHELL = bash
 
 # Executable name, can be change
-NAME = libft.a
+PS = push_swap
+CH = checker
 
 # Sources names
-SRCS_NAME = libft/ft_atoi.c \
-			libft/ft_bzero.c \
-			libft/ft_create_elem.c \
-			libft/ft_isalnum.c \
-			libft/ft_isalpha.c \
-			libft/ft_isascii.c \
-			libft/ft_isblank.c \
-			libft/ft_iscntrl.c \
-			libft/ft_isdigit.c \
-			libft/ft_isgraph.c \
-			libft/ft_isprint.c \
-			libft/ft_itoa.c \
-			libft/ft_lltoabase_signed.c \
-			libft/ft_lltoabase_signless.c \
-			libft/ft_lltoabase_unsigned.c \
-			libft/ft_lstadd.c \
-			libft/ft_lstdel.c \
-			libft/ft_lstdelone.c \
-			libft/ft_lstiter.c \
-			libft/ft_lstmap.c \
-			libft/ft_lstnew.c \
-			libft/ft_memalloc.c \
-			libft/ft_memccpy.c \
-			libft/ft_memchr.c \
-			libft/ft_memcmp.c \
-			libft/ft_memcpy.c \
-			libft/ft_memdel.c \
-			libft/ft_memmove.c \
-			libft/ft_memset.c \
-			libft/ft_printtab_nb.c \
-			libft/ft_printtab_str.c \
-			libft/ft_putchar.c \
-			libft/ft_putchar_fd.c \
-			libft/ft_putcharerr.c \
-			libft/ft_putendl.c \
-			libft/ft_putendl_fd.c \
-			libft/ft_putendlerr.c \
-			libft/ft_putnbr.c \
-			libft/ft_putnbr_fd.c \
-			libft/ft_putnbrerr.c \
-			libft/ft_putstr.c \
-			libft/ft_putstr_fd.c \
-			libft/ft_putstrerr.c \
-			libft/ft_strcat.c \
-			libft/ft_strchr.c \
-			libft/ft_strclen.c \
-			libft/ft_strclr.c \
-			libft/ft_strcmp.c \
-			libft/ft_strcpy.c \
-			libft/ft_strdel.c \
-			libft/ft_strdup.c \
-			libft/ft_strequ.c \
-			libft/ft_strfill.c \
-			libft/ft_striter.c \
-			libft/ft_striteri.c \
-			libft/ft_strjoin.c \
-			libft/ft_strlcat.c \
-			libft/ft_strlen.c \
-			libft/ft_strmap.c \
-			libft/ft_strmapi.c \
-			libft/ft_strncat.c \
-			libft/ft_strncmp.c \
-			libft/ft_strncpy.c \
-			libft/ft_strnequ.c \
-			libft/ft_strnew.c \
-			libft/ft_strnstr.c \
-			libft/ft_strrchr.c \
-			libft/ft_strsplit.c \
-			libft/ft_strstr.c \
-			libft/ft_strsub.c \
-			libft/ft_strsub_leakless.c \
-			libft/ft_strtok.c \
-			libft/ft_strtoupper_leakless.c \
-			libft/ft_strtrim.c \
-			libft/ft_tolower.c \
-			libft/ft_toupper.c \
-			libft/ft_strrev_leakless.c \
-			libft/ft_stradd_leakless.c \
-			libft/ft_dtoa.c \
-			libft/ft_ltoa.c \
-			libft/ft_longlen.c \
-			libft/ft_pow.c \
-			libft/ft_intlen.c \
-			get_next_line/get_next_line.c \
-			ft_printf/ft_printf.c \
-			ft_printf/ft_printf_c.c \
-			ft_printf/ft_printf_display.c \
-			ft_printf/ft_printf_f.c \
-			ft_printf/ft_printf_get_conv.c \
-			ft_printf/ft_printf_get_flags.c \
-			ft_printf/ft_printf_conv.c \
-			ft_printf/ft_printf_d.c \
-			ft_printf/ft_printf_get_modifier.c \
-			ft_printf/ft_printf_get_precision.c \
-			ft_printf/ft_printf_get_width.c \
-			ft_printf/ft_printf_no_conv.c \
-			ft_printf/ft_printf_o.c \
-			ft_printf/ft_printf_p.c \
-			ft_printf/ft_printf_parsing.c \
-			ft_printf/all_for_p.c \
-			ft_printf/ft_dtoa_printf.c \
-			ft_printf/ft_printf_f_suite.c \
-			ft_printf/ft_printf_u.c \
-			ft_printf/ft_printf_percent.c \
-			ft_printf/ft_printf_s.c \
-			ft_printf/ft_printf_x.c 
+PS_SRCS_NAME = push_swap.c
+CH_SRCS_NAME = checker.c
 
+INCS_NAMES = ft_push_swap.h
 
 # Sources, objects and includes path
-SRCS_PATH = ./srcs/
-OBJS_PATH = ./objs/
+PS_SRCS_PATH = ./srcs/ps/
+PS_OBJS_PATH = ./objs/ps/
+CH_SRCS_PATH = ./srcs/checker/
+CH_OBJS_PATH = ./objs/checker/
 INCS_PATH = ./includes/
 
 # Sources and objects
-SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
-OBJS = $(patsubst $(SRCS_PATH)%.c, $(OBJS_PATH)%.o, $(SRCS))
+PS_SRCS = $(addprefix $(PS_SRCS_PATH), $(PS_SRCS_NAME))
+PS_OBJS = $(patsubst $(PS_SRCS_PATH)%.c, $(PS_OBJS_PATH)%.o, $(PS_SRCS))
+CH_SRCS = $(addprefix $(CH_SRCS_PATH), $(CH_SRCS_NAME))
+CH_OBJS = $(patsubst $(CH_SRCS_PATH)%.c, $(CH_OBJS_PATH)%.o, $(CH_SRCS))
+INC = $(addprefix $(INCS_PATH), $(INCS_NAMES))
 
 # Compilation
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
 CPPFLAGS = -I $(INCS_PATH)
+LIBH = -I $(LDFLAGS)includes/
+CFLAGS = -Wall -Wextra -Werror $(CPPFLAGS) $(LIBH)
 LDFLAGS = ./libft/
+LDLIBS = libft.a
 
 # Text format
 _DEF = $'\033[0m
@@ -168,46 +73,60 @@ _IGREY = $'\033[47m
 
 verif = 0
 
-all: $(NAME)
+all: $(PS) $(CH)
 
-$(NAME): $(OBJS)
-	@ar rc $(NAME) $(OBJS)
-	@ranlib $(NAME)
-	@echo -en "$(_GREEN)\t [OK]$(_DEF)\n\n"
+lib:
+		@make -C libft
 
-$(OBJS_PATH)%.o: $(SRCS_PATH)%.c
-	@if [[ $(verif) -eq 0 ]]; then printf "\n$(_GRAS)$(_CYAN)|===========================================>  $(NAME)   |============================================>$(_DEF)\n";\
-	else printf "\e[1A"; fi
-	$(eval FNCT = $(words $(SRCS)))
-	$(eval verif = $(shell echo $(verif) + 1 | bc ))
-	$(eval PCR = $(shell echo "$(verif) / $(FNCT) * 1000" | bc -l))
-	@printf " \n$(_GREEN)[%4d%%]\t$(_DEF)%-40s $(_DEF)👉\t\t$(_GREEN) %-40s$(_DEF)" $(shell echo $(PCR) | sed -E "s:\.[0-9]{20}::") $< $@
-	@mkdir -p objs/libft
-	@mkdir -p objs/get_next_line
-	@mkdir -p objs/ft_printf
-	@printf "$(_DEF)"
-	@$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
+libre:
+		@make -C libft fclean
+
+$(PS): $(PS_OBJS)
+		@$(CC) $(PS_OBJS) -o $@
+		@echo -en "$(_GREEN)\t [OK]\n\n$(_DEF)"
+
+$(CH): $(CH_OBJS)
+		@$(CC) $(CH_OBJS) -o $@
+		@echo -en "$(_GREEN)\t [OK]\n\n$(_DEF)"
+
+$(PS_OBJS_PATH)%.o: $(PS_SRCS_PATH)%.c $(INC)
+		@make -C libft
+		@if [[ $(verif) -eq 0 ]]; then printf "\n$(_GRAS)$(_CYAN)|===========================================>  $(PS)   |============================================>$(_DEF)\n";\
+		else printf "\e[1A"; fi
+		$(eval FNCT = $(words $(PS_SRCS)))
+		$(eval verif = $(shell echo $(verif) + 1 | bc ))
+		$(eval PCR = $(shell echo "$(verif) / $(FNCT) * 1000" | bc -l))
+		@printf " \n$(_GREEN)[%4d%%]\t$(_DEF)%-40s $(_DEF)👉\t\t$(_GREEN) %-40s$(_DEF)" $(shell echo $(PCR) | sed -E "s:\.[0-9]{20}::") $< $@
+		@mkdir -p objs/ps
+		@printf "$(_DEF)"
+		@$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
+
+$(CH_OBJS_PATH)%.o: $(CH_SRCS_PATH)%.c $(INC)
+		@printf "\n$(_GRAS)$(_CYAN)|===========================================>  $(CH)   |============================================>$(_DEF)\n";
+		$(eval FNCT = $(words $(PS_SRCS)))
+		$(eval verif = $(shell echo $(verif) | bc ))
+		$(eval PCR = $(shell echo "$(verif) / $(FNCT) * 1000" | bc -l))
+		@printf " \n$(_GREEN)[%4d%%]\t$(_DEF)%-40s $(_DEF)👉\t\t$(_GREEN) %-40s$(_DEF)" $(shell echo $(PCR) | sed -E "s:\.[0-9]{20}::") $< $@
+		@mkdir -p objs/checker
+		@printf "$(_DEF)"
+		@$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
 
 clean:
-	@echo
-	@rm -rf $(OBJS_PATH) 2> /dev/null || true
-	@echo -e "$(_YELLOW)Remove :\t$(_RED)" $(LDFLAGS)objs/
-	@echo
+		@echo
+		@rm -rf $(PS_OBJS_PATH) $(CH_OBJS_PATH) 2> /dev/null || true
+		@echo -e "$(_YELLOW)Remove :\t$(_RED)" $(PS_OBJS_PATH)
+		@echo -e "$(_YELLOW)Remove :\t$(_RED)" $(CH_OBJS_PATH)
 
-fclean:
-	@echo
-	@rm -rf $(OBJS_PATH) 2> /dev/null || true
-	@rm -f $(NAME)
-	@echo -e "$(_YELLOW)Remove :\t$(_RED)" $(LDFLAGS)objs/
-	@echo -e "$(_YELLOW)Remove :\t$(_RED)" $(LDFLAGS)$(NAME)
-	@echo
+fclean: libre clean
+		@rm -Rf objs
+		@echo -e "$(_YELLOW)Remove :\t$(_RED)" $(PS)
+		@echo -e "$(_YELLOW)Remove :\t$(_RED)" $(CH)
+		@echo
 
 re: fclean all
 
 norme:
-	@echo -ne "$(_GREEN)"
-	@norminette $(SRCS_PATH)
-	@norminette $(INCS_PATH)
-	@echo -ne "$(_DEF)"
+		@norminette $(PS_SRCS_PATH)
+		@norminette $(INCS_PATH)
 
-.PHONY: all clean fclean re norme
+.PHONY: all lib libre clean fclean re norme
