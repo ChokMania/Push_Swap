@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 17:48:09 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/19 12:31:26 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/19 15:00:53 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 typedef struct	s_check
 {
 	int				n;
-	int				error;
 	struct s_check	*prev;
 	struct s_check	*next;
 }				t_check;

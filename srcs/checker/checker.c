@@ -6,27 +6,55 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 15:54:50 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/19 13:11:48 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/19 15:10:32 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_checker.h>
+
+long	ft_atol(const char *str)
+{
+	long result;
+	long negatif;
+
+	result = 0;
+	negatif = 0;
+	if (str)
+	{
+		while (*str == ' ' || *str == '\t' || *str == '\n' || *str == '\r'
+			|| *str == '\f' || *str == '\v')
+			str++;
+		if (*str == '-')
+		{
+			negatif = 1;
+			str++;
+		}
+		else if (*str == '+')
+			str++;
+		while (*str >= '0' && *str <= '9')
+		{
+			result += *str++ - '0';
+			if (*str >= '0' && *str <= '9')
+				result *= 10;
+		}
+	}
+	return (negatif ? -result : result);
+}
+
+void	ft_error(t_check *p)
+{
+	printf("\033[31mError\033[37m\n");
+	free(p->next);
+	exit (0);
+}
 
 void	ft_free_lst(t_check *p)
 {
 	if (p->next)
 		ft_free_lst(p->next);
 	p->next = NULL;
-	free(p);
-}
-
-int		ft_check_double(int n, t_check *p)
-{
-	t_check	*beg;
-
-	beg = p;
-	n = 0;
-	return (1);
+	if (p)
+		free(p);
 }
 
 t_check	*ft_recup(int ac, char **av)
@@ -34,30 +62,24 @@ t_check	*ft_recup(int ac, char **av)
 	t_check		*p;
 	t_check		*begin;
 	int			i;
-	int			error;
 
 	i = 1;
-	error = 0;
 	if (!(p = (t_check*)malloc(sizeof(t_check) * 1)))
-		return (NULL);
+		ft_error(p);
 	begin = p;
 	while (--ac)
 	{
-		p->next = NULL;
 		if (!(p->next = (t_check*)malloc(sizeof(t_check) * 1)))
-			return (NULL);
-		if (ft_check_double(atoi(av[i]), p) == 0)
-		{
-			error = 1;
-			p = p->next;
-			break ;
-		}
-		p->n = ft_atoi(av[i++]);
+			ft_error(p);
+		if (ft_atol(av[i]) > INT32_MAX)
+			ft_error(p);
+		p->n = (int)ft_atol(av[i++]);
+		if (p->n == 4)
+			ft_error(p);
 		p = p->next;
 	}
 	p->next = NULL;
 	p = begin;
-	error == 1 ? p->error = 1 : p->error;
 	return (p);
 }
 
@@ -86,6 +108,8 @@ int		ft_check_input(char *str)
 	return (0);
 }
 
+//si > int ou doublons == error;
+
 int		main(int ac, char **av)
 {
 	int		ret;
@@ -94,36 +118,28 @@ int		main(int ac, char **av)
 	t_check	*p;
 	t_check *begin;
 
-	if (ac < 2 && printf("\033[31mError\033[37m\n"))
+	ft_bzero(str, 1000);
+	if (ac < 2 && ft_printf("\033[31mError\033[37m\n"))
 		return (0);
-	if (ft_check_av(av) == 0 && printf("\033[31mError\033[37m\n"))
+	if (ft_check_av(av) == 0 && ft_printf("\033[31mError\033[37m\n"))
 		return (0);
 	p = ft_recup(ac, av);
 	begin = p;
-	if (p->error == 1 && printf("\033[31mError\033[37m\n"))
-	{
-		ft_free_lst(p);
-		return (0);
-	}
 	while ((ret = read(0, buf, 4)) > 0)
 	{
 		buf[ret] = '\0';
-		if (ft_check_input(buf) == 0 && printf("\033[31mError\033[37m\n"))
+		if (ft_check_input(buf) == 0 && ft_printf("\033[31mError\033[37m\n"))
 			return (0);
-		ft_strcpy(&str[ft_strlen(str)], buf);
+		if (str[0] == '\0')
+			ft_strcpy(&str[0], buf);
+		else
+			ft_strcpy(&str[ft_strlen(str)], buf);
 	}
-	printf("\n\nstr:\n%s", str);
-	if (ret == -1 && printf("\033[31mError\033[37m\n"))
+	ft_printf("\n\nstr:\n\n\n%s", str);
+	if (ret == -1 && ft_printf("\033[31mError\033[37m\n"))
 		return (0);
 	p = begin;
-	while (p->next)
-	{
-		dprintf(1, "%d\t", p->n);
-		p = p->next;
-	}
 	ft_free_lst(begin);
-	printf("Fin\n");
+	ft_printf("\033[32mOK\033[37m\n");
 	return (0);
 }
-
-//si > int ou doublons == error;
