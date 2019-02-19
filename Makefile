@@ -6,7 +6,7 @@
 #    By: judumay <judumay@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/18 15:28:18 by judumay           #+#    #+#              #
-#    Updated: 2019/02/19 09:50:07 by judumay          ###   ########.fr        #
+#    Updated: 2019/02/19 12:36:44 by judumay          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -113,12 +113,11 @@ $(CH_OBJS_PATH)%.o: $(CH_SRCS_PATH)%.c $(INC)
 
 clean:
 		@echo
-		@rm -rf $(PS_OBJS_PATH) $(CH_OBJS_PATH) 2> /dev/null || true
+		@rm -rf objs/ 2> /dev/null || true
 		@echo -e "$(_YELLOW)Remove :\t$(_RED)" $(PS_OBJS_PATH)
 		@echo -e "$(_YELLOW)Remove :\t$(_RED)" $(CH_OBJS_PATH)
 
 fclean: libre clean
-		@rm -Rf objs
 		@rm -f $(PS)
 		@rm -f $(CH)
 		@echo -e "$(_YELLOW)Remove :\t$(_RED)" $(PS)

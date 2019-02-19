@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 15:54:50 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/19 11:40:12 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/02/19 13:11:48 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,44 @@ void	ft_free_lst(t_check *p)
 	free(p);
 }
 
+int		ft_check_double(int n, t_check *p)
+{
+	t_check	*beg;
+
+	beg = p;
+	n = 0;
+	return (1);
+}
+
 t_check	*ft_recup(int ac, char **av)
 {
 	t_check		*p;
 	t_check		*begin;
 	int			i;
+	int			error;
 
 	i = 1;
+	error = 0;
 	if (!(p = (t_check*)malloc(sizeof(t_check) * 1)))
 		return (NULL);
 	begin = p;
 	while (--ac)
 	{
-		p->n = ft_atoi(av[i++]);
-		dprintf(1, "p->n:%d\n", p->n);
+		p->next = NULL;
 		if (!(p->next = (t_check*)malloc(sizeof(t_check) * 1)))
 			return (NULL);
+		if (ft_check_double(atoi(av[i]), p) == 0)
+		{
+			error = 1;
+			p = p->next;
+			break ;
+		}
+		p->n = ft_atoi(av[i++]);
 		p = p->next;
 	}
 	p->next = NULL;
 	p = begin;
+	error == 1 ? p->error = 1 : p->error;
 	return (p);
 }
 
@@ -80,6 +98,13 @@ int		main(int ac, char **av)
 		return (0);
 	if (ft_check_av(av) == 0 && printf("\033[31mError\033[37m\n"))
 		return (0);
+	p = ft_recup(ac, av);
+	begin = p;
+	if (p->error == 1 && printf("\033[31mError\033[37m\n"))
+	{
+		ft_free_lst(p);
+		return (0);
+	}
 	while ((ret = read(0, buf, 4)) > 0)
 	{
 		buf[ret] = '\0';
@@ -90,11 +115,10 @@ int		main(int ac, char **av)
 	printf("\n\nstr:\n%s", str);
 	if (ret == -1 && printf("\033[31mError\033[37m\n"))
 		return (0);
-	p = ft_recup(ac, av);
-	begin = p;
+	p = begin;
 	while (p->next)
 	{
-		printf("\np :%d\n", p->n);
+		dprintf(1, "%d\t", p->n);
 		p = p->next;
 	}
 	ft_free_lst(begin);
