@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 17:48:09 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/18 18:34:02 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/19 09:45:00 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,10 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-typedef struct	s_checker
+typedef struct	s_check
 {
-	int			*tab_a;
-	int			*tab_b;
-	int			*tab_temp_a;
-	int			*tab_temp_b;
-	int			size_a;
-	int			size_b;
-	int			size_temp_a;
-	int			size_temp_b;
-}				t_checker;
+	int				n;
+	struct s_list	*next;
+}				t_check;
 
 #endif

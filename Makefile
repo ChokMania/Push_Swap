@@ -6,7 +6,7 @@
 #    By: judumay <judumay@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/18 15:28:18 by judumay           #+#    #+#              #
-#    Updated: 2019/02/18 16:03:04 by judumay          ###   ########.fr        #
+#    Updated: 2019/02/19 09:50:07 by judumay          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,11 +82,11 @@ libre:
 		@make -C libft fclean
 
 $(PS): $(PS_OBJS)
-		@$(CC) $(PS_OBJS) -o $@
+		@$(CC) $(PS_OBJS) libft/libft.a -o $@
 		@echo -en "$(_GREEN)\t [OK]\n\n$(_DEF)"
 
 $(CH): $(CH_OBJS)
-		@$(CC) $(CH_OBJS) -o $@
+		@$(CC) $(CH_OBJS) libft/libft.a -o $@
 		@echo -en "$(_GREEN)\t [OK]\n\n$(_DEF)"
 
 $(PS_OBJS_PATH)%.o: $(PS_SRCS_PATH)%.c $(INC)
@@ -119,6 +119,8 @@ clean:
 
 fclean: libre clean
 		@rm -Rf objs
+		@rm -f $(PS)
+		@rm -f $(CH)
 		@echo -e "$(_YELLOW)Remove :\t$(_RED)" $(PS)
 		@echo -e "$(_YELLOW)Remove :\t$(_RED)" $(CH)
 		@echo
