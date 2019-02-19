@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_checker.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 17:48:09 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/19 09:45:00 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/19 11:08:32 by anmauffr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@
 typedef struct	s_check
 {
 	int				n;
-	struct s_list	*next;
+	struct s_check	*prev;
+	struct s_check	*next;
 }				t_check;
 
 #endif
