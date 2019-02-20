@@ -6,7 +6,7 @@
 #    By: judumay <judumay@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/18 15:28:18 by judumay           #+#    #+#              #
-#    Updated: 2019/02/20 18:23:03 by judumay          ###   ########.fr        #
+#    Updated: 2019/02/20 19:24:20 by judumay          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,9 @@ CH = checker
 PS_SRCS_NAME = push_swap.c
 CH_SRCS_NAME = checker.c \
 				ft_move.c \
+				ft_move2.c \
+				ft_utiles.c \
+				ft_apply.c \
 				ft_other.c
 
 INCS_NAMES = ft_push_swap.h

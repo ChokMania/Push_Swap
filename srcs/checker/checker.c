@@ -6,12 +6,25 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 15:54:50 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/20 19:06:04 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/20 19:39:08 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_checker.h>
 
+void	ft_check_value(t_check *p)
+{
+	while (p->next)
+	{
+		if (p->n > p->next->n)
+		{
+			ft_printf("\033[31mKO\033[37m\n");
+			return ;
+		}
+		p = p->next;
+	}
+	ft_printf("\033[32mOK\033[37m\n");
+}
 
 t_check	*ft_recup(int ac, char **av)
 {
@@ -66,7 +79,7 @@ int		ft_check_av(char **av)
 	return (1);
 }
 
-//check les writes et verif si tout bien trier
+//Check sorties
 
 int		ft_check_input(char *str)
 {
@@ -80,8 +93,6 @@ int		ft_check_input(char *str)
 	return (0);
 }
 
-//doublons == error;
-
 int		main(int ac, char **av)
 {
 	int		ret;
@@ -93,9 +104,8 @@ int		main(int ac, char **av)
 
 	i = 0;
 	ft_bzero(str, 1000);
-	if (ac < 2 && ft_printf("\033[31mError\033[37m\n"))
-		return (0);
-	if (ft_check_av(av) == 0 && ft_printf("\033[31mError\033[37m\n"))
+	if ((ac < 2 || ft_check_av(av) == 0) &&
+		ft_printf("\033[31mError\033[37m\n"))
 		return (0);
 	p = ft_recup(ac, av);
 	begin = p;
@@ -119,7 +129,7 @@ int		main(int ac, char **av)
 	p = begin;
 	begin = ft_read_inst(p, str);
 	p = begin;
+	ft_check_value(p);
 	ft_free_lst(begin);
-	ft_printf("\033[32mOK\033[37m\n");
 	return (0);
 }
