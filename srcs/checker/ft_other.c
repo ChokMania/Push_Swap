@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 09:05:16 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/20 10:35:59 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/20 18:22:58 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	ft_error(t_check *p)
 {
-	printf("\033[31m 5Error\033[37m\n");
+	printf("\033[31mError\033[37m\n");
 	free(p->next);
 	exit(0);
 }

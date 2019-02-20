@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 16:41:17 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/20 12:01:20 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/20 17:12:03 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ t_check	*ft_list_push_fronte(t_check **begin_list, int n)
 		p = ft_create_eleme(n);
 		p->next = *begin_list;
 		*begin_list = p;
-		//free(p);//MOLO-MOLO
 	}
 	else
 		*begin_list = ft_create_eleme(n);
@@ -70,7 +69,7 @@ void	ft_del_first(t_check **begin_list)
 
 int		ft_lstlene(t_check **list)
 {
-	int	j;
+	int		j;
 	t_check	*tmp;
 
 	if (list != NULL)
@@ -153,7 +152,7 @@ void	ft_ra(t_check **a, t_check **begina)
 	t_check	*t;
 
 	t = NULL;
-	if (*a)
+	if ((*a)->next)
 	{
 		t = (*a);
 		*begina = (*a)->next;
@@ -171,7 +170,7 @@ void	ft_rb(t_check **b, t_check **beginb)
 	t_check	*t;
 
 	t = NULL;
-	if (*b)
+	if ((*b)->next)
 	{
 		t = (*b);
 		*beginb = (*b)->next;
@@ -180,59 +179,93 @@ void	ft_rb(t_check **b, t_check **beginb)
 			(*b) = (*b)->next;
 		(*b)->next = t;
 		(*b)->next->next = NULL;
+		*b = *beginb;
 	}
-	*b = *beginb;
 }
 
-/*
-void	ft_rr(t_check *a, t_check *b)
+void	ft_rr(t_check **a, t_check **b, t_check **begina, t_check **beginb)
 {
+	ft_ra(a, begina);
+	ft_rb(b, beginb);
 }
 
-void	ft_rra(t_check *a)
+void	ft_rra(t_check **a, t_check **begina)
 {
+	t_check	*t;
+
+	t = NULL;
+	if ((*a)->next)
+	{
+		while ((*a)->next->next)
+			*a = (*a)->next;
+		t = (*a)->next;
+		(*a)->next = NULL;
+		*a = *begina;
+		t->next = *a;
+		*begina = t;
+		*a = *begina;
+	}
 }
 
-void	ft_rrb(t_check *b)
+void	ft_rrb(t_check **b, t_check **beginb)
 {
+	t_check	*t;
+
+	t = NULL;
+	if ((*b)->next)
+	{
+		while ((*b)->next->next)
+			*b = (*b)->next;
+		t = (*b)->next;
+		(*b)->next = NULL;
+		*b = *beginb;
+		t->next = *b;
+		*beginb = t;
+		*b = *beginb;
+	}
 }
 
-void	ft_rrr(t_check *a, t_check *b)
+void	ft_rrr(t_check **a, t_check **b, t_check **begina, t_check **beginb)
 {
+	ft_rra(a, begina);
+	ft_rrb(b, beginb);
 }
-*/
 
-t_check		*ft_read_inst(t_check *a, char *str)
+t_check	*ft_apply(char str[1000][4], t_check **a)
 {
 	t_check		*b;
 	t_check		*begina;
 	t_check		*beginb;
+	int			i;
 
-	(void)str;
-	b = (t_check*)malloc(sizeof(t_check) * 1);
-	b->n = 42;
-	b->next = (t_check*)malloc(sizeof(t_check) * 1);
-	b->next->n = 72;
-	b->next->next = (t_check*)malloc(sizeof(t_check) * 1);
-	b->next->next->n = 102;
-	b->next->next->next = NULL;
-	begina = a;
+	b = NULL;
+	i = 0;
+	begina = *a;
 	beginb = b;
-	ft_sa(a);
-	ft_display(a, b);
-	ft_sb(b);
-	ft_display(a, b);
-	ft_ss(a, b);
-	ft_display(a, b);
-	ft_pa(&a, &b, &begina);
-	ft_display(a, b);
-	ft_pb(&a, &b, &beginb);
-	ft_display(a, b);
-	ft_ra(&a, &begina);
-	ft_display(a, b);
-	ft_rb(&b, &beginb);
-	ft_display(a, b);
+	while (str[i][0] != 0)
+	{
+		!ft_strcmp(str[i], "sa\n") ? ft_sa(*a) : 0;
+		!ft_strcmp(str[i], "sb\n") ? ft_sb(b) : 0;
+		!ft_strcmp(str[i], "ss\n") ? ft_ss(*a, b) : 0;
+		!ft_strcmp(str[i], "pa\n") ? ft_pa(a, &b, &begina) : 0;
+		!ft_strcmp(str[i], "pb\n") ? ft_pb(a, &b, &beginb) : 0;
+		!ft_strcmp(str[i], "ra\n") ? ft_ra(a, &begina) : 0;
+		!ft_strcmp(str[i], "rb\n") ? ft_rb(&b, &beginb) : 0;
+		!ft_strcmp(str[i], "rr\n") ? ft_rr(a, &b, &begina, &beginb) : 0;
+		!ft_strcmp(str[i], "rra\n") ? ft_rra(a, &begina) : 0;
+		!ft_strcmp(str[i], "rrb\n") ? ft_rrb(&b, &beginb) : 0;
+		!ft_strcmp(str[i], "rrr\n") ? ft_rrr(a, &b, &begina, &beginb) : 0;
+		i++;
+	}
 	b = beginb;
-	ft_free_lst(b);
+	ft_display(*a, b);
+	if (b)
+		ft_free_lst(b);
 	return (begina);
+}
+
+t_check	*ft_read_inst(t_check *a, char str[1000][4])
+{
+	a = ft_apply(str, &a);
+	return (a);
 }
