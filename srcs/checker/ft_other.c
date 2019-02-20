@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_checker.h                                       :+:      :+:    :+:   */
+/*   ft_other.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/18 17:48:09 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/20 09:07:40 by judumay          ###   ########.fr       */
+/*   Created: 2019/02/20 09:05:16 by judumay           #+#    #+#             */
+/*   Updated: 2019/02/20 09:06:29 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_CHECKER_H
-# define FT_CHECKER_H
+#include <ft_checker.h>
+#include <stdlib.h>
 
-# include <libft.h>
-# include <stdio.h>
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <fcntl.h>
-
-typedef struct	s_check
+void	ft_error(t_check *p)
 {
-	int				n;
-	struct s_check	*next;
-}				t_check;
+	printf("\033[31mError\033[37m\n");
+	free(p->next);
+	exit(0);
+}
 
-int			ft_read_inst(t_check *a, char *str);
-void		ft_error(t_check *p);
-void		ft_free_lst(t_check *p);
-
-#endif
+void	ft_free_lst(t_check *p)
+{
+	if (p->next)
+		ft_free_lst(p->next);
+	p->next = NULL;
+	if (p)
+		free(p);
+}

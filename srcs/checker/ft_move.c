@@ -6,12 +6,32 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 16:41:17 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/20 00:59:52 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/20 09:04:48 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_checker.h>
 #include <stdlib.h>
+
+int		ft_lstlene(t_check **list)
+{
+	int	j;
+	t_check	*tmp;
+
+	if (list != NULL)
+	{
+		tmp = *list;
+		j = 0;
+		while (tmp != NULL)
+		{
+			tmp = tmp->next;
+			j++;
+		}
+		return (j);
+	}
+	else
+		return (0);
+}
 
 void	ft_sa(t_check *a)
 {
@@ -20,6 +40,8 @@ void	ft_sa(t_check *a)
 	t_check *begin;
 
 	begin = a;
+	if ((ft_lstlene(&begin) - 1 == 1 || ft_lstlene(&begin) - 1 == 0) && ft_printf("ALONE\n"))
+		return ;
 	t1 = a->n;
 	while (a->next->next)
 		a = a->next;
@@ -36,6 +58,8 @@ void	ft_sb(t_check *b)
 	t_check *begin;
 
 	begin = b;
+	if ((ft_lstlene(&begin) - 1 == 1 || ft_lstlene(&begin) - 1 == 0) && ft_printf("ALONE\n"))
+		return ;
 	t1 = b->n;
 	while (b->next->next)
 		b = b->next;
@@ -44,12 +68,14 @@ void	ft_sb(t_check *b)
 	b = begin;
 	b->n = t2;
 }
-/*
+
 void	ft_ss(t_check *a, t_check *b)
 {
+	ft_sa(a);
+	ft_sb(b);
 }
 
-void	ft_pa(t_check *a)
+/*void	ft_pa(t_check *a)
 {
 }
 
@@ -81,7 +107,7 @@ void	ft_rrr(t_check *a, t_check *b)
 {
 }
 */
-int	ft_read_inst(t_check *a, char *str)
+int		ft_read_inst(t_check *a, char *str)
 {
 	t_check		*b;
 	t_check		*begina;

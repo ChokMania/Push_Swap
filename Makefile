@@ -6,7 +6,7 @@
 #    By: judumay <judumay@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/18 15:28:18 by judumay           #+#    #+#              #
-#    Updated: 2019/02/20 00:48:59 by judumay          ###   ########.fr        #
+#    Updated: 2019/02/20 09:06:19 by judumay          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ CH = checker
 # Sources names
 PS_SRCS_NAME = push_swap.c
 CH_SRCS_NAME = checker.c \
-				ft_move.c
+				ft_move.c \
+				ft_other.c
 
 INCS_NAMES = ft_push_swap.h
 
@@ -73,6 +74,7 @@ _ICYAN = $'\033[46m
 _IGREY = $'\033[47m
 
 verif = 0
+verife = 0
 
 all: $(PS) $(CH)
 
@@ -103,10 +105,11 @@ $(PS_OBJS_PATH)%.o: $(PS_SRCS_PATH)%.c $(INC)
 		@$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
 
 $(CH_OBJS_PATH)%.o: $(CH_SRCS_PATH)%.c $(INC)
-		@printf "\n$(_GRAS)$(_CYAN)|===========================================>  $(CH)   |============================================>$(_DEF)\n";
-		$(eval FNCT = $(words $(PS_SRCS)))
-		$(eval verif = $(shell echo $(verif) | bc ))
-		$(eval PCR = $(shell echo "$(verif) / $(FNCT) * 1000" | bc -l))
+		@if [[ $(verife) -eq 0 ]]; then printf "\n$(_GRAS)$(_CYAN)|===========================================>  $(CH)   |============================================>$(_DEF)\n";\
+		else printf "\e[1A"; fi
+		$(eval FNCT = $(words $(CH_SRCS)))
+		$(eval verife = $(shell echo $(verife) + 1 | bc ))
+		$(eval PCR = $(shell echo "$(verife) / $(FNCT) * 1000" | bc -l))
 		@printf " \n$(_GREEN)[%4d%%]\t$(_DEF)%-40s $(_DEF)👉\t\t$(_GREEN) %-40s$(_DEF)" $(shell echo $(PCR) | sed -E "s:\.[0-9]{20}::") $< $@
 		@mkdir -p objs/checker
 		@printf "$(_DEF)"

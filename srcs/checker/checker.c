@@ -6,27 +6,11 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 15:54:50 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/20 00:42:05 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/20 09:05:09 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_checker.h>
-
-void	ft_error(t_check *p)
-{
-	printf("\033[31mError\033[37m\n");
-	free(p->next);
-	exit (0);
-}
-
-void	ft_free_lst(t_check *p)
-{
-	if (p->next)
-		ft_free_lst(p->next);
-	p->next = NULL;
-	if (p)
-		free(p);
-}
 
 t_check	*ft_recup(int ac, char **av)
 {
