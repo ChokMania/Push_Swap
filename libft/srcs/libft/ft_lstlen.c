@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_checker.h                                       :+:      :+:    :+:   */
+/*   ft_lstlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/18 17:48:09 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/20 00:48:27 by judumay          ###   ########.fr       */
+/*   Created: 2019/02/20 00:52:33 by judumay           #+#    #+#             */
+/*   Updated: 2019/02/20 00:52:47 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_CHECKER_H
-# define FT_CHECKER_H
+#include "libft.h"
 
-# include <libft.h>
-# include <stdio.h>
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <fcntl.h>
-
-typedef struct	s_check
+int		ft_lstlen(t_list *beg)
 {
-	int				n;
-	struct s_check	*prev;
-	struct s_check	*next;
-}				t_check;
+	t_list		*tmp;
+	int			i;
 
-int	ft_read_inst(t_check *a, char *str);
-
-#endif
+	i = 0;
+	if (beg == NULL)
+		return (0);
+	tmp = beg;
+	while (tmp)
+	{
+		tmp = tmp->next;
+		i++;
+	}
+	return (i);
+}

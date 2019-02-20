@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/05 17:51:13 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/19 20:02:14 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/20 00:53:16 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,6 @@ int				ft_longlen(long n);
 int				ft_pow(int x, int y);
 int				ft_intlen(int n);
 long			ft_atol(const char *str);
+int				ft_lstlen(t_list *beg);
 
 #endif

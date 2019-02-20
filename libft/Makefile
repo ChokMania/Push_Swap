@@ -6,7 +6,7 @@
 #    By: judumay <judumay@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 18:30:56 by anmauffr          #+#    #+#              #
-#    Updated: 2019/02/19 20:02:38 by judumay          ###   ########.fr        #
+#    Updated: 2019/02/20 00:53:33 by judumay          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,6 +100,7 @@ SRCS_NAME = libft/ft_atoi.c \
 			libft/ft_pow.c \
 			libft/ft_intlen.c \
 			libft/ft_atol.c \
+			libft/ft_lstlen.c \
 			get_next_line/get_next_line.c \
 			ft_printf/ft_printf.c \
 			ft_printf/ft_printf_c.c \

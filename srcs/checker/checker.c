@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 15:54:50 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/19 20:01:09 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/20 00:42:05 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ int		main(int ac, char **av)
 	if (ret == -1 && ft_printf("\033[31mError\033[37m\n"))
 		return (0);
 	p = begin;
+	ft_read_inst(p, str);
 	ft_free_lst(begin);
 	ft_printf("\033[32mOK\033[37m\n");
 	return (0);
