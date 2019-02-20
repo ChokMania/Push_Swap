@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 17:48:09 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/20 09:07:40 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/20 11:32:43 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct	s_check
 	struct s_check	*next;
 }				t_check;
 
-int			ft_read_inst(t_check *a, char *str);
+t_check		*ft_read_inst(t_check *a, char *str);
 void		ft_error(t_check *p);
 void		ft_free_lst(t_check *p);
 
