@@ -6,7 +6,7 @@
 #    By: lramard <lramard@student42.fr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/18 15:28:18 by judumay           #+#    #+#              #
-#    Updated: 2019/02/21 17:22:40 by lramard          ###   ########.fr        #
+#    Updated: 2019/02/21 18:36:49 by lramard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,9 @@ PS_SRCS_NAME = ft_ps.c \
 				ft_choice.c \
 				ft_quicksort.c \
 				ft_math.c \
-				ft_mergesort.c
+				ft_mergesort.c \
+				ft_move.c \
+				ft_move2.c
 CH_SRCS_NAME = checker.c \
 				ft_move.c \
 				ft_move2.c \
@@ -84,7 +86,7 @@ _IGREY = $'\033[47m
 verif = 0
 verife = 0
 
-all: $(PS) $(CH)
+all: lib $(PS) $(CH)
 
 lib:
 		@make -C libft
@@ -101,7 +103,6 @@ $(CH): $(CH_OBJS)
 		@echo -en "$(_GREEN)\t [OK]\n\n$(_DEF)"
 
 $(PS_OBJS_PATH)%.o: $(PS_SRCS_PATH)%.c $(INC)
-		@make -C libft
 		@if [[ $(verif) -eq 0 ]]; then printf "\n$(_GRAS)$(_CYAN)|===========================================>  $(PS)   |============================================>$(_DEF)\n";\
 		else printf "\e[1A"; fi
 		$(eval FNCT = $(words $(PS_SRCS)))

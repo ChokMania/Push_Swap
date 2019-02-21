@@ -1,11 +1,11 @@
-#include <ft_push_sawp.h>
+#include <ft_push_swap.h>
 #include <stdlib.h>
 
 void	ft_sa(t_checke *a)
 {
 	int		t1;
 
-	if (ft_lstlene(&a) <= 1)
+	if (ft_lstl(a) <= 1)
 		return ;
 	t1 = a->n;
 	a->n = a->next->n;
@@ -16,7 +16,7 @@ void	ft_sb(t_checke *b)
 {
 	int		t1;
 
-	if (ft_lstlene(&b) <= 1)
+	if (ft_lstl(b) <= 1)
 		return ;
 	t1 = b->n;
 	b->n = b->next->n;
@@ -44,9 +44,9 @@ void	ft_pa(t_checke **a, t_checke **b, t_checke **begina, t_checke **beginb)
 	}
 }
 
-void	ft_pb(t_checke **a, t_checke **b, t_checke **begina, t_checke **beginb)
+void	ft_pbe(t_checke **a, t_checke **b, t_checke **begina, t_checke **beginb)
 {
-	t_check	*t;
+	t_checke	*t;
 
 	if (*a)
 	{

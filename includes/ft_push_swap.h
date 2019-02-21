@@ -6,7 +6,7 @@
 /*   By: lramard <lramard@student42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 11:15:37 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/21 17:55:29 by lramard          ###   ########.fr       */
+/*   Updated: 2019/02/21 18:32:14 by lramard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void			ft_sb(t_checke *b);
 void			ft_ss(t_checke *a, t_checke *b);
 void			ft_pa(t_checke **a, t_checke **b, t_checke **begina,
 	t_checke **beginb);
-void			ft_pb(t_checke **a, t_checke **b, t_checke **begina,
+void			ft_pbe(t_checke **a, t_checke **b, t_checke **begina,
 	t_checke **beginb);
 void			ft_rrr(t_checke **a, t_checke **b, t_checke **begina,
 	t_checke **beginb);
