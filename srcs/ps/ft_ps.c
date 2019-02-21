@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ps.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramard <lramard@student42.fr>             +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 15:27:09 by lramard           #+#    #+#             */
-/*   Updated: 2019/02/21 15:36:52 by lramard          ###   ########.fr       */
+/*   Updated: 2019/02/21 15:44:37 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_checke	*ft_recup(int ac, char **av)
 	return (p);
 }
 
-int		ft_check_av(char **av)
+int			ft_check_av(char **av)
 {
 	int		i;
 	int		j;
@@ -58,18 +58,16 @@ int		ft_check_av(char **av)
 			ft_atol(av[i]) < INT32_MIN)
 			return (0);
 		while (++k != i)
-		{
 			if (ft_atol(av[i]) == ft_atol(av[k]))
 				return (0);
-		}
 	}
 	return (1);
 }
 
-int		main(int ac, char **av)
+int			main(int ac, char **av)
 {
 	t_checke	*p;
-	t_checke *begin;
+	t_checke	*begin;
 
 	if ((ac < 2 || ft_check_av(av) == 0) &&
 		write(2, "\033[31mError\033[37m\n", 17))

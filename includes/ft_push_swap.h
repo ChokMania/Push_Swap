@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_push_swap.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramard <lramard@student42.fr>             +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 11:15:37 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/21 15:39:07 by lramard          ###   ########.fr       */
+/*   Updated: 2019/02/21 15:43:12 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct	s_ps
 	int				median;
 	int				nbblock;
 	int				size;
-	struct s_check	*next;
+	struct s_ps		*next;
 }				t_ps;
 
 void		ft_error(t_checke *p);
