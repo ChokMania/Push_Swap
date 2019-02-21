@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pushswap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lramard <lramard@student42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 12:03:25 by lramard           #+#    #+#             */
-/*   Updated: 2019/02/21 16:02:33 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/21 15:30:44 by lramard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,20 @@ void	ft_distri(int arc, char **argv)
 {
 	if (arc <= 5)
 	{
-		ft_quicksort_min();
+		//
 	}
-	else if (arc <=20)
+	else if (arc <=20 && arc > 5)
 	{
-		ft_quicksort_med();
+		//
 	}
-	else
-	{
-		ft_quicksort_max();
-	}
-	ft_printf("\033[32mOK\033[37m\n");
+	else if (arc > 20)
+		//quicksort
 }
 
 void	ft_send(int k)
 {
 	if(k == 1)
-		write(1, "sa", 2);
+		write(1, "sa, 2");
 	else if (k == 2)
 		write(1, "sb", 2);
 	else if (k == 3)
@@ -133,11 +130,11 @@ int main(list)
 {
 	while (list *a > 3 elements)
 	{
-		//calcule la mediane et mettr eles elements les plus petits sur a stack b
+		calcule la mediane et mettr eles elements les plus petits sur a stack b
 	}
-	if ( list *a == 3)
+	if ( list *a  ==  3)
 	{
-		//tri de la liste
+		tri de la liste
 	}
 	
 }

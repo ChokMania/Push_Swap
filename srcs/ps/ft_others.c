@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_others.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/21 15:46:09 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/21 15:46:13 by judumay          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <ft_push_swap.h>
 
 void	ft_error(t_checke *p)
@@ -17,4 +5,22 @@ void	ft_error(t_checke *p)
 	write(2, "\033[31mError\033[37m\n", 17);
 	free(p->next);
 	exit(0);
+}
+
+int		ft_lstl(t_checke *list)
+{
+	int		j;
+
+	if (list)
+	{
+		j = 0;
+		while (list)
+		{
+			list = list->next;
+			j++;
+		}
+		return (j);
+	}
+	else
+		return (0);
 }

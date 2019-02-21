@@ -6,7 +6,7 @@
 #    By: lramard <lramard@student42.fr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/18 15:28:18 by judumay           #+#    #+#              #
-#    Updated: 2019/02/21 15:37:48 by lramard          ###   ########.fr        #
+#    Updated: 2019/02/21 17:22:40 by lramard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,10 @@ CH = checker
 # Sources names
 PS_SRCS_NAME = ft_ps.c \
 				ft_others.c \
-				ft_choice.c
+				ft_choice.c \
+				ft_quicksort.c \
+				ft_math.c \
+				ft_mergesort.c
 CH_SRCS_NAME = checker.c \
 				ft_move.c \
 				ft_move2.c \
