@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 19:09:44 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/21 14:21:01 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/21 14:43:59 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_pa(t_check **a, t_check **b, t_check **begina, t_check **beginb)
 {
 	t_check	*t;
 
-	if (*b && (*b)->next)
+	if (*b)
 	{
 		t = *b;
 		*b = (*b)->next;
@@ -60,7 +60,7 @@ void	ft_pb(t_check **a, t_check **b, t_check **begina, t_check **beginb)
 {
 	t_check	*t;
 
-	if (*a && (*a)->next)
+	if (*a)
 	{
 		t = *a;
 		*a = (*a)->next;
