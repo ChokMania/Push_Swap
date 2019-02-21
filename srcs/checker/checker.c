@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 15:54:50 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/20 19:39:08 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/21 14:16:47 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,8 @@ void	ft_check_value(t_check *p)
 {
 	while (p->next)
 	{
-		if (p->n > p->next->n)
-		{
-			ft_printf("\033[31mKO\033[37m\n");
+		if (p->n > p->next->n && ft_printf("\033[31mKO\033[37m\n"))
 			return ;
-		}
 		p = p->next;
 	}
 	ft_printf("\033[32mOK\033[37m\n");
@@ -79,8 +76,6 @@ int		ft_check_av(char **av)
 	return (1);
 }
 
-//Check sorties
-
 int		ft_check_input(char *str)
 {
 	if (ft_strcmp(str, "sa\n") == 0 || ft_strcmp(str, "sb\n") == 0 ||
@@ -96,36 +91,18 @@ int		ft_check_input(char *str)
 int		main(int ac, char **av)
 {
 	int		ret;
-	char	buf[4];
-	char	str[1000][4];
-	int		i;
+	char	str[1000][5];
 	t_check	*p;
 	t_check *begin;
 
-	i = 0;
+	ret = 0;
 	ft_bzero(str, 1000);
 	if ((ac < 2 || ft_check_av(av) == 0) &&
-		ft_printf("\033[31mError\033[37m\n"))
+		write(2, "\033[31mError\033[37m\n", 17))
 		return (0);
 	p = ft_recup(ac, av);
 	begin = p;
-	while ((ret = read(0, buf, 4)) > 0)
-	{
-		buf[ret] = '\0';
-		if (ft_check_input(buf) == 0 && ft_printf("\033[31mError\033[37m\n"))
-		{
-			ft_free_lst(p);
-			exit(0);
-		}
-		ft_strcpy(str[i], buf);
-		i++;
-	}
-	str[i][0] = 0;
-	if (ret == -1 && ft_printf("\033[31mError\033[37m\n"))
-	{
-		ft_free_lst(p);
-		exit(0);
-	}
+	ft_suite(ret, str, p);
 	p = begin;
 	begin = ft_read_inst(p, str);
 	p = begin;

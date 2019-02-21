@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 17:48:09 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/20 19:25:13 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/21 14:18:56 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,24 @@ typedef struct	s_check
 }				t_check;
 
 int			ft_lstlene(t_check **list);
+int			ft_check_input(char *str);
 void		ft_error(t_check *p);
 void		ft_free_lst(t_check *p);
 void		ft_del_first(t_check **begin_list);
 void		ft_sa(t_check *a);
 void		ft_sb(t_check *b);
 void		ft_ss(t_check *a, t_check *b);
-void		ft_pa(t_check **a, t_check **b, t_check **begina);
-void		ft_pb(t_check **a, t_check **b, t_check **beginb);
+void		ft_pa(t_check **a, t_check **b, t_check **begina, t_check **beginb);
+void		ft_pb(t_check **a, t_check **b, t_check **begina, t_check **beginb);
 void		ft_ra(t_check **a, t_check **begina);
 void		ft_rb(t_check **b, t_check **beginb);
 void		ft_rr(t_check **a, t_check **b, t_check **begina, t_check **beginb);
 void		ft_rra(t_check **a, t_check **begina);
 void		ft_rrb(t_check **b, t_check **beginb);
 void		ft_rrr(t_check **a, t_check **b, t_check **begina, t_check **beginb);
-t_check		*ft_read_inst(t_check *a, char str[1000][4]);
+void		ft_suite(int ret, char str[1000][5], t_check *p);
+t_check		*ft_read_inst(t_check *a, char str[1000][5]);
 t_check		*ft_create_eleme(int n);
-t_check		*ft_list_push_fronte(t_check **begin_list, int n);
+t_check		**ft_list_push_fronte(t_check **begin_list, int n);
 
 #endif

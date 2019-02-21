@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 16:41:17 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/20 19:29:43 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/21 11:58:55 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ void	ft_ra(t_check **a, t_check **begina)
 	{
 		t = (*a);
 		*begina = (*a)->next;
-		(*a) = (*a)->next;
+		t->next = NULL;
+		(*a) = *begina;
 		while ((*a)->next)
 			(*a) = (*a)->next;
 		(*a)->next = t;
-		(*a)->next->next = NULL;
+		*a = *begina;
 	}
-	*a = *begina;
 }
 
 void	ft_rb(t_check **b, t_check **beginb)
@@ -40,11 +40,11 @@ void	ft_rb(t_check **b, t_check **beginb)
 	{
 		t = (*b);
 		*beginb = (*b)->next;
-		(*b) = (*b)->next;
+		t->next = NULL;
+		(*b) = *beginb;
 		while ((*b)->next)
 			(*b) = (*b)->next;
 		(*b)->next = t;
-		(*b)->next->next = NULL;
 		*b = *beginb;
 	}
 }
