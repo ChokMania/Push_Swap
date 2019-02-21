@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: judumay <judumay@student.42.fr>            +#+  +:+       +#+         #
+#    By: lramard <lramard@student42.fr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/18 15:28:18 by judumay           #+#    #+#              #
-#    Updated: 2019/02/20 19:24:20 by judumay          ###   ########.fr        #
+#    Updated: 2019/02/21 15:37:48 by lramard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,9 @@ PS = push_swap
 CH = checker
 
 # Sources names
-PS_SRCS_NAME = push_swap.c
+PS_SRCS_NAME = ft_ps.c \
+				ft_others.c \
+				ft_choice.c
 CH_SRCS_NAME = checker.c \
 				ft_move.c \
 				ft_move2.c \
