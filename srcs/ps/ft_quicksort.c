@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_quicksort.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lramard <lramard@student42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 15:40:01 by lramard           #+#    #+#             */
-/*   Updated: 2019/02/22 15:41:30 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/22 17:01:05 by lramard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,11 @@ void	ft_suite_algo(t_checke **a, t_checke **b, t_ps *comp, t_checke	*finish)
 {
 	t_checke	*begina;
 	t_checke	*temp;
+	t_checke	*temp2;
 	t_checke	*beginb;
 	t_ps		*beginc;
 	t_checke	*begint;
+	t_checke	*begint2;
 	int			k;
 	int			i;
 	int 		j = 0;
@@ -92,8 +94,9 @@ void	ft_suite_algo(t_checke **a, t_checke **b, t_ps *comp, t_checke	*finish)
 	beginc = comp;
 	begina = *a;
 	beginb = *b;
+	temp2 = NULL;;
 	ft_mergesort(&finish);
-	while (o++ < 5 && (ft_lst_compare(*a, finish)) != 1)
+	while (o < 5 && (ft_lst_compare(*a, finish)) != 1)
 	{
 		while (comp->next)
 			comp = comp->next;
@@ -128,46 +131,59 @@ void	ft_suite_algo(t_checke **a, t_checke **b, t_ps *comp, t_checke	*finish)
 		else
 		{
 			//while () recreer comp->next, nouveau block;
-			
-			
-			ft_printf("\nAVANT\n");
-			ft_printf("\na :\t");
-			ft_display(*a);
-			ft_printf("\nELSE\n");
-			j = 0;
-			i = 0;
-			begint = temp;
-			ft_mergesort(&temp);
-			comp->median = ft_median(temp, comp->median);
-			while (++k < comp->size)
-				*a = (*a)->next;
-			k = (*a)->n;
-			*a = begina;
-			while (k != (*a)->n)
-			{
-				if ((*a)->n <= comp->median)
+			//while (o++ < 3 && ft_lstl(&temp) > 3)
+			//{
+				ft_printf("\nAVANT\n");
+				ft_printf("\na :\t");
+				ft_display(*a);
+				ft_printf("\nELSE\n");
+				j = 0;
+				i = 0;
+				begint = temp;
+				temp2 = ft_lstdup(temp);
+				begint2 = temp2;
+				ft_mergesort(&temp2);
+				comp->median = ft_median(temp2, comp->median);
+				ft_free_lst(temp2);
+				temp2 = NULL;
+				while (++k < comp->size)
+					*a = (*a)->next;
+				k = (*a)->n;
+				*a = begina;
+				while (k != (*a)->n)
 				{
-					ft_pbe(a, b, &begina, &beginb);
-					*a = begina;
-					i++;
+					if ((*a)->n <= comp->median)
+					{
+						ft_pbe(a, b, &begina, &beginb);
+						*a = begina;
+						i++;
+						ft_pbe(&temp, &temp2, &begint, &beginb);
+						temp = begint;
+					}
+					else
+					{
+						ft_ra(&temp, &begint);
+						ft_ra(a, &begina);
+						l++;
+					}
 				}
-				else
+				ft_printf("mediane : %d\t", comp->median);
+				while (l != 0)
 				{
-					ft_ra(a, &begina);
-					l++;
+					ft_rra(a, &begina);
+					l--;
 				}
-			}
-			ft_printf("mediane : %d\t", comp->median);
-			while (l != 0)
-			{
-				ft_rra(a, &begina);
-				l--;
-			}
-			*a = begina;
-			ft_sort3(*a, *b, begina);
-			comp->size = i;
-			ft_printf("\ni : %d\n", i);
-			comp = beginc;
+				*a = begina;
+				ft_sort3(*a, *b, begina);
+				comp->size = i;
+				ft_printf("\ni : %d\n", i);
+				ft_printf("\nb :\t");
+				ft_display(*b);
+				ft_printf("\nb :\t");
+				ft_display(*b);
+				ft_printf("\nt :\t");
+				ft_display(temp);
+			//}
 		}
 		ft_printf("\n\nEND\n\n");
 		while (comp)
