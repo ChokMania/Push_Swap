@@ -6,7 +6,7 @@
 /*   By: lramard <lramard@student42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 15:40:01 by lramard           #+#    #+#             */
-/*   Updated: 2019/02/22 05:35:38 by lramard          ###   ########.fr       */
+/*   Updated: 2019/02/22 07:02:37 by lramard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	ft_sort3(t_checke *a, t_checke *b, t_checke *begina)
 	{
 		if ((a)->n > (a)->next->n && (a)->next->n > (a)->next->next->n)
 		{
-			ft_printf("1");
 			ft_sa(a);
 			ft_ra(&a, &begina);
 			ft_sa(a);
@@ -56,13 +55,9 @@ void	ft_sort3(t_checke *a, t_checke *b, t_checke *begina)
 			ft_sa(a);
 		}
 		if (((a)->n > (a)->next->n && (a)->next->n < (a)->next->next->n) && (a)->n < (a)->next->next->n)
-		{
-			ft_printf("2");
 			ft_sa(a);
-		}
 		if (((a)->n > (a)->next->n && (a)->next->n < (a)->next->next->n) && (a)->n > (a)->next->next->n)
 		{
-			ft_printf("3");
 			ft_sa(a);
 			ft_ra(&a, &begina);
 			ft_sa(a);
@@ -70,7 +65,6 @@ void	ft_sort3(t_checke *a, t_checke *b, t_checke *begina)
 		}
 		if (((a)->n < (a)->next->n && (a)->next->n > (a)->next->next->n) && (a)->n > (a)->next->next->n)
 		{
-			ft_printf("4");
 			ft_ra(&a, &begina);
 			ft_sa(a);
 			ft_rra(&a, &begina);
@@ -78,15 +72,15 @@ void	ft_sort3(t_checke *a, t_checke *b, t_checke *begina)
 		}
 		if (((a)->n < (a)->next->n && (a)->next->n > (a)->next->next->n) && (a)->n < (a)->next->next->n)
 		{
-			ft_printf("5");
 			ft_ra(&a, &begina);
 			ft_sa(a);
 			ft_rra(&a, &begina);
 		}
 	}
-	ft_printf("\n");
 }
 
+
+//./push_swap   1 2 3 4 5 6 7 8 9 4512 451 51 16 151 541 431 561 065 104 041 531 165 31 651 peut etre b
 void	ft_suite_algo(t_checke **a, t_checke **b, t_ps **comp, t_checke	*finish)
 {
 	t_checke	*begina;
@@ -96,23 +90,24 @@ void	ft_suite_algo(t_checke **a, t_checke **b, t_ps **comp, t_checke	*finish)
 	t_checke	*begint;
 	int			k;
 	int			i;
-	int 		j=0;
+	int 		j = 0;
+	int			l = 0;
 
 	i = 0;
-	temp = (t_checke*)malloc(sizeof(t_checke) * 1);
-	begint = temp;
+	temp = NULL;
 	beginc = *comp;
 	begina = *a;
 	beginb = *b;
 	while ((*comp)->next)
 		*comp = (*comp)->next;
 	ft_mergesort(&finish);
-	//if ((ft_lst_compare(*a, finish)) != 1)
-	while (j < 2)
+	while ((ft_lst_compare(*a, finish)) != 1)
 	{
+		temp = (t_checke*)malloc(sizeof(t_checke) * 1);
+		begint = temp;
 		k = (*comp)->size;
-		ft_printf("\n%d fois\n", j);
-		ft_printf("k %d\n", k);
+		if (ft_lstl(b) < k)
+			k = ft_lstl(b);
 		while (k-- > 0)
 		{
 			ft_pa(a, b, &begina, &beginb);
@@ -120,14 +115,12 @@ void	ft_suite_algo(t_checke **a, t_checke **b, t_ps **comp, t_checke	*finish)
 			temp->next = (t_checke*)malloc(sizeof(t_checke) * 1);
 			if (k >= 1)
 				temp = temp->next;
-			//passage du bloc sur stack a
 		}
-		temp->next = NULL;
 		free(temp->next);
+		temp->next = NULL;
 		temp = begint;
-		ft_display(begina, beginb);
-		ft_printf("T");
-		ft_display(temp, temp);
+		if (!*b && (ft_lst_compare(*a, finish)) == 1)
+			break;
 		if (ft_lstl(&temp) <= 3)
 		{
 			ft_sort3(*a, *b, begina);
@@ -136,51 +129,47 @@ void	ft_suite_algo(t_checke **a, t_checke **b, t_ps **comp, t_checke	*finish)
 				*comp = (*comp)->next;
 			free((*comp)->next);
 			(*comp)->next = NULL;
-			ft_printf("YOLO\n");
-			ft_printf("median : %d\t", (*comp)->median);
-			ft_printf("nbblock : %d\t", (*comp)->nbblock);
-			ft_printf("size : %d\t\n", (*comp)->size);
 		}
 		else
 		{
+			j = 0;
+			begint = temp;
 			ft_mergesort(&temp);
-			ft_printf("new mediane : %d\n", (*comp)->median = ft_median(temp, (*comp)->median));
-			ft_free_lst(temp);
-			temp = NULL;
+			(*comp)->median = ft_median(temp, (*comp)->median);
 			while (++k < (*comp)->size)
 				*a = (*a)->next;
 			k = (*a)->n;
 			*a = begina;
-			ft_printf("k %d\n", k);
 			while (k != (*a)->n)
 			{
-				ft_printf("a->n %d\n", (begina)->n);
 				if ((*a)->n <= (*comp)->median)
 				{
-					ft_printf("IN\n");
 					ft_pbe(a, b, &begina, &beginb);
 					*a = begina;
 					i++;
 				}
 				else
-					*a = (*a)->next;
-				//ft_display(begina, beginb);
+				{
+					ft_ra(a, &begina);
+					l++;
+				}
+			}
+			while (l != 0)
+			{
+				ft_rra(a, &begina);
+				l--;
 			}
 			*a = begina;
+			ft_sort3(*a, *b, begina);
 			(*comp)->size = i;
-			ft_printf("median : %d\t", (*comp)->median);
-			ft_printf("nbblock : %d\t", (*comp)->nbblock);
-			ft_printf("size : %d\t\n", (*comp)->size);
 		}
+		if (!*b && (ft_lst_compare(*a, finish)) == 1)
+			break;
 		j++;
-		ft_printf("RES\n");
-		ft_display(begina, beginb);
-		ft_printf("FIN RES\n");
+		ft_free_lst(temp);
+		//free(temp->next);
+		temp = NULL;
 	}
-	//ft_display(temp, temp);
-	//boucle mediane jusqu.a obtenir 3 elements et passage de sblocs a droite
-		//tri des 3 elements
-		//recommencer avec le pssage de stack
 }
 
 t_checke *ft_quicksort(t_checke *a)
@@ -198,6 +187,7 @@ t_checke *ft_quicksort(t_checke *a)
 	int 		k;
 
 	b = NULL;
+	ft_display(a, b);
 	i = 0;
 	begina = a;
 	beginb = b;
@@ -210,7 +200,6 @@ t_checke *ft_quicksort(t_checke *a)
 	t = a->n;
 	a = begina;
 	k = 0;
-	ft_display(begina, beginb);
 	while (ft_lstl(&a) > 3)
 	{
 		j = 0;
@@ -233,14 +222,12 @@ t_checke *ft_quicksort(t_checke *a)
 				j++;
 			else if (j != 0)
 				break ;
-			//ft_display(begina, beginb);
 		}
 		while (a->next)
 			a = a->next;
 		t = a->n;
 		a = begina;
 		b = beginb;
-		ft_display(begina, beginb);
 		comp = comp->next;
 		i++;
 	}
@@ -250,22 +237,13 @@ t_checke *ft_quicksort(t_checke *a)
 	free(comp->next);
 	comp->next = NULL;
 	comp = beginc;
-	while (comp)
-	{
-		ft_printf("median : %d\t", comp->median);
-		ft_printf("nbblock : %d\t", comp->nbblock);
-		ft_printf("size : %d\t\n", comp->size);
-		comp = comp->next;
-	}
-	comp = beginc;
-	ft_display(a, b);
 	ft_sort3(a, b, begina);
-	ft_display(a, b);
 	ft_suite_algo(&a, &b, &comp, finish);
 	while (b)
 		ft_pa(&a, &b, &begina, &beginb);
 	/*si ft_pa -> plus de leaks*/
 	ft_free_lst_ps(beginc);
 	ft_free_lst(finish);
+	ft_display(a, b);
 	return (begina);
 }
