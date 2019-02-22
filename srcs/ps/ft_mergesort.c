@@ -68,13 +68,3 @@ void	ft_printlist(t_checke *node)
 		node = node->next;
 	}
 }
-
-void	ft_push(t_checke **head_ref, int new_data)
-{
-	t_checke *new_node;
-
-	new_node = (t_checke*)malloc(sizeof(t_checke));
-	new_node->n = new_data;
-	new_node->next = (*head_ref);
-	(*head_ref) = new_node;
-}

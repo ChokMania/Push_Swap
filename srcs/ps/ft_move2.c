@@ -5,7 +5,7 @@ void	ft_sa(t_checke *a)
 {
 	int		t1;
 
-	if (ft_lstl(a) <= 1)
+	if (ft_lstl(&a) <= 1)
 		return ;
 	t1 = a->n;
 	a->n = a->next->n;
@@ -16,7 +16,7 @@ void	ft_sb(t_checke *b)
 {
 	int		t1;
 
-	if (ft_lstl(b) <= 1)
+	if (ft_lstl(&b) <= 1)
 		return ;
 	t1 = b->n;
 	b->n = b->next->n;

@@ -6,7 +6,7 @@
 /*   By: lramard <lramard@student42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 15:27:09 by lramard           #+#    #+#             */
-/*   Updated: 2019/02/21 17:34:30 by lramard          ###   ########.fr       */
+/*   Updated: 2019/02/22 04:07:13 by lramard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int		main(int ac, char **av)
 	p = ft_recup(ac, av);
 	begin = p;
 	p = begin;
-	ft_choice(begin);
+	p = ft_quicksort(begin);
+	ft_free_lst(p);
 	return (0);
 }

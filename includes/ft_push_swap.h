@@ -6,7 +6,7 @@
 /*   By: lramard <lramard@student42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 11:15:37 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/21 18:32:14 by lramard          ###   ########.fr       */
+/*   Updated: 2019/02/22 04:07:23 by lramard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,16 @@ typedef struct	s_ps
 
 void			ft_error(t_checke *p);
 t_checke		*ft_choice(t_checke *begin);
-int				ft_lstl(t_checke *list);
-void			ft_quicksort(t_checke *a);
+int				ft_lstl(t_checke **list);
+t_checke		*ft_quicksort(t_checke *a);
 int				ft_median(t_checke *p, int n);
 void			ft_printlist(t_checke *node);
 void			ft_mergesort(t_checke **headref);
+t_checke		*ft_lstdup(t_checke *t);
+void			ft_free_lst(t_checke *p);
+void			ft_free_lst_ps(t_ps *p);
+void			ft_display(t_checke *begina, t_checke *beginb);
+int				ft_lst_compare(t_checke *p, t_checke *finish);
 
 void			ft_ra(t_checke **a, t_checke **begina);
 void			ft_rb(t_checke **b, t_checke **beginb);
