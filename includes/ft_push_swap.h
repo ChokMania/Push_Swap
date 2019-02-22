@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_push_swap.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramard <lramard@student42.fr>             +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 11:15:37 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/22 04:07:23 by lramard          ###   ########.fr       */
+/*   Updated: 2019/02/22 14:40:56 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void			ft_mergesort(t_checke **headref);
 t_checke		*ft_lstdup(t_checke *t);
 void			ft_free_lst(t_checke *p);
 void			ft_free_lst_ps(t_ps *p);
-void			ft_display(t_checke *begina, t_checke *beginb);
+void			ft_display(t_checke *begina);
 int				ft_lst_compare(t_checke *p, t_checke *finish);
 
 void			ft_ra(t_checke **a, t_checke **begina);
