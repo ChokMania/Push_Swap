@@ -4,14 +4,12 @@
 int		ft_median(t_checke *p, int n)
 {
 	t_checke	*t;
-	t_checke	*beginp;
 	int			i;
 
-	beginp = p;
 	t = ft_lstdup(p);
 	ft_mergesort(&p);
 	i = ft_lstl(&t);
-	n = (i % 2 == 0) ? i / 2 - 1: i / 2;
+	n = i % 2 == 0 ? i / 2 - 1 : i / 2;
 	i = -1;
 	while (++i < n)
 		p = p->next;

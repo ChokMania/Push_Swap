@@ -50,6 +50,28 @@ t_checke	*ft_lstdup(t_checke *t)
 	return (new);
 }
 
+t_checke	*ft_lstndup(t_checke *t, int n)
+{
+	t_checke	*new;
+	t_checke	*begin;
+
+	if (!(new = (t_checke *)malloc(sizeof(t_checke))))
+		return (t);
+	begin = new;
+	while (t && n-- > 0)
+	{
+		new->n = t->n;
+		if (!(new->next = (t_checke *)malloc(sizeof(t_checke))))
+			return (t);
+		t = t->next;
+		if (t && n > 0)
+			new = new->next;
+	}
+	new->next = NULL;
+	new = begin;
+	return (new);
+}
+
 int		ft_lst_compare(t_checke *p, t_checke *finish)
 {
 	while (p)

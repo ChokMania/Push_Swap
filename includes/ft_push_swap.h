@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_push_swap.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anmauffr <anmauffr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 11:15:37 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/24 12:01:24 by anmauffr         ###   ########.fr       */
+/*   Updated: 2019/02/25 18:16:37 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,18 @@ void			ft_mergesort(t_checke **headref);
 t_checke		*ft_lstdup(t_checke *t);
 void			ft_free_lst(t_checke *p);
 void			ft_free_lst_ps(t_ps *p);
-void			ft_display(t_checke *begina);
+void			ft_display(t_checke *begina, t_ps *comp);
 int				ft_lst_compare(t_checke *p, t_checke *finish);
+t_checke		*ft_lstndup(t_checke *t, int n);
 
-void			ft_ra(t_checke **a, t_checke **begina);
-void			ft_rb(t_checke **b, t_checke **beginb);
+void			ft_ra(t_checke **a, t_checke **begina, int n);
+void			ft_rb(t_checke **b, t_checke **beginb, int n);
 void			ft_rr(t_checke **a, t_checke **b, t_checke **begina,
 	t_checke **beginb);
-void			ft_rra(t_checke **a, t_checke **begina);
-void			ft_rrb(t_checke **b, t_checke **beginb);
-void			ft_sa(t_checke *a);
-void			ft_sb(t_checke *b);
+void			ft_rra(t_checke **a, t_checke **begina, int n);
+void			ft_rrb(t_checke **b, t_checke **beginb, int n);
+void			ft_sa(t_checke *a, int n);
+void			ft_sb(t_checke *b, int n);
 void			ft_ss(t_checke *a, t_checke *b);
 void			ft_pa(t_checke **a, t_checke **b, t_checke **begina,
 	t_checke **beginb);

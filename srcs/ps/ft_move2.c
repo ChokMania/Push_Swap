@@ -1,7 +1,7 @@
 #include <ft_push_swap.h>
 #include <stdlib.h>
 
-void	ft_sa(t_checke *a)
+void	ft_sa(t_checke *a, int n)
 {
 	int		t1;
 
@@ -10,9 +10,11 @@ void	ft_sa(t_checke *a)
 	t1 = a->n;
 	a->n = a->next->n;
 	a->next->n = t1;
+	if (n != 0)
+		ft_printf("\033[32msa\033[37m\n");
 }
 
-void	ft_sb(t_checke *b)
+void	ft_sb(t_checke *b, int n)
 {
 	int		t1;
 
@@ -21,12 +23,15 @@ void	ft_sb(t_checke *b)
 	t1 = b->n;
 	b->n = b->next->n;
 	b->next->n = t1;
+	if (n != 0)
+		ft_printf("\033[32msb\033[37m\n");
 }
 
 void	ft_ss(t_checke *a, t_checke *b)
 {
-	ft_sa(a);
-	ft_sb(b);
+	ft_sa(a, 0);
+	ft_sb(b, 0);
+	ft_printf("\033[32mss\033[37m\n");
 }
 
 void	ft_pa(t_checke **a, t_checke **b, t_checke **begina, t_checke **beginb)
@@ -41,6 +46,7 @@ void	ft_pa(t_checke **a, t_checke **b, t_checke **begina, t_checke **beginb)
 		t->next = (*a);
 		*a = t;
 		*begina = *a;
+		ft_printf("\033[32mpa\033[37m\n");
 	}
 }
 
@@ -56,5 +62,6 @@ void	ft_pbe(t_checke **a, t_checke **b, t_checke **begina, t_checke **beginb)
 		t->next = (*b);
 		*b = t;
 		*beginb = *b;
+		ft_printf("\033[32mpb\033[37m\n");
 	}
 }

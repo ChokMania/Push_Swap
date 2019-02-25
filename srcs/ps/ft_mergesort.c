@@ -47,17 +47,41 @@ void	ft_frontbacksplit(t_checke *source, t_checke **frontref,
 
 void	ft_mergesort(t_checke **headref)
 {
-	t_checke *head;
-	t_checke *a;
-	t_checke *b;
+	// t_checke *head;
+	// t_checke *a;
+	// t_checke *b;
 
-	head = *headref;
-	if ((head == NULL) || (head->next == NULL))
-		return ;
-	ft_frontbacksplit(head, &a, &b);
-	ft_mergesort(&a);
-	ft_mergesort(&b);
-	*headref = ft_sortedmerge(a, b);
+	// head = *headref;
+	// if ((head == NULL) || (head->next == NULL))
+	// 	return ;
+	// ft_frontbacksplit(head, &a, &b);
+	// ft_mergesort(&a);
+	// ft_mergesort(&b);
+	// *headref = ft_sortedmerge(a, b);
+	int			i;
+	int			tmp;
+	int			length;
+	t_checke	*begin;
+
+	begin = *headref;
+	length = ft_lstl(headref);
+	i = 0;
+	while (i < length)
+	{
+		if (!((*headref)->next))
+			(*headref) = begin;
+		if ((*headref)->n > (*headref)->next->n)
+		{
+			tmp = (*headref)->n;
+			(*headref)->n = (*headref)->next->n;
+			(*headref)->next->n = tmp;
+			i = 0;
+		}
+		else
+			i++;
+		(*headref) = (*headref)->next;
+	}
+	(*headref) = begin;
 }
 
 void	ft_printlist(t_checke *node)
