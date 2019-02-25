@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 15:40:01 by lramard           #+#    #+#             */
-/*   Updated: 2019/02/25 18:18:32 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/25 19:18:05 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,3 +252,6 @@ t_checke *ft_quicksort(t_checke *a)
 	ft_free_lst(finish);
 	return (begina);
 }
+
+
+// FAIRE DES SA ET DES SB POUR TRIER AVANT ALGO
