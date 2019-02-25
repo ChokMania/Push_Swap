@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 12:05:22 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/02/07 10:44:37 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/25 13:59:05 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ t_printf		*ft_printf_parsing(t_printf *p, const char *format)
 			ft_printf_get_flag(p, format);
 		else if (format[p->index] == '.')
 			ft_printf_get_precision(p, format);
-		else if ((format[p->index] != '0' &&
-		ft_isdigit((__int32_t)format[p->index])))
+		else if ((format[p->index] != '0'
+		&& ft_isdigit((__int32_t)format[p->index])))
 			ft_printf_get_champ(p, format);
 		else
 			break ;

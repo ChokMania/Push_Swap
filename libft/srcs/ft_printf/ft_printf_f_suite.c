@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 10:47:40 by anmauffr          #+#    #+#             */
-/*   Updated: 2019/02/07 10:44:37 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/25 13:58:49 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static t_printf		*ft_printf_f_flags2(t_printf *p, long double tmp)
 	buf = NULL;
 	if ((str = ft_strnew(1)) && p->flags->plus && tmp >= 0)
 	{
-		if ((str[0] = '+') && (p->conv_ret[0] == '0' && tmp != 0 &&
-		(ft_strlen(p->conv_ret) == (size_t)p->champ)))
+		if ((str[0] = '+') && (p->conv_ret[0] == '0' && tmp != 0
+		&& (ft_strlen(p->conv_ret) == (size_t)p->champ)))
 		{
 			p->conv_ret[0] = '+';
 			buf = ft_strdup(p->conv_ret);
@@ -71,8 +71,8 @@ t_printf			*ft_printf_f_champ(t_printf *p, long double nbr)
 		&& (tmp = (size_t)p->champ - ft_strlen(p->conv_ret) + 1))
 	{
 		if ((((nbr < 0 && p->flags->zero) || (((p->flags->plus && nbr >= 0)
-			|| p->flags->space) && p->flags->zero)) && !p->flags->less) ||
-			p->conv_ret[0] == '-')
+			|| p->flags->space) && p->flags->zero)) && !p->flags->less)
+			|| p->conv_ret[0] == '-')
 			--tmp;
 		if (nbr >= 0)
 			tmp--;
@@ -81,8 +81,8 @@ t_printf			*ft_printf_f_champ(t_printf *p, long double nbr)
 			ft_strfill(str, '0', tmp);
 		else
 			ft_strfill(str, ' ', tmp);
-		buf = p->flags->less ? ft_strjoin(p->conv_ret, str) :
-		ft_strjoin(str, p->conv_ret);
+		buf = p->flags->less ? ft_strjoin(p->conv_ret, str)
+		: ft_strjoin(str, p->conv_ret);
 		ft_strdel(&p->conv_ret);
 		ft_strdel(&str);
 		p->conv_ret = buf;

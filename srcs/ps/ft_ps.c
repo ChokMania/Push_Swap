@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ps.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramard <lramard@student42.fr>             +#+  +:+       +#+        */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 15:27:09 by lramard           #+#    #+#             */
-/*   Updated: 2019/02/22 04:07:13 by lramard          ###   ########.fr       */
+/*   Updated: 2019/02/25 14:00:21 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ int		ft_check_av(char **av)
 	while (av[++i] && (j = -1))
 	{
 		k = 0;
-		if (ft_strlen(av[i]) > 11 || ft_atol(av[i]) > INT32_MAX ||
-			ft_atol(av[i]) < INT32_MIN)
+		if (ft_strlen(av[i]) > 11 || ft_atol(av[i]) > INT32_MAX
+		|| ft_atol(av[i]) < INT32_MIN)
 			return (0);
 		while (++k != i)
 		{
@@ -71,8 +71,8 @@ int		main(int ac, char **av)
 	t_checke	*p;
 	t_checke *begin;
 
-	if ((ac < 2 || ft_check_av(av) == 0) &&
-		write(2, "\033[31mError\033[37m\n", 17))
+	if ((ac < 2 || ft_check_av(av) == 0)
+	&& write(2, "\033[31mError\033[37m\n", 17))
 		return (0);
 	p = ft_recup(ac, av);
 	begin = p;

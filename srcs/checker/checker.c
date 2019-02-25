@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 15:54:50 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/21 14:16:47 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/25 14:00:14 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ int		ft_check_av(char **av)
 	while (av[++i] && (j = -1))
 	{
 		k = 0;
-		if (ft_strlen(av[i]) > 11 || ft_atol(av[i]) > INT32_MAX ||
-			ft_atol(av[i]) < INT32_MIN)
+		if (ft_strlen(av[i]) > 11 || ft_atol(av[i]) > INT32_MAX
+		|| ft_atol(av[i]) < INT32_MIN)
 			return (0);
 		while (++k != i)
 		{
@@ -78,12 +78,12 @@ int		ft_check_av(char **av)
 
 int		ft_check_input(char *str)
 {
-	if (ft_strcmp(str, "sa\n") == 0 || ft_strcmp(str, "sb\n") == 0 ||
-	ft_strcmp(str, "ss\n") == 0 || ft_strcmp(str, "pa\n") == 0 ||
-	ft_strcmp(str, "pb\n") == 0 || ft_strcmp(str, "ra\n") == 0 ||
-	ft_strcmp(str, "rb\n") == 0 || ft_strcmp(str, "rr\n") == 0 ||
-	ft_strcmp(str, "rra\n") == 0 || ft_strcmp(str, "rrb\n") == 0 ||
-	ft_strcmp(str, "rrr\n") == 0)
+	if (ft_strcmp(str, "sa\n") == 0 || ft_strcmp(str, "sb\n") == 0
+	|| ft_strcmp(str, "ss\n") == 0 || ft_strcmp(str, "pa\n") == 0
+	|| ft_strcmp(str, "pb\n") == 0 || ft_strcmp(str, "ra\n") == 0
+	|| ft_strcmp(str, "rb\n") == 0 || ft_strcmp(str, "rr\n") == 0
+	|| ft_strcmp(str, "rra\n") == 0 || ft_strcmp(str, "rrb\n") == 0
+	|| ft_strcmp(str, "rrr\n") == 0)
 		return (1);
 	return (0);
 }
@@ -97,8 +97,8 @@ int		main(int ac, char **av)
 
 	ret = 0;
 	ft_bzero(str, 1000);
-	if ((ac < 2 || ft_check_av(av) == 0) &&
-		write(2, "\033[31mError\033[37m\n", 17))
+	if ((ac < 2 || ft_check_av(av) == 0)
+	&& write(2, "\033[31mError\033[37m\n", 17))
 		return (0);
 	p = ft_recup(ac, av);
 	begin = p;

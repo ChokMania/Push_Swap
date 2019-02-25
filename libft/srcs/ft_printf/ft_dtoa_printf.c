@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 14:39:33 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/07 10:47:25 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/25 14:01:17 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,8 @@ char			*ft_dtoa_printf(double n, t_printf *p, int t)
 	char		*s_tmp;
 	size_t		len;
 
-	if (p->precision > 16 && (s = (long long)n == 0 ? ft_strdup("0.") :
-	ft_strjoin(p->conv_ret, "\0")))
+	if (p->precision > 16 && (s = (long long)n == 0 ? ft_strdup("0.")
+	: ft_strjoin(p->conv_ret, "\0")))
 	{
 		if (handle_precision(n, p->precision, &s))
 			return (NULL);
@@ -122,6 +122,6 @@ char			*ft_dtoa_printf(double n, t_printf *p, int t)
 		return (s);
 	ft_strcat(s, s_tmp = ft_ltoa(n));
 	ft_strdel(&s_tmp);
-	return (p->precision > -1 && (ft_strcat(s, ".")) &&
-	(handle_precision(n, p->precision, &s)) ? NULL : s);
+	return (p->precision > -1 && (ft_strcat(s, "."))
+	&& (handle_precision(n, p->precision, &s)) ? NULL : s);
 }
