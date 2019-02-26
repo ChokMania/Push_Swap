@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_mergesort.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/26 11:17:58 by judumay           #+#    #+#             */
+/*   Updated: 2019/02/26 11:19:39 by judumay          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <ft_push_swap.h>
 #include <stdlib.h>
 
@@ -23,7 +35,7 @@ t_checke	*ft_sortedmerge(t_checke *a, t_checke *b)
 	return (result);
 }
 
-void	ft_frontbacksplit(t_checke *source, t_checke **frontref,
+void		ft_frontbacksplit(t_checke *source, t_checke **frontref,
 	t_checke **backref)
 {
 	t_checke *fast;
@@ -45,19 +57,8 @@ void	ft_frontbacksplit(t_checke *source, t_checke **frontref,
 	slow->next = NULL;
 }
 
-void	ft_mergesort(t_checke **headref)
+void		ft_mergesort(t_checke **headref)
 {
-	// t_checke *head;
-	// t_checke *a;
-	// t_checke *b;
-
-	// head = *headref;
-	// if ((head == NULL) || (head->next == NULL))
-	// 	return ;
-	// ft_frontbacksplit(head, &a, &b);
-	// ft_mergesort(&a);
-	// ft_mergesort(&b);
-	// *headref = ft_sortedmerge(a, b);
 	int			i;
 	int			tmp;
 	int			length;
@@ -84,11 +85,19 @@ void	ft_mergesort(t_checke **headref)
 	(*headref) = begin;
 }
 
-void	ft_printlist(t_checke *node)
+void		ft_printlist(t_checke *node)
 {
 	while (node != NULL)
 	{
 		ft_printf("%d ", node->n);
 		node = node->next;
 	}
+}
+
+void		ft_rrr(t_checke **a, t_checke **b,
+	t_checke **begina, t_checke **beginb)
+{
+	ft_rra(a, begina, 0);
+	ft_rrb(b, beginb, 0);
+	ft_printf("ra\n");
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_move.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/26 11:17:02 by judumay           #+#    #+#             */
+/*   Updated: 2019/02/26 11:18:58 by judumay          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <ft_push_swap.h>
 #include <stdlib.h>
 
@@ -17,7 +29,7 @@ void	ft_ra(t_checke **a, t_checke **begina, int n)
 		(*a)->next = t;
 		*a = *begina;
 		if (n != 0)
-			ft_printf("\033[32mra\033[37m\n");
+			ft_printf("ra\n");
 	}
 }
 
@@ -37,7 +49,7 @@ void	ft_rb(t_checke **b, t_checke **beginb, int n)
 		(*b)->next = t;
 		*b = *beginb;
 		if (n != 0)
-			ft_printf("\033[32mrb\033[37m\n");
+			ft_printf("rb\n");
 	}
 }
 
@@ -45,7 +57,7 @@ void	ft_rr(t_checke **a, t_checke **b, t_checke **begina, t_checke **beginb)
 {
 	ft_ra(a, begina, 0);
 	ft_rb(b, beginb, 0);
-	ft_printf("\033[32mrr\033[37m\n");
+	ft_printf("rr\n");
 }
 
 void	ft_rra(t_checke **a, t_checke **begina, int n)
@@ -64,7 +76,7 @@ void	ft_rra(t_checke **a, t_checke **begina, int n)
 		*begina = t;
 		*a = *begina;
 		if (n != 0)
-			ft_printf("\033[32mrra\033[37m\n");
+			ft_printf("rra\n");
 	}
 }
 
@@ -84,13 +96,6 @@ void	ft_rrb(t_checke **b, t_checke **beginb, int n)
 		*beginb = t;
 		*b = *beginb;
 		if (n != 0)
-			ft_printf("\033[32mrrb\033[37m\n");
+			ft_printf("rrb\n");
 	}
-}
-
-void	ft_rrr(t_checke **a, t_checke **b, t_checke **begina, t_checke **beginb)
-{
-	ft_rra(a, begina, 0);
-	ft_rrb(b, beginb, 0);
-	ft_printf("\033[32mra\033[37m\n");
 }

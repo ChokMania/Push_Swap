@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 15:54:50 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/25 18:36:41 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/26 11:16:40 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,8 @@ int		main(int ac, char **av)
 
 	ret = 0;
 	ft_bzero(str, 1000);
-	if ((ac < 2 || ft_check_av(av) == 0) && write(2, "\033[31mError\033[37m\n", 17))
+	if ((ac < 2 || ft_check_av(av) == 0)
+	&& write(2, "\033[31mError\033[37m\n", 17))
 		return (0);
 	p = ft_recup(ac, av);
 	begin = p;

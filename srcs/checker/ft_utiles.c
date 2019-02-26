@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 19:11:58 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/25 18:57:50 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/26 10:46:34 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,25 +74,24 @@ int		ft_lstlene(t_check **list)
 
 void	ft_suite(int ret, char str[1000][5], t_check *p)
 {
-	char	buf[4];
+	char	*tmp;
+	char	buf[BUF_SIZE];
 	int		i;
 
 	i = 0;
-	while ((ret = read(1, buf, 4)) > 0)
+	str[i][0] = '\0';
+	while ((ret = read(0, buf, 1)) > 0)
 	{
 		buf[ret] = '\0';
-		if (ft_check_input(buf) == 0 && write(2, "\033[31mError\033[37m\n", 17))
+		tmp = ft_strjoin(str[i], buf);
+		ft_strcpy(str[i], tmp);
+		free(tmp);
+		if (buf[0] == '\n')
 		{
-			ft_free_lst(p);
-			exit(0);
+			ft_check_input(str[i]) == 0 ? ft_error_check(p) : 0;
+			str[++i][0] = '\0';
 		}
-		ft_strcpy(str[i], buf);
-		i++;
 	}
-	if (ret == -1 && write(2, "\033[31mError\033[37m\n", 17))
-	{
-		ft_free_lst(p);
-		exit(0);
-	}
+	ret == -1 ? ft_error_check(p) : 0;
 	str[i][0] = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 15:27:09 by lramard           #+#    #+#             */
-/*   Updated: 2019/02/25 14:00:21 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/26 11:21:34 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 t_checke	*ft_recup(int ac, char **av)
 {
-	t_checke		*p;
-	t_checke		*begin;
+	t_checke	*p;
+	t_checke	*begin;
 	int			i;
 
 	i = 1;
@@ -37,7 +37,7 @@ t_checke	*ft_recup(int ac, char **av)
 	return (p);
 }
 
-int		ft_check_av(char **av)
+int			ft_check_av(char **av)
 {
 	int		i;
 	int		j;
@@ -66,10 +66,10 @@ int		ft_check_av(char **av)
 	return (1);
 }
 
-int		main(int ac, char **av)
+int			main(int ac, char **av)
 {
 	t_checke	*p;
-	t_checke *begin;
+	t_checke	*begin;
 
 	if ((ac < 2 || ft_check_av(av) == 0)
 	&& write(2, "\033[31mError\033[37m\n", 17))
@@ -77,7 +77,7 @@ int		main(int ac, char **av)
 	p = ft_recup(ac, av);
 	begin = p;
 	p = begin;
-	p = ft_quicksort(begin);
+	p = ft_choice(begin);
 	ft_free_lst(p);
 	return (0);
 }

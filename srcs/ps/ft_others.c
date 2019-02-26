@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_others.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/26 11:17:12 by judumay           #+#    #+#             */
+/*   Updated: 2019/02/26 11:21:04 by judumay          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <ft_push_swap.h>
 
 void		ft_error(t_checke *p)
@@ -72,7 +84,7 @@ t_checke	*ft_lstndup(t_checke *t, int n)
 	return (new);
 }
 
-int		ft_lst_compare(t_checke *p, t_checke *finish)
+int			ft_lst_compare(t_checke *p, t_checke *finish)
 {
 	while (p)
 	{
@@ -82,18 +94,4 @@ int		ft_lst_compare(t_checke *p, t_checke *finish)
 		finish = finish->next;
 	}
 	return (1);
-}
-
-void	ft_free_lst(t_checke *p)
-{
-	if (p->next)
-		ft_free_lst(p->next);
-	free(p);
-}
-
-void	ft_free_lst_ps(t_ps *p)
-{
-	if (p->next)
-		ft_free_lst_ps(p->next);
-	free(p);
 }

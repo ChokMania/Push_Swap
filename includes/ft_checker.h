@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 17:48:09 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/21 15:41:17 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/26 10:43:55 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
+# define BUF_SIZE 10000
+
 typedef struct	s_check
 {
 	int				n;
@@ -26,6 +28,7 @@ typedef struct	s_check
 }				t_check;
 
 int				ft_lstlene(t_check **list);
+void			ft_error_check(t_check *p);
 int				ft_check_input(char *str);
 void			ft_error(t_check *p);
 void			ft_free_lst(t_check *p);

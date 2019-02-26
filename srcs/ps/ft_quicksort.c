@@ -6,13 +6,13 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 15:40:01 by lramard           #+#    #+#             */
-/*   Updated: 2019/02/25 19:18:05 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/26 11:56:53 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_push_swap.h>
 
-void	ft_lstdel_oklm(t_checke **a, t_checke **begina, int median)
+void		ft_lstdel_oklm(t_checke **a, t_checke **begina, int median)
 {
 	t_checke	*elem;
 	t_checke	*tmp;
@@ -40,36 +40,15 @@ void	ft_lstdel_oklm(t_checke **a, t_checke **begina, int median)
 	*a = *begina;
 }
 
-void	ft_display(t_checke *begina, t_ps *comp)
+void		ft_init_comp(t_ps **comp, t_checke *a, int i)
 {
-	if (begina != NULL)
-	{
-		while (begina)
-		{
-			ft_printf("%d\t", begina->n);
-			begina = begina->next;
-		}
-	}
-	ft_printf("\n");
-	if (comp != NULL)
-	{
-		ft_printf("mediane : %d\t", comp->median);
-		ft_printf("nbblock : %d\t", comp->nbblock);
-		ft_printf("size    : %d\n", comp->size);
-		ft_printf("\n");
-	}
-}
-
-void	ft_init_comp(t_ps **comp, t_checke *a, int i)
-{
-
 	(*comp)->median = ft_median(a, (*comp)->median);
 	(*comp)->nbblock = i + 1;
 	(*comp)->size = 0;
 	(*comp)->next = (t_ps*)malloc(sizeof(t_ps) * 1);
 }
 
-void	ft_sort3(t_checke *a, t_checke *begina)
+void		ft_sort3(t_checke *a, t_checke *begina)
 {
 	if (ft_lstl(&a) == 2 && (a)->n > (a)->next->n)
 		ft_sa(a, 1);
@@ -83,23 +62,27 @@ void	ft_sort3(t_checke *a, t_checke *begina)
 			ft_rra(&a, &begina, 1);
 			ft_sa(a, 1);
 		}
-		if (((a)->n > (a)->next->n && (a)->next->n < (a)->next->next->n) && (a)->n < (a)->next->next->n)
+		if (((a)->n > (a)->next->n && (a)->next->n
+		< (a)->next->next->n) && (a)->n < (a)->next->next->n)
 			ft_sa(a, 1);
-		if (((a)->n > (a)->next->n && (a)->next->n < (a)->next->next->n) && (a)->n > (a)->next->next->n)
+		if (((a)->n > (a)->next->n && (a)->next->n
+		< (a)->next->next->n) && (a)->n > (a)->next->next->n)
 		{
 			ft_sa(a, 1);
 			ft_ra(&a, &begina, 1);
 			ft_sa(a, 1);
 			ft_rra(&a, &begina, 1);
 		}
-		if (((a)->n < (a)->next->n && (a)->next->n > (a)->next->next->n) && (a)->n > (a)->next->next->n)
+		if (((a)->n < (a)->next->n && (a)->next->n
+		> (a)->next->next->n) && (a)->n > (a)->next->next->n)
 		{
 			ft_ra(&a, &begina, 1);
 			ft_sa(a, 1);
 			ft_rra(&a, &begina, 1);
 			ft_sa(a, 1);
 		}
-		if (((a)->n < (a)->next->n && (a)->next->n > (a)->next->next->n) && (a)->n < (a)->next->next->n)
+		if (((a)->n < (a)->next->n && (a)->next->n
+		> (a)->next->next->n) && (a)->n < (a)->next->next->n)
 		{
 			ft_ra(&a, &begina, 1);
 			ft_sa(a, 1);
@@ -108,24 +91,59 @@ void	ft_sort3(t_checke *a, t_checke *begina)
 	}
 }
 
-
-//./push_swap   1 2 3 4 5 6 7 8 9 4512 451 51 16 151 541 431 561 065 104 041 531 165 31 651 peut etre b
-void	ft_suite_algo(t_checke **a, t_checke **b, t_ps *comp, t_checke	*finish)
+void		ft_split_algo(t_ps **comp, t_checke **b, t_checke **a,
+	t_checke **begina, t_checke **beginb)
 {
-	t_ps	*beginc;
-	t_ps	*memo;
-	t_checke	*beginb;
-	t_checke	*begina;
+	int			i;
+	int			k;
 	t_checke	*temp;
 	t_checke	*begint;
-	int i = -1;
-	int k = 0;
+
+	i = -1;
+	k = 0;
+	temp = ft_lstndup(*b, (*comp)->size);
+	begint = temp;
+	while (ft_lstl(&temp) > 3)
+	{
+		(*comp)->median = ft_median(temp, (*comp)->median);
+		temp = begint;
+		ft_lstdel_oklm(&temp, &begint, (*comp)->median);
+	}
+	ft_free_lst(temp);
+	temp = NULL;
+	free(temp);
+	while (++i < (*comp)->size)
+	{
+		if ((*b)->n > (*comp)->median)
+		{
+			ft_pa(a, b, begina, beginb);
+			(*comp)->size--;
+			i--;
+		}
+		else
+		{
+			ft_rb(b, beginb, 1);
+			k++;
+		}
+	}
+	while (--k > -1)
+		ft_rrb(b, beginb, 1);
+}
+
+void		ft_suite_algo(t_checke *a, t_checke *b,
+	t_ps *comp, t_checke *finish)
+{
+	t_ps		*memo;
+	t_ps		*beginc;
+	t_checke	*temp;
+	t_checke	*beginb;
+	t_checke	*begina;
 
 	temp = NULL;
-	begina = *a;
+	begina = a;
 	beginc = comp;
-	beginb = *b;
-	while (ft_lst_compare(*a, finish) == 0)
+	beginb = b;
+	while ((a)->n != finish->n)
 	{
 		while (comp->next && comp->next->next)
 			comp = comp->next;
@@ -137,65 +155,75 @@ void	ft_suite_algo(t_checke **a, t_checke **b, t_ps *comp, t_checke	*finish)
 		if (comp->size <= 3)
 		{
 			if (comp->size > 2)
-				ft_pa(a, b, &begina, &beginb);
-			ft_pa(a, b, &begina, &beginb);
-			ft_pa(a, b, &begina, &beginb);
+				ft_pa(&a, &b, &begina, &beginb);
+			ft_pa(&a, &b, &begina, &beginb);
+			ft_pa(&a, &b, &begina, &beginb);
 			comp = NULL;
 			memo->next = NULL;
 			free(comp);
 		}
 		else
 		{
-			i = -1;
+			ft_split_algo(&comp, &b, &a, &begina, &beginb);
+			/*i = -1;
 			k = 0;
-			temp = ft_lstndup(*b, comp->size);
+			temp = ft_lstndup(b, comp->size);
 			begint = temp;
 			while (ft_lstl(&temp) > 3)
 			{
-				begint = temp;
 				comp->median = ft_median(temp, comp->median);
 				temp = begint;
 				ft_lstdel_oklm(&temp, &begint, comp->median);
-				//t on eleve nb < median
 			}
 			ft_free_lst(temp);
 			temp = NULL;
+			free(temp);
 			while (++i < comp->size)
 			{
-				if ((*b)->n > comp->median)
+				if ((b)->n > comp->median)
 				{
-					ft_pa(a, b, &begina, &beginb);
+					ft_pa(&a, &b, &begina, &beginb);
 					comp->size--;
 					i--;
 				}
 				else
 				{
-					ft_rb(b, &beginb, 1);
+					ft_rb(&b, &beginb, 1);
 					k++;
 				}
 			}
 			while (--k > -1)
-				ft_rrb(b, &beginb, 1);
-		}
-		ft_sort3(*a, begina);
+				ft_rrb(&b, &beginb, 1);
+		*/}
+		ft_sort3(a, begina);
 		comp = beginc;
 	}
 }
 
-t_checke *ft_quicksort(t_checke *a)
+/*
+** Faire des optis  dans le premier algo (pas le suite) comme :
+** verifier si pas deja trier chaque pa
+** si trier stop
+** si pas trier comparer a  et a->next et swap
+** pareil pour b
+** calculer si cest plus wort de ra ou de rra
+*/
+
+t_checke	*ft_quicksort(t_checke *a)
 {
-	t_checke	*b;
-	t_checke	*beginb;
+	int			i;
+	int			j;
+	int			t;
 	t_ps		*comp;
 	t_ps		*beginc;
+	t_checke	*b;
+	t_checke	*tmp;
+	t_checke	*beginb;
 	t_checke	*begina;
-	t_checke	*tmp = NULL;
 	t_checke	*finish;
-	int			i;
-	int			t;
-	int			j;
 
 	b = NULL;
+	tmp = NULL;
 	i = 0;
 	begina = a;
 	beginb = b;
@@ -212,7 +240,7 @@ t_checke *ft_quicksort(t_checke *a)
 	while (ft_lstl(&a) > 3)
 	{
 		j = 0;
-		tmp = ft_lstdup(a); // LEAKS
+		tmp = ft_lstdup(a);
 		ft_init_comp(&comp, tmp, i);
 		ft_free_lst(tmp);
 		tmp = NULL;
@@ -243,15 +271,9 @@ t_checke *ft_quicksort(t_checke *a)
 	free(comp->next);
 	comp->next = NULL;
 	ft_sort3(a, begina);
-	comp =  beginc;
-	ft_suite_algo(&a, &b, beginc, finish);
-	while (b)
-		ft_pa(&a, &b, &begina, &beginb);
-	/*si ft_pa -> plus de leaks*/
-	//ft_free_lst_ps(beginc);
+	comp = beginc;
+	ft_suite_algo(a, b, comp, finish);
+	ft_free_lst_ps(beginc);
 	ft_free_lst(finish);
 	return (begina);
 }
-
-
-// FAIRE DES SA ET DES SB POUR TRIER AVANT ALGO
