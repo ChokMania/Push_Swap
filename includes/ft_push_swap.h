@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 11:15:37 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/26 09:55:43 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/26 12:23:11 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,13 @@ typedef struct	s_ps
 	int				size;
 	struct s_ps		*next;
 }				t_ps;
+
+typedef struct	s_begin
+{
+	t_checke	*begina;
+	t_checke	*beginb;
+	t_ps		*beginc;
+}				t_begin;
 
 void			ft_error(t_checke *p);
 t_checke		*ft_choice(t_checke *begin);
@@ -62,5 +69,9 @@ void			ft_pbe(t_checke **a, t_checke **b, t_checke **begina,
 	t_checke **beginb);
 void			ft_rrr(t_checke **a, t_checke **b, t_checke **begina,
 	t_checke **beginb);
+void			ft_1(t_checke *a, t_checke *begina);
+void			ft_2(t_checke *a, t_checke *begina);
+void			ft_3(t_checke *a, t_checke *begina);
+void			ft_4(t_checke *a, t_checke *begina);
 
 #endif

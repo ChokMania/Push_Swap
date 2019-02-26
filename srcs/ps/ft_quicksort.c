@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 15:40:01 by lramard           #+#    #+#             */
-/*   Updated: 2019/02/26 11:56:53 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/26 12:35:52 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,148 +55,85 @@ void		ft_sort3(t_checke *a, t_checke *begina)
 	if (ft_lstl(&a) >= 3)
 	{
 		if ((a)->n > (a)->next->n && (a)->next->n > (a)->next->next->n)
-		{
-			ft_sa(a, 1);
-			ft_ra(&a, &begina, 1);
-			ft_sa(a, 1);
-			ft_rra(&a, &begina, 1);
-			ft_sa(a, 1);
-		}
+			ft_1(a, begina);
 		if (((a)->n > (a)->next->n && (a)->next->n
 		< (a)->next->next->n) && (a)->n < (a)->next->next->n)
 			ft_sa(a, 1);
 		if (((a)->n > (a)->next->n && (a)->next->n
 		< (a)->next->next->n) && (a)->n > (a)->next->next->n)
-		{
-			ft_sa(a, 1);
-			ft_ra(&a, &begina, 1);
-			ft_sa(a, 1);
-			ft_rra(&a, &begina, 1);
-		}
+			ft_2(a, begina);
 		if (((a)->n < (a)->next->n && (a)->next->n
 		> (a)->next->next->n) && (a)->n > (a)->next->next->n)
-		{
-			ft_ra(&a, &begina, 1);
-			ft_sa(a, 1);
-			ft_rra(&a, &begina, 1);
-			ft_sa(a, 1);
-		}
+			ft_3(a, begina);
 		if (((a)->n < (a)->next->n && (a)->next->n
 		> (a)->next->next->n) && (a)->n < (a)->next->next->n)
-		{
-			ft_ra(&a, &begina, 1);
-			ft_sa(a, 1);
-			ft_rra(&a, &begina, 1);
-		}
+			ft_4(a, begina);
 	}
 }
 
 void		ft_split_algo(t_ps **comp, t_checke **b, t_checke **a,
-	t_checke **begina, t_checke **beginb)
+	t_begin begin)
 {
 	int			i;
 	int			k;
 	t_checke	*temp;
 	t_checke	*begint;
 
-	i = -1;
 	k = 0;
 	temp = ft_lstndup(*b, (*comp)->size);
 	begint = temp;
-	while (ft_lstl(&temp) > 3)
+	while ((i = -1) && ft_lstl(&temp) > 3)
 	{
 		(*comp)->median = ft_median(temp, (*comp)->median);
-		temp = begint;
 		ft_lstdel_oklm(&temp, &begint, (*comp)->median);
 	}
 	ft_free_lst(temp);
-	temp = NULL;
-	free(temp);
 	while (++i < (*comp)->size)
-	{
-		if ((*b)->n > (*comp)->median)
+		if ((*b)->n > (*comp)->median && --i)
 		{
-			ft_pa(a, b, begina, beginb);
+			ft_pa(a, b, &begin.begina, &begin.beginb);
 			(*comp)->size--;
-			i--;
 		}
-		else
-		{
-			ft_rb(b, beginb, 1);
-			k++;
-		}
-	}
-	while (--k > -1)
-		ft_rrb(b, beginb, 1);
+		else if (1 && ++k)
+			ft_rb(b, &begin.beginb, 1);
+	while (!(temp = NULL) && --k > -1)
+		ft_rrb(b, &begin.beginb, 1);
+}
+
+void		ft_init_begin(t_begin *begin, t_checke *a, t_checke *b, t_ps *comp)
+{
+	(*begin).begina = a;
+	(*begin).beginc = comp;
+	(*begin).beginb = b;
 }
 
 void		ft_suite_algo(t_checke *a, t_checke *b,
 	t_ps *comp, t_checke *finish)
 {
 	t_ps		*memo;
-	t_ps		*beginc;
 	t_checke	*temp;
-	t_checke	*beginb;
-	t_checke	*begina;
+	t_begin		begin;
 
 	temp = NULL;
-	begina = a;
-	beginc = comp;
-	beginb = b;
-	while ((a)->n != finish->n)
+	ft_init_begin(&begin, a, b, comp);
+	while ((a)->n != finish->n && (comp = begin.beginc))
 	{
 		while (comp->next && comp->next->next)
 			comp = comp->next;
-		if (comp->next)
-		{
-			memo = comp;
+		if (comp->next && (memo = comp))
 			comp = comp->next;
-		}
 		if (comp->size <= 3)
 		{
-			if (comp->size > 2)
-				ft_pa(&a, &b, &begina, &beginb);
-			ft_pa(&a, &b, &begina, &beginb);
-			ft_pa(&a, &b, &begina, &beginb);
+			comp->size > 2 ? ft_pa(&a, &b, &begin.begina, &begin.beginb) : 0;
+			ft_pa(&a, &b, &begin.begina, &begin.beginb);
+			ft_pa(&a, &b, &begin.begina, &begin.beginb);
 			comp = NULL;
 			memo->next = NULL;
 			free(comp);
 		}
 		else
-		{
-			ft_split_algo(&comp, &b, &a, &begina, &beginb);
-			/*i = -1;
-			k = 0;
-			temp = ft_lstndup(b, comp->size);
-			begint = temp;
-			while (ft_lstl(&temp) > 3)
-			{
-				comp->median = ft_median(temp, comp->median);
-				temp = begint;
-				ft_lstdel_oklm(&temp, &begint, comp->median);
-			}
-			ft_free_lst(temp);
-			temp = NULL;
-			free(temp);
-			while (++i < comp->size)
-			{
-				if ((b)->n > comp->median)
-				{
-					ft_pa(&a, &b, &begina, &beginb);
-					comp->size--;
-					i--;
-				}
-				else
-				{
-					ft_rb(&b, &beginb, 1);
-					k++;
-				}
-			}
-			while (--k > -1)
-				ft_rrb(&b, &beginb, 1);
-		*/}
-		ft_sort3(a, begina);
-		comp = beginc;
+			ft_split_algo(&comp, &b, &a, begin);
+		ft_sort3(a, begin.begina);
 	}
 }
 
