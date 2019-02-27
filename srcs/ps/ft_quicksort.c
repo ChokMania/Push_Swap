@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 15:40:01 by lramard           #+#    #+#             */
-/*   Updated: 2019/02/26 12:35:52 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/27 18:23:10 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,24 +79,30 @@ void		ft_split_algo(t_ps **comp, t_checke **b, t_checke **a,
 	t_checke	*temp;
 	t_checke	*begint;
 
-	k = 0;
 	temp = ft_lstndup(*b, (*comp)->size);
 	begint = temp;
-	while ((i = -1) && ft_lstl(&temp) > 3)
+	k = 0;
+	i = -1;
+	while (ft_lstl(&temp) > 3)
 	{
 		(*comp)->median = ft_median(temp, (*comp)->median);
 		ft_lstdel_oklm(&temp, &begint, (*comp)->median);
 	}
-	ft_free_lst(temp);
 	while (++i < (*comp)->size)
-		if ((*b)->n > (*comp)->median && --i)
+	{
+		if ((*b)->n > (*comp)->median)
 		{
 			ft_pa(a, b, &begin.begina, &begin.beginb);
 			(*comp)->size--;
+			i--;
 		}
-		else if (1 && ++k)
+		else
+		{
 			ft_rb(b, &begin.beginb, 1);
-	while (!(temp = NULL) && --k > -1)
+			k++;
+		}
+	}
+	while (--k > -1)
 		ft_rrb(b, &begin.beginb, 1);
 }
 
@@ -116,12 +122,16 @@ void		ft_suite_algo(t_checke *a, t_checke *b,
 
 	temp = NULL;
 	ft_init_begin(&begin, a, b, comp);
-	while ((a)->n != finish->n && (comp = begin.beginc))
+	while ((a)->n != finish->n)
 	{
+		comp = begin.beginc;
 		while (comp->next && comp->next->next)
 			comp = comp->next;
-		if (comp->next && (memo = comp))
+		if (comp->next)
+		{
+			memo = comp;
 			comp = comp->next;
+		}
 		if (comp->size <= 3)
 		{
 			comp->size > 2 ? ft_pa(&a, &b, &begin.begina, &begin.beginb) : 0;
@@ -181,7 +191,7 @@ t_checke	*ft_quicksort(t_checke *a)
 		ft_init_comp(&comp, tmp, i);
 		ft_free_lst(tmp);
 		tmp = NULL;
-		while (a && ft_lstl(&a) > 2)
+		while (a && ft_lstl(&a) >= 3)
 		{
 			if (a->n <= comp->median)
 			{
