@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 15:40:01 by lramard           #+#    #+#             */
-/*   Updated: 2019/02/27 18:23:10 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/27 19:04:20 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,45 @@ void		ft_sort3(t_checke *a, t_checke *begina)
 	}
 }
 
+/*void		ft_recur(t_checke **temp, t_ps **comp, t_begin begin, t_checke **a, t_checke **b)
+{
+	//ft_recur(&temp, comp, begin, a, b);
+	t_checke	*begint;
+	int i;
+	int k;
+	int l;
+
+	k = 0;
+	l = 0;
+	i = -1;
+
+	begint = *temp;
+	if (ft_lstl(temp) > 3)
+	{
+		(*comp)->median = ft_median((*temp), (*comp)->median);
+		l = (*comp)->median;
+		ft_lstdel_oklm(temp, &begint, l);
+		ft_recur(temp, comp, begin, a, b);
+		(*comp)->median = l;
+	}
+	while (++i < (*comp)->size)
+		if ((*b)->n > (*comp)->median)
+		{
+			ft_pa(a, b, &begin.begina, &begin.beginb);
+			(*comp)->size--;
+			i--;
+		}
+		else
+		{
+			ft_rb(b, &begin.beginb, 1);
+			k++;
+		}
+	}
+	while (--k > -1)
+		ft_rrb(b, &begin.beginb, 1);
+	ft_sort3(*a, begin.begina);
+}*/
+
 void		ft_split_algo(t_ps **comp, t_checke **b, t_checke **a,
 	t_begin begin)
 {
@@ -122,7 +161,7 @@ void		ft_suite_algo(t_checke *a, t_checke *b,
 
 	temp = NULL;
 	ft_init_begin(&begin, a, b, comp);
-	while ((a)->n != finish->n)
+	while (ft_lst_compare(a, finish) == 0)
 	{
 		comp = begin.beginc;
 		while (comp->next && comp->next->next)
