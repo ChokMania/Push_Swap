@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 15:40:01 by lramard           #+#    #+#             */
-/*   Updated: 2019/02/28 15:39:11 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/28 17:57:36 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ void		ft_do_rotate(t_begin *begin, t_checke **b, t_checke *temp, t_ps **comp, t_
 		}
 		else
 		{
+			//determiner le nb de coup pour aller aux autres et les effectuers
+
 			//ft_find(begin->begina, temp, tab);
 			//if (tab[0] > ft_lstl(b) / 2)
 			//	ft_rrb(b, &begin->beginb, 1);
