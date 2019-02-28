@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 15:40:01 by lramard           #+#    #+#             */
-/*   Updated: 2019/02/27 19:04:20 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/28 12:25:35 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,15 +110,33 @@ void		ft_sort3(t_checke *a, t_checke *begina)
 	ft_sort3(*a, begin.begina);
 }*/
 
+int			ft_count(int median, t_begin begin)
+{
+	int i;
+	t_checke *beg;
+
+	i = 0;
+	beg = begin.beginb;
+	while (begin.beginb)
+	{
+		if (begin.beginb->n > median)
+			i++;
+		begin.beginb = begin.beginb->next;
+	}
+	begin.beginb = beg;
+	return (i);
+}
+
 void		ft_split_algo(t_ps **comp, t_checke **b, t_checke **a,
-	t_begin begin)
+	t_begin *begin)
 {
 	int			i;
 	int			k;
 	t_checke	*temp;
 	t_checke	*begint;
 
-	temp = ft_lstndup(*b, (*comp)->size);
+	//temp = ft_lstndup(*b, (*comp)->size);
+	temp = ft_lstdup(*b);
 	begint = temp;
 	k = 0;
 	i = -1;
@@ -127,22 +145,28 @@ void		ft_split_algo(t_ps **comp, t_checke **b, t_checke **a,
 		(*comp)->median = ft_median(temp, (*comp)->median);
 		ft_lstdel_oklm(&temp, &begint, (*comp)->median);
 	}
-	while (++i < (*comp)->size)
+	//i = ft_count((*comp)->median, begin);
+	//calculer position
+	//while les trois valuers non envoye i = 3 || i = 2 -> i--
+		// on va vers le plus proche et on recalcule par rapport a lstl() / 2 si plus worth de rb ou rrb
+	i = 3;
+	while (i > 0)
+	//while (++i < (*comp)->size)
 	{
-		if ((*b)->n > (*comp)->median)
+		if ((*b)->n >= (*comp)->median)
 		{
-			ft_pa(a, b, &begin.begina, &begin.beginb);
+			ft_pa(a, b, &begin->begina, &begin->beginb);
 			(*comp)->size--;
 			i--;
 		}
 		else
 		{
-			ft_rb(b, &begin.beginb, 1);
-			k++;
+			ft_rb(b, &begin->beginb, 1);
+			//k++;
 		}
 	}
-	while (--k > -1)
-		ft_rrb(b, &begin.beginb, 1);
+	//while (--k > -1)
+	//	ft_rrb(b, &begin->beginb, 1);
 }
 
 void		ft_init_begin(t_begin *begin, t_checke *a, t_checke *b, t_ps *comp)
@@ -157,11 +181,13 @@ void		ft_suite_algo(t_checke *a, t_checke *b,
 {
 	t_ps		*memo;
 	t_checke	*temp;
+	t_checke	*begint;
 	t_begin		begin;
 
 	temp = NULL;
+	begint = temp;
 	ft_init_begin(&begin, a, b, comp);
-	while (ft_lst_compare(a, finish) == 0)
+	while (begin.begina->n != finish->n)
 	{
 		comp = begin.beginc;
 		while (comp->next && comp->next->next)
@@ -173,15 +199,41 @@ void		ft_suite_algo(t_checke *a, t_checke *b,
 		}
 		if (comp->size <= 3)
 		{
-			comp->size > 2 ? ft_pa(&a, &b, &begin.begina, &begin.beginb) : 0;
-			ft_pa(&a, &b, &begin.begina, &begin.beginb);
-			ft_pa(&a, &b, &begin.begina, &begin.beginb);
-			comp = NULL;
+			temp = ft_lstdup(b);
+			begint = temp;
+			if (ft_lstl(&b) == 1)
+			{
+				ft_pa(&a, &b, &begin.begina, &begin.beginb);
+				return ;
+			}
+			while (ft_lstl(&temp) > 3)
+			{
+				if (comp->size <= 2)
+				{
+					//detrerminer bonne mediane dans le cas size == 2)
+					;
+				}
+				comp->median = ft_median(temp, comp->median);
+				ft_lstdel_oklm(&temp, &begint, comp->median);
+			}
+			while (comp->size > 0)
+			{
+				if (b->n >= comp->median)
+				{
+					ft_pa(&a, &b, &begin.begina, &begin.beginb);
+					comp->size--;
+				}
+				else
+					ft_rb(&b, &begin.beginb, 1);
+			}
+			/*comp->size > 2 ? ft_pa(&a, &b, &begin.begina, &begin.beginb) : 0;
+			comp->size > 1 ? ft_pa(&a, &b, &begin.begina, &begin.beginb) : 0;
+			*/comp = NULL;
 			memo->next = NULL;
 			free(comp);
 		}
 		else
-			ft_split_algo(&comp, &b, &a, begin);
+			ft_split_algo(&comp, &b, &a, &begin);
 		ft_sort3(a, begin.begina);
 	}
 }
