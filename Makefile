@@ -6,7 +6,7 @@
 #    By: judumay <judumay@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/18 15:28:18 by judumay           #+#    #+#              #
-#    Updated: 2019/02/26 12:23:33 by judumay          ###   ########.fr        #
+#    Updated: 2019/02/28 14:45:38 by judumay          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ PS_SRCS_NAME = ft_ps.c \
 				ft_mergesort.c \
 				ft_move.c \
 				ft_move2.c \
-				ft_numbers.c
+				ft_numbers.c \
+				ft_tarace.c
 CH_SRCS_NAME = checker.c \
 				ft_move.c \
 				ft_move2.c \

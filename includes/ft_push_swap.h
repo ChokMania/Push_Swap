@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 11:15:37 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/26 12:23:11 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/28 14:45:22 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,10 @@ void			ft_1(t_checke *a, t_checke *begina);
 void			ft_2(t_checke *a, t_checke *begina);
 void			ft_3(t_checke *a, t_checke *begina);
 void			ft_4(t_checke *a, t_checke *begina);
+void			ft_lstdel_oklm(t_checke **a, t_checke **begina, int median);
+void			ft_init_begin(t_begin *begin, t_checke *a, t_checke *b, t_ps *comp);
+void			ft_init_comp(t_ps **comp, t_checke *a, int i);
+void			ft_sort3(t_checke *a, t_checke *begina);
+
 
 #endif

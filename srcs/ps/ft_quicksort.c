@@ -6,109 +6,11 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 15:40:01 by lramard           #+#    #+#             */
-/*   Updated: 2019/02/28 12:25:35 by judumay          ###   ########.fr       */
+/*   Updated: 2019/02/28 15:39:11 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_push_swap.h>
-
-void		ft_lstdel_oklm(t_checke **a, t_checke **begina, int median)
-{
-	t_checke	*elem;
-	t_checke	*tmp;
-
-	elem = *a;
-	while (elem && elem->n < median)
-		elem = elem->next;
-	if (elem)
-	{
-		*begina = elem;
-		*a = elem;
-		while (elem)
-		{
-			if (elem->n >= median)
-			{
-				tmp = elem->next;
-				(*a)->next = elem;
-				*a = (*a)->next;
-				elem->next = tmp;
-			}
-			elem = elem->next;
-		}
-		(*a)->next = NULL;
-	}
-	*a = *begina;
-}
-
-void		ft_init_comp(t_ps **comp, t_checke *a, int i)
-{
-	(*comp)->median = ft_median(a, (*comp)->median);
-	(*comp)->nbblock = i + 1;
-	(*comp)->size = 0;
-	(*comp)->next = (t_ps*)malloc(sizeof(t_ps) * 1);
-}
-
-void		ft_sort3(t_checke *a, t_checke *begina)
-{
-	if (ft_lstl(&a) == 2 && (a)->n > (a)->next->n)
-		ft_sa(a, 1);
-	if (ft_lstl(&a) >= 3)
-	{
-		if ((a)->n > (a)->next->n && (a)->next->n > (a)->next->next->n)
-			ft_1(a, begina);
-		if (((a)->n > (a)->next->n && (a)->next->n
-		< (a)->next->next->n) && (a)->n < (a)->next->next->n)
-			ft_sa(a, 1);
-		if (((a)->n > (a)->next->n && (a)->next->n
-		< (a)->next->next->n) && (a)->n > (a)->next->next->n)
-			ft_2(a, begina);
-		if (((a)->n < (a)->next->n && (a)->next->n
-		> (a)->next->next->n) && (a)->n > (a)->next->next->n)
-			ft_3(a, begina);
-		if (((a)->n < (a)->next->n && (a)->next->n
-		> (a)->next->next->n) && (a)->n < (a)->next->next->n)
-			ft_4(a, begina);
-	}
-}
-
-/*void		ft_recur(t_checke **temp, t_ps **comp, t_begin begin, t_checke **a, t_checke **b)
-{
-	//ft_recur(&temp, comp, begin, a, b);
-	t_checke	*begint;
-	int i;
-	int k;
-	int l;
-
-	k = 0;
-	l = 0;
-	i = -1;
-
-	begint = *temp;
-	if (ft_lstl(temp) > 3)
-	{
-		(*comp)->median = ft_median((*temp), (*comp)->median);
-		l = (*comp)->median;
-		ft_lstdel_oklm(temp, &begint, l);
-		ft_recur(temp, comp, begin, a, b);
-		(*comp)->median = l;
-	}
-	while (++i < (*comp)->size)
-		if ((*b)->n > (*comp)->median)
-		{
-			ft_pa(a, b, &begin.begina, &begin.beginb);
-			(*comp)->size--;
-			i--;
-		}
-		else
-		{
-			ft_rb(b, &begin.beginb, 1);
-			k++;
-		}
-	}
-	while (--k > -1)
-		ft_rrb(b, &begin.beginb, 1);
-	ft_sort3(*a, begin.begina);
-}*/
 
 int			ft_count(int median, t_begin begin)
 {
@@ -127,6 +29,57 @@ int			ft_count(int median, t_begin begin)
 	return (i);
 }
 
+void		ft_find(t_checke *begina, t_checke *temp, int tab[])
+{
+	int			i;
+	int			len;
+	t_checke	*begint;
+
+	begint = temp;
+	i = 0;
+	len = 0;
+	while (begina)
+	{
+		temp = begint;
+		while (temp)
+		{
+			if (temp->n == begina->n)
+				tab[i++] = len;
+			temp = temp->next;
+		}
+		begina = begina->next;
+		len++;
+	}
+}
+
+void		ft_do_rotate(t_begin *begin, t_checke **b, t_checke *temp, t_ps **comp, t_checke **a)
+{
+	int			i;
+	//int			tab[ft_lstl(&temp)];
+	t_checke 	*begb;
+
+	temp = NULL;
+	i = 3;
+	begb = begin->beginb;
+	while (i > 0)
+	{
+		if ((*b)->n >= (*comp)->median)
+		{
+			ft_pa(a, b, &begin->begina, &begin->beginb);
+			(*comp)->size--;
+			i--;
+		}
+		else
+		{
+			//ft_find(begin->begina, temp, tab);
+			//if (tab[0] > ft_lstl(b) / 2)
+			//	ft_rrb(b, &begin->beginb, 1);
+			//else
+				ft_rb(b, &begin->beginb, 1);
+		}
+	}
+}
+
 void		ft_split_algo(t_ps **comp, t_checke **b, t_checke **a,
 	t_begin *begin)
 {
@@ -135,7 +88,6 @@ void		ft_split_algo(t_ps **comp, t_checke **b, t_checke **a,
 	t_checke	*temp;
 	t_checke	*begint;
 
-	//temp = ft_lstndup(*b, (*comp)->size);
 	temp = ft_lstdup(*b);
 	begint = temp;
 	k = 0;
@@ -145,13 +97,9 @@ void		ft_split_algo(t_ps **comp, t_checke **b, t_checke **a,
 		(*comp)->median = ft_median(temp, (*comp)->median);
 		ft_lstdel_oklm(&temp, &begint, (*comp)->median);
 	}
-	//i = ft_count((*comp)->median, begin);
-	//calculer position
-	//while les trois valuers non envoye i = 3 || i = 2 -> i--
-		// on va vers le plus proche et on recalcule par rapport a lstl() / 2 si plus worth de rb ou rrb
-	i = 3;
-	while (i > 0)
-	//while (++i < (*comp)->size)
+	//i = 3;
+	ft_do_rotate(begin, b, temp, comp, a);
+	/*while (i > 0)
 	{
 		if ((*b)->n >= (*comp)->median)
 		{
@@ -162,18 +110,8 @@ void		ft_split_algo(t_ps **comp, t_checke **b, t_checke **a,
 		else
 		{
 			ft_rb(b, &begin->beginb, 1);
-			//k++;
 		}
-	}
-	//while (--k > -1)
-	//	ft_rrb(b, &begin->beginb, 1);
-}
-
-void		ft_init_begin(t_begin *begin, t_checke *a, t_checke *b, t_ps *comp)
-{
-	(*begin).begina = a;
-	(*begin).beginc = comp;
-	(*begin).beginb = b;
+	}*/
 }
 
 void		ft_suite_algo(t_checke *a, t_checke *b,
@@ -201,19 +139,31 @@ void		ft_suite_algo(t_checke *a, t_checke *b,
 		{
 			temp = ft_lstdup(b);
 			begint = temp;
-			if (ft_lstl(&b) == 1)
+			if (ft_lstl(&b) <= 3)
 			{
+				ft_lstl(&b) > 2 ? ft_pa(&a, &b, &begin.begina, &begin.beginb): 0;
+				ft_lstl(&b) == 2 ? ft_pa(&a, &b, &begin.begina, &begin.beginb) : 0;
 				ft_pa(&a, &b, &begin.begina, &begin.beginb);
+				ft_sort3(a, begin.begina);
 				return ;
 			}
-			while (ft_lstl(&temp) > 3)
+			if (comp->size == 3 || comp->size == 2)
 			{
-				if (comp->size <= 2)
+				while (ft_lstl(&temp) > comp->size)
 				{
-					//detrerminer bonne mediane dans le cas size == 2)
-					;
+					comp->median = ft_median(temp, comp->median);
+					ft_lstdel_oklm(&temp, &begint, comp->median);
 				}
-				comp->median = ft_median(temp, comp->median);
+			}
+			if (comp->size == 1)
+			{
+				comp->median = temp->n;
+				while (temp)
+				{
+					if (temp->n > comp->median)
+						comp->median = temp->n;
+					temp = temp->next;
+				}
 				ft_lstdel_oklm(&temp, &begint, comp->median);
 			}
 			while (comp->size > 0)
@@ -226,9 +176,7 @@ void		ft_suite_algo(t_checke *a, t_checke *b,
 				else
 					ft_rb(&b, &begin.beginb, 1);
 			}
-			/*comp->size > 2 ? ft_pa(&a, &b, &begin.begina, &begin.beginb) : 0;
-			comp->size > 1 ? ft_pa(&a, &b, &begin.begina, &begin.beginb) : 0;
-			*/comp = NULL;
+			comp = NULL;
 			memo->next = NULL;
 			free(comp);
 		}
