@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 15:54:50 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/26 11:16:40 by judumay          ###   ########.fr       */
+/*   Updated: 2019/03/01 09:52:50 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,12 +91,12 @@ int		ft_check_input(char *str)
 int		main(int ac, char **av)
 {
 	int		ret;
-	char	str[1000][5];
+	char	str[1000000][5];
 	t_check	*p;
 	t_check *begin;
 
 	ret = 0;
-	ft_bzero(str, 1000);
+	ft_bzero(str, 1000000);
 	if ((ac < 2 || ft_check_av(av) == 0)
 	&& write(2, "\033[31mError\033[37m\n", 17))
 		return (0);
