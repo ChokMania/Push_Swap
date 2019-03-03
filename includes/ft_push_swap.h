@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 11:15:37 by judumay           #+#    #+#             */
-/*   Updated: 2019/03/02 17:47:35 by judumay          ###   ########.fr       */
+/*   Updated: 2019/03/03 18:47:32 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,10 @@ void			ft_ra(t_checke **a, t_checke **begina, int n);
 void			ft_rb(t_checke **b, t_checke **beginb, int n);
 void			ft_rra(t_checke **a, t_checke **begina, int n);
 void			ft_rrb(t_checke **b, t_checke **beginb, int n);
-void			ft_sa(t_checke *a, int n);
-void			ft_sb(t_checke *b, int n);
-void			ft_ss(t_checke *a, t_checke *b);
+void			ft_sa(t_checke **a, t_checke **begina, int n);
+void			ft_sb(t_checke **b, t_checke **beginb, int n);
+void			ft_ss(t_checke **a, t_checke **b,
+	t_checke **begina, t_checke **beginb);
 void			ft_1(t_checke *a, t_checke *begina);
 void			ft_2(t_checke *a, t_checke *begina);
 void			ft_3(t_checke *a, t_checke *begina);
@@ -66,7 +67,7 @@ void			ft_sort3(t_checke *a, t_checke *begina);
 void			ft_init_begin(t_begin *begin, t_checke *a, t_checke *b,
 	t_ps *comp);
 void			ft_init_comp(t_ps **comp, t_checke *a, int i);
-void			ft_pbe(t_checke **a, t_checke **b, t_checke **begina,
+void			ft_pb(t_checke **a, t_checke **b, t_checke **begina,
 	t_checke **beginb);
 void			ft_rrr(t_checke **a, t_checke **b, t_checke **begina,
 	t_checke **beginb);
@@ -74,8 +75,9 @@ void			ft_rr(t_checke **a, t_checke **b, t_checke **begina,
 	t_checke **beginb);
 void			ft_pa(t_checke **a, t_checke **b, t_checke **begina,
 	t_checke **beginb);
-t_checke		*ft_sort3_fast(t_checke *a);
-t_checke		*ft_quicksort(t_checke *a);
+t_checke		*ft_sort3_fast(t_checke **a, t_begin *b);
+t_checke		*ft_quicksort(t_checke **a, t_checke **b, t_begin *begin,
+	t_ps **comp);
 t_checke		*ft_choice(t_checke *a);
 t_checke		*ft_lstdup(t_checke *t);
 t_checke		*ft_lstndup(t_checke *t, int n);

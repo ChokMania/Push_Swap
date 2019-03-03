@@ -6,43 +6,41 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 11:17:07 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/26 11:17:07 by judumay          ###   ########.fr       */
+/*   Updated: 2019/03/02 19:12:00 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_push_swap.h>
 #include <stdlib.h>
 
-void	ft_sa(t_checke *a, int n)
+void	ft_sa(t_checke **a, t_checke **begina, int n)
 {
-	int		t1;
-
-	if (ft_lstl(&a) <= 1)
+	if (ft_lstl(a) <= 1)
 		return ;
-	t1 = a->n;
-	a->n = a->next->n;
-	a->next->n = t1;
+	(*a) = (*a)->next;
+	(*begina)->next = (*begina)->next->next;
+	(*a)->next = *begina;
+	*begina = *a;
 	if (n != 0)
 		ft_printf("sa\n");
 }
 
-void	ft_sb(t_checke *b, int n)
+void	ft_sb(t_checke **b,	t_checke **beginb, int n)
 {
-	int		t1;
-
-	if (ft_lstl(&b) <= 1)
+	if (ft_lstl(b) <= 1)
 		return ;
-	t1 = b->n;
-	b->n = b->next->n;
-	b->next->n = t1;
+	(*b) = (*b)->next;
+	(*beginb)->next = (*beginb)->next->next;
+	(*b)->next = *beginb;
+	*beginb = *b;
 	if (n != 0)
 		ft_printf("sb\n");
 }
 
-void	ft_ss(t_checke *a, t_checke *b)
+void	ft_ss(t_checke **a, t_checke **b, t_checke **begina, t_checke **beginb)
 {
-	ft_sa(a, 0);
-	ft_sb(b, 0);
+	ft_sa(a, begina, 0);
+	ft_sb(b, beginb, 0);
 	ft_printf("ss\n");
 }
 
@@ -62,7 +60,7 @@ void	ft_pa(t_checke **a, t_checke **b, t_checke **begina, t_checke **beginb)
 	}
 }
 
-void	ft_pbe(t_checke **a, t_checke **b, t_checke **begina, t_checke **beginb)
+void	ft_pb(t_checke **a, t_checke **b, t_checke **begina, t_checke **beginb)
 {
 	t_checke	*t;
 

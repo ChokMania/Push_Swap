@@ -6,7 +6,7 @@
 #    By: judumay <judumay@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/18 15:28:18 by judumay           #+#    #+#              #
-#    Updated: 2019/03/02 16:06:14 by judumay          ###   ########.fr        #
+#    Updated: 2019/03/03 19:22:22 by judumay          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -140,7 +140,7 @@ fclean: libre clean
 		@echo -e "$(_YELLOW)Remove :\t$(_RED)" $(CH)
 		@echo
 
-re: all
+re: fclean all
 
 norme:
 		@norminette $(PS_SRCS_PATH)

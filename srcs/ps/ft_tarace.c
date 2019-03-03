@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 14:44:39 by judumay           #+#    #+#             */
-/*   Updated: 2019/03/02 17:47:14 by judumay          ###   ########.fr       */
+/*   Updated: 2019/03/03 19:04:14 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void		ft_init_begin(t_begin *begin, t_checke *a, t_checke *b, t_ps *comp)
 void		ft_init_comp(t_ps **comp, t_checke *a, int i)
 {
 	(*comp)->median = ft_median(a, (*comp)->median);
-	(*comp)->nbblock = i + 1;
+	(*comp)->nbblock = i;
 	(*comp)->size = 0;
 	(*comp)->next = (t_ps*)malloc(sizeof(t_ps) * 1);
 }
@@ -58,14 +58,14 @@ void		ft_init_comp(t_ps **comp, t_checke *a, int i)
 void		ft_sort3(t_checke *a, t_checke *begina)
 {
 	if (ft_lstl(&a) == 2 && (a)->n > (a)->next->n)
-		ft_sa(a, 1);
+		ft_sa(&a, &begina, 1);
 	if (ft_lstl(&a) >= 3)
 	{
 		if ((a)->n > (a)->next->n && (a)->next->n > (a)->next->next->n)
 			ft_1(a, begina);
 		if (((a)->n > (a)->next->n && (a)->next->n
 		< (a)->next->next->n) && (a)->n < (a)->next->next->n)
-			ft_sa(a, 1);
+			ft_sa(&a, &begina, 1);
 		if (((a)->n > (a)->next->n && (a)->next->n
 		< (a)->next->next->n) && (a)->n > (a)->next->next->n)
 			ft_2(a, begina);
