@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 15:40:01 by lramard           #+#    #+#             */
-/*   Updated: 2019/03/04 16:35:06 by judumay          ###   ########.fr       */
+/*   Updated: 2019/03/04 17:01:27 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void		ft_tej_de_a(t_pile *pile, t_begin *begin, t_ps **comp, int n)
 	while (n > 3 && (i = -1))
 	{
 		*comp = (*comp)->next;
-		pile->temp = ft_lstndup(pile->a, n);
+		pile->temp = ft_lstndupa(pile, begin, comp, n);
 		ft_init_comp(comp, pile, begin, j);
 		ft_free_lst(&pile->temp);
 		while (i < n)
@@ -46,8 +46,8 @@ void		ft_size4(t_pile *pile, t_begin *begin, t_ps **comp)
 	int			new_size;
 
 	new_size = 0;
-	pile->temp = ft_lstndup(begin->beginb, (*comp)->size);
-	(*comp)->median = ft_median(pile->temp, (*comp)->median);
+	pile->temp = ft_lstndupb(pile, begin, comp, (*comp)->size);
+	(*comp)->median = ft_median(pile, begin, comp, (*comp)->median);
 	ft_free_lst(&pile->temp);
 	i = -1;
 	while (++i < (*comp)->size)
@@ -108,7 +108,7 @@ t_checke	*ft_quicksort(t_pile *pile, t_begin *begin, t_ps **comp,
 					: ft_ra(&pile->a, &begin->begina, 1);
 		if (ft_lstl(&pile->a) > 3 && (*comp = (*comp)->next))
 		{
-			pile->temp = ft_lstdup(pile->a);
+			pile->temp = ft_lstdup(pile->a, pile, begin, comp);
 			ft_init_comp(comp, pile, begin, j);
 			ft_free_lst(&pile->temp);
 		}

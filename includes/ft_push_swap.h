@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 11:15:37 by judumay           #+#    #+#             */
-/*   Updated: 2019/03/04 16:22:38 by judumay          ###   ########.fr       */
+/*   Updated: 2019/03/04 17:01:47 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct	s_pile
 }				t_pile;
 
 int				ft_lstl(t_checke **list);
-int				ft_median(t_checke *p, int n);
+int				ft_median(t_pile *pile, t_begin *begin, t_ps **comp, int n);
 int				ft_lst_compare(t_checke *p, t_checke *finish);
 void			ft_error(t_checke *p);
 void			ft_printlist(t_checke *node);
@@ -56,7 +56,7 @@ void			ft_mergesort(t_checke **headref);
 void			ft_free_lst(t_checke **p);
 void			ft_free_lst_ps(t_ps *p);
 void			ft_display(t_checke *p, t_ps *comp);
-
+void			ft_error_ps(t_pile *pile, t_begin *begin, t_ps *comp);
 void			ft_ra(t_checke **a, t_checke **begina, int n);
 void			ft_rb(t_checke **b, t_checke **beginb, int n);
 void			ft_rra(t_checke **a, t_checke **begina, int n);
@@ -86,8 +86,8 @@ t_checke		*ft_3fast(t_checke **a, t_begin *b);
 t_checke		*ft_quicksort(t_pile *pile, t_begin *begin, t_ps **comp,
 	t_checke *finish);
 t_checke		*ft_choice(t_pile	*pile);
-t_checke		*ft_lstdup(t_checke *t);
-t_checke		*ft_lstndup(t_checke *t, int n);
-void			ft_error_ps(t_pile *pile, t_begin *begin, t_ps *comp);
-
+t_checke		*ft_lstdup(t_checke *temp, t_pile *pile, t_begin *begin,
+	t_ps **comp);
+t_checke		*ft_lstndupa(t_pile *pile, t_begin *begin, t_ps **comp, int n);
+t_checke		*ft_lstndupb(t_pile *pile, t_begin *begin, t_ps **comp, int n);
 #endif

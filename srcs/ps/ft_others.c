@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 11:17:12 by judumay           #+#    #+#             */
-/*   Updated: 2019/03/04 16:07:55 by judumay          ###   ########.fr       */
+/*   Updated: 2019/03/04 17:05:01 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,50 +39,51 @@ int			ft_lstl(t_checke **list)
 		return (0);
 }
 
-t_checke	*ft_lstdup(t_checke *t)
+t_checke	*ft_lstdup(t_checke *temp, t_pile *pile, t_begin *begin,
+	t_ps **comp)
 {
 	t_checke	*new;
-	t_checke	*begin;
+	t_checke	*begine;
 
 	if (!(new = (t_checke *)malloc(sizeof(t_checke))))
-		return (t);
-	begin = new;
-	while (t)
+		ft_error_ps(pile, begin, *comp);
+	begine = new;
+	while (temp)
 	{
-		new->n = t->n;
+		new->n = temp->n;
 		if (!(new->next = (t_checke *)malloc(sizeof(t_checke))))
-			return (t);
-		t = t->next;
-		if (t)
+			ft_error_ps(pile, begin, *comp);
+		temp = temp->next;
+		if (temp)
 			new = new->next;
 	}
 	free(new->next);
 	new->next = NULL;
-	new = begin;
+	new = begine;
 	return (new);
 }
 
-t_checke	*ft_lstndup(t_checke *t, int n)
+t_checke	*ft_lstndupb(t_pile *pile, t_begin *begin, t_ps **comp, int n)
 {
 	t_checke	*new;
-	t_checke	*begin;
+	t_checke	*begine;
 
 	if (!(new = (t_checke *)malloc(sizeof(t_checke))))
-		return (t);
-	begin = new;
-	while (t && n > 0)
+		ft_error_ps(pile, begin, *comp);
+	begine = new;
+	while (begin->beginb && n > 0)
 	{
-		new->n = t->n;
+		new->n = begin->beginb->n;
 		if (!(new->next = (t_checke *)malloc(sizeof(t_checke))))
-			return (t);
-		t = t->next;
+			ft_error_ps(pile, begin, *comp);
+		begin->beginb = begin->beginb->next;
 		n--;
-		if (t && n > 0)
+		if (begin->beginb && n > 0)
 			new = new->next;
 	}
 	free(new->next);
 	new->next = NULL;
-	new = begin;
+	new = begine;
 	return (new);
 }
 

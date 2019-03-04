@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 11:17:23 by judumay           #+#    #+#             */
-/*   Updated: 2019/03/04 16:24:34 by judumay          ###   ########.fr       */
+/*   Updated: 2019/03/04 16:47:39 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_checke	*ft_choice(t_pile *pile)
 	t_ps		*comp;
 	t_checke	*finish;
 
-	finish = ft_lstdup(pile->a);
+	finish = ft_lstdup(pile->a, pile, &begin, &comp);
 	begin.begina = pile->a;
 	ft_mergesort(&finish);
 	if (ft_lst_compare(pile->a, finish) == 1 || ft_lstl(&pile->a) <= 3)
@@ -27,7 +27,7 @@ t_checke	*ft_choice(t_pile *pile)
 		ft_free_lst(&finish);
 		return (pile->a);
 	}
-	pile->temp = ft_lstdup(pile->a);
+	pile->temp = ft_lstdup(pile->a, pile, &begin, &comp);
 	if (!(comp = (t_ps*)malloc(sizeof(t_ps) * 1)))
 		ft_error_ps(pile, &begin, comp);
 	ft_init_comp(&comp, pile, &begin, 0);

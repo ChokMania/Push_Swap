@@ -6,11 +6,35 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 15:33:32 by judumay           #+#    #+#             */
-/*   Updated: 2019/03/04 16:18:03 by judumay          ###   ########.fr       */
+/*   Updated: 2019/03/04 17:06:23 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_push_swap.h>
+
+t_checke	*ft_lstndupa(t_pile *pile, t_begin *begin, t_ps **comp, int n)
+{
+	t_checke	*new;
+	t_checke	*begine;
+
+	if (!(new = (t_checke *)malloc(sizeof(t_checke))))
+		ft_error_ps(pile, begin, *comp);
+	begine = new;
+	while (begin->begina && n > 0)
+	{
+		new->n = begin->begina->n;
+		if (!(new->next = (t_checke *)malloc(sizeof(t_checke))))
+			ft_error_ps(pile, begin, *comp);
+		begin->begina = begin->begina->next;
+		n--;
+		if (begin->begina && n > 0)
+			new = new->next;
+	}
+	free(new->next);
+	new->next = NULL;
+	new = begine;
+	return (new);
+}
 
 void		ft_error_ps(t_pile *pile, t_begin *begin, t_ps *comp)
 {
