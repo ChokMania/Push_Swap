@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 15:27:09 by lramard           #+#    #+#             */
-/*   Updated: 2019/03/04 16:09:46 by judumay          ###   ########.fr       */
+/*   Updated: 2019/03/04 19:37:18 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,55 @@ t_checke	*ft_recup(int ac, char **av)
 	return (p);
 }
 
+void		ft_r(void)
+{
+	ft_printf("\033[32mLe jeu est constitué de 2 piles nommées a et b.\n");
+	ft_printf("Au départ : \n  ◦ a contient un nombre arbitraire d’entiers ");
+	ft_printf("positifs ou négatifs, sans doublons. \n  ◦ b est vide\n");
+	ft_printf("Le but du jeu est de trier a dans l’ordre croissant.\n");
+	ft_printf("Pour ce faire, on ne dispose que des opérations suivantes :\n");
+	ft_printf("\n➜ sa : swap a - intervertit les 2 premiers éléments au somm");
+	ft_printf("et de la pile a. Ne fait rien s’il n’y en a qu’un ou aucun.\n");
+	ft_printf("➜ sb : swap b - intervertit les 2 premiers éléments au sommet");
+	ft_printf("de la  pile b. Ne fait rien s’il n’y en a qu’un ou aucun.\n");
+	ft_printf("➜ ss : sa et sb en même temps.\n➜ pa : push a - prend le ");
+	ft_printf("premier élément au sommet de b et le met sur a. Ne fait rien");
+	ft_printf(" si b est vide.\n➜ pb : push b - prend le premier élément au ");
+	ft_printf("sommet de a et le met sur b. Ne fait rien si a est vide.\n");
+	ft_printf("➜ ra : rotate a - décale d’une position vers le haut tous ");
+	ft_printf("les élements de la pile a. Le premier élément devient le ");
+	ft_printf("dernier.\n➜ rb : rotate b - décale d’une position vers ");
+	ft_printf("le haut tous les élements de la pile b. Le premier ");
+	ft_printf("élément devient le dernier.\n➜ rr : ra et rb en même temps.\n");
+	ft_printf("➜ rra : reverse rotate a - décale d’une position vers le bas ");
+	ft_printf("tous les élements de la pile a. Le dernier élément devient ");
+	ft_printf("le premier.\n➜ rrb : reverse rotate b - décale d’une position");
+	ft_printf(" vers le bas tous les élements de la pile b. Le dernier ");
+	ft_printf("élément devient le premier.\n➜ rrr : rra et rrb en même ");
+	ft_printf("temps.\n");
+}
+
+void		ft_tuto(char c)
+{
+	if (c == 'r')
+		ft_r();
+	else if (c == 'e')
+	{
+		ft_printf("Voici quelques exemples pour tester push_swap seul :\n\n");
+		ft_printf("\033[32m./push_swap 1 2 3\n\033[0m");
+		ft_printf("\033[36mARG=`ruby -e \"puts (1..50).");
+		ft_printf("to_a.shuffle.join(' ')\"`; ./push_swap $ARG\n\033[0m\n\n");
+		ft_printf("Voici quelques exemples pour tester avec checker :\n\n");
+		ft_printf("\033[33m./push_swap 9 10 11 | ./checker 9 10 11\n\033[0m");
+		ft_printf("\033[35mARG=`ruby -e \"puts (1..100).");
+		ft_printf("to_a.shuffle.join(' ')\"`; ./push_swap $ARG |");
+		ft_printf("./checker $ARG\n\033[0m");
+	}
+	else
+		return ;
+	exit(0);
+}
+
 int			ft_check_av(char **av)
 {
 	int		i;
@@ -47,7 +96,7 @@ int			ft_check_av(char **av)
 	while (av[++i] && (j = -1))
 		while (av[i][++j])
 			if (j == 0 && av[i][j] == '-')
-				;
+				ft_tuto(av[i][j + 1]);
 			else if (av[i][j] < '0' || av[i][j] > '9')
 				return (0);
 	i = 0;
