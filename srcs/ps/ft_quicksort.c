@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 15:40:01 by lramard           #+#    #+#             */
-/*   Updated: 2019/03/04 14:44:01 by judumay          ###   ########.fr       */
+/*   Updated: 2019/03/04 16:35:06 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,46 +14,41 @@
 
 void		ft_tej_de_a(t_pile *pile, t_begin *begin, t_ps **comp, int n)
 {
-	t_checke	*temp;
 	int			j;
 	int			i;
 
 	j = (*comp)->nbblock + 1;
-	(*comp)->next = (t_ps*)malloc(sizeof(t_ps) * 1);
-	while (n > 3)
+	if (!((*comp)->next = (t_ps*)malloc(sizeof(t_ps) * 1)))
+		ft_error_ps(pile, begin, *comp);
+	while (n > 3 && (i = -1))
 	{
 		*comp = (*comp)->next;
-		temp = ft_lstndup(pile->a, n);
-		ft_init_comp(comp, temp, j);
-		ft_free_lst(temp);
-		i = -1;
-		while (++i < n)
-		{
-			if ((pile->a)->n <= (*comp)->median && ++(*comp)->size)
-			{
+		pile->temp = ft_lstndup(pile->a, n);
+		ft_init_comp(comp, pile, begin, j);
+		ft_free_lst(&pile->temp);
+		while (i < n)
+			if ((pile->a)->n <= (*comp)->median && ++(*comp)->size
+				&& --n)
 				ft_pb(&pile->a, &pile->b, &begin->begina, &begin->beginb);
-				n--;
-				i--;
-			}
-			else
+			else if (i++)
 				ft_ra(&pile->a, &begin->begina, 1);
-		}
 		while (i-- > 0)
 			ft_rra(&pile->a, &begin->begina, 1);
 		j++;
 	}
+	free((*comp)->next);
 	(*comp)->next = NULL;
 }
 
 void		ft_size4(t_pile *pile, t_begin *begin, t_ps **comp)
 {
 	int			i;
-	t_checke	*temp;
 	int			new_size;
 
 	new_size = 0;
-	temp = ft_lstndup(begin->beginb, (*comp)->size);
-	(*comp)->median = ft_median(temp, (*comp)->median);
+	pile->temp = ft_lstndup(begin->beginb, (*comp)->size);
+	(*comp)->median = ft_median(pile->temp, (*comp)->median);
+	ft_free_lst(&pile->temp);
 	i = -1;
 	while (++i < (*comp)->size)
 	{
@@ -100,7 +95,6 @@ void		ft_suite_algo(t_pile *pile, t_begin *begin, t_ps **comp,
 t_checke	*ft_quicksort(t_pile *pile, t_begin *begin, t_ps **comp,
 	t_checke *finish)
 {
-	t_checke	*temp;
 	int			i;
 	int			j;
 
@@ -114,12 +108,12 @@ t_checke	*ft_quicksort(t_pile *pile, t_begin *begin, t_ps **comp,
 					: ft_ra(&pile->a, &begin->begina, 1);
 		if (ft_lstl(&pile->a) > 3 && (*comp = (*comp)->next))
 		{
-			temp = ft_lstdup(pile->a);
-			ft_init_comp(comp, temp, j);
-			ft_free_lst(temp);
+			pile->temp = ft_lstdup(pile->a);
+			ft_init_comp(comp, pile, begin, j);
+			ft_free_lst(&pile->temp);
 		}
 	}
-	//free((*comp)->next);
+	free((*comp)->next);
 	(*comp)->next = NULL;
 	begin->begina = ft_3fast(&pile->a, begin);
 	ft_suite_algo(pile, begin, comp, finish);

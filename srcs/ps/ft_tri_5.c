@@ -6,11 +6,28 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 15:33:32 by judumay           #+#    #+#             */
-/*   Updated: 2019/03/04 11:53:40 by judumay          ###   ########.fr       */
+/*   Updated: 2019/03/04 16:18:03 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_push_swap.h>
+
+void		ft_error_ps(t_pile *pile, t_begin *begin, t_ps *comp)
+{
+	if (pile->a)
+		ft_free_lst(&pile->a);
+	if (pile->b)
+		ft_free_lst(&pile->b);
+	if (begin->begina)
+		ft_free_lst(&begin->begina);
+	if (begin->beginb)
+		ft_free_lst(&begin->beginb);
+	if (begin->beginc)
+		ft_free_lst_ps(begin->beginc);
+	if (comp)
+		ft_free_lst_ps(comp);
+	exit(0);
+}
 
 t_checke	*ft_3fast(t_checke **a, t_begin *b)
 {

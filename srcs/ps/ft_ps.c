@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 15:27:09 by lramard           #+#    #+#             */
-/*   Updated: 2019/03/04 09:14:20 by judumay          ###   ########.fr       */
+/*   Updated: 2019/03/04 16:09:46 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ int			main(int ac, char **av)
 	&& write(2, "\033[31mError\033[37m\n", 17))
 		return (0);
 	pile.a = ft_recup(ac, av);
-	pile.a = ft_choice(&pile);
-	ft_free_lst(pile.a);
+	if (ft_lstl(&pile.a) > 1)
+		pile.a = ft_choice(&pile);
+	ft_free_lst(&pile.a);
 	return (0);
 }

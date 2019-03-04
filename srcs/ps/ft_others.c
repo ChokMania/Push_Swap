@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 11:17:12 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/26 11:21:04 by judumay          ###   ########.fr       */
+/*   Updated: 2019/03/04 16:07:55 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,17 @@ t_checke	*ft_lstndup(t_checke *t, int n)
 	if (!(new = (t_checke *)malloc(sizeof(t_checke))))
 		return (t);
 	begin = new;
-	while (t && n-- > 0)
+	while (t && n > 0)
 	{
 		new->n = t->n;
 		if (!(new->next = (t_checke *)malloc(sizeof(t_checke))))
 			return (t);
 		t = t->next;
+		n--;
 		if (t && n > 0)
 			new = new->next;
 	}
+	free(new->next);
 	new->next = NULL;
 	new = begin;
 	return (new);

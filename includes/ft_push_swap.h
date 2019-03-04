@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 11:15:37 by judumay           #+#    #+#             */
-/*   Updated: 2019/03/04 11:53:46 by judumay          ###   ########.fr       */
+/*   Updated: 2019/03/04 16:22:38 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct	s_pile
 {
 	t_checke	*a;
 	t_checke	*b;
+	t_checke	*temp;
 }				t_pile;
 
 int				ft_lstl(t_checke **list);
@@ -52,7 +53,7 @@ int				ft_lst_compare(t_checke *p, t_checke *finish);
 void			ft_error(t_checke *p);
 void			ft_printlist(t_checke *node);
 void			ft_mergesort(t_checke **headref);
-void			ft_free_lst(t_checke *p);
+void			ft_free_lst(t_checke **p);
 void			ft_free_lst_ps(t_ps *p);
 void			ft_display(t_checke *p, t_ps *comp);
 
@@ -72,7 +73,7 @@ void			ft_lstdel_oklm(t_checke **a, t_checke **begina, int median);
 void			ft_sort3(t_checke **a, t_checke **begina);
 void			ft_init_begin(t_begin *begin, t_checke *a, t_checke *b,
 	t_ps *comp);
-void			ft_init_comp(t_ps **comp, t_checke *a, int i);
+void			ft_init_comp(t_ps **comp, t_pile *pile, t_begin *begin, int i);
 void			ft_pb(t_checke **a, t_checke **b, t_checke **begina,
 	t_checke **beginb);
 void			ft_rrr(t_checke **a, t_checke **b, t_checke **begina,
@@ -87,5 +88,6 @@ t_checke		*ft_quicksort(t_pile *pile, t_begin *begin, t_ps **comp,
 t_checke		*ft_choice(t_pile	*pile);
 t_checke		*ft_lstdup(t_checke *t);
 t_checke		*ft_lstndup(t_checke *t, int n);
+void			ft_error_ps(t_pile *pile, t_begin *begin, t_ps *comp);
 
 #endif

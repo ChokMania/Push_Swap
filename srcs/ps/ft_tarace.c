@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 14:44:39 by judumay           #+#    #+#             */
-/*   Updated: 2019/03/04 10:20:49 by judumay          ###   ########.fr       */
+/*   Updated: 2019/03/04 16:28:37 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,13 @@ void		ft_init_begin(t_begin *begin, t_checke *a, t_checke *b, t_ps *comp)
 	(*begin).beginb = b;
 }
 
-void		ft_init_comp(t_ps **comp, t_checke *a, int i)
+void		ft_init_comp(t_ps **comp, t_pile *pile, t_begin *begin, int i)
 {
-	(*comp)->median = ft_median(a, (*comp)->median);
+	(*comp)->median = ft_median(pile->temp, (*comp)->median);
 	(*comp)->nbblock = i;
 	(*comp)->size = 0;
-	(*comp)->next = (t_ps*)malloc(sizeof(t_ps) * 1);
+	if (!((*comp)->next = (t_ps*)malloc(sizeof(t_ps) * 1)))
+		ft_error_ps(pile, begin, *comp);
 }
 
 void		ft_sort3(t_checke **a, t_checke **begina)

@@ -6,7 +6,7 @@
 #    By: judumay <judumay@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/18 15:28:18 by judumay           #+#    #+#              #
-#    Updated: 2019/03/04 11:47:56 by judumay          ###   ########.fr        #
+#    Updated: 2019/03/04 14:52:12 by judumay          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,7 +92,7 @@ verife = 0
 all: lib $(PS) $(CH)
 
 lib:
-		@make -C libft -j
+		@make -C libft -j 113
 
 libre:
 		@make -C libft fclean
