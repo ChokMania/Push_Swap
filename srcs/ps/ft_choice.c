@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 11:17:23 by judumay           #+#    #+#             */
-/*   Updated: 2019/03/04 11:53:24 by judumay          ###   ########.fr       */
+/*   Updated: 2019/03/04 12:04:24 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ t_checke	*ft_choice(t_pile *pile)
 	ft_init_begin(&begin, pile->a, pile->b, comp);
 	ft_free_lst(temp);
 	ft_quicksort(pile, &begin, &comp, finish);
-	ft_free_lst_ps(comp);
 	pile->b ? ft_free_lst(pile->b) : 0;
 	ft_free_lst(finish);
 	return (begin.begina);
