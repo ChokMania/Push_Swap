@@ -6,7 +6,7 @@
 #    By: judumay <judumay@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/18 15:28:18 by judumay           #+#    #+#              #
-#    Updated: 2019/03/03 19:22:22 by judumay          ###   ########.fr        #
+#    Updated: 2019/03/04 10:05:55 by judumay          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,6 +103,14 @@ $(PS): $(PS_OBJS)
 
 $(CH): $(CH_OBJS)
 		@$(CC) $(CH_OBJS) libft/libft.a -o $@
+		@echo -en "$(_GREEN)\t [OK]\n\n$(_DEF)"
+
+ps: lib $(PS_OBJS)
+		@$(CC) $(PS_OBJS) libft/libft.a -o $(PS)
+		@echo -en "$(_GREEN)\t [OK]\n\n$(_DEF)"
+
+ch: lib $(CH_OBJS)
+		@$(CC) $(CH_OBJS) libft/libft.a -o $(CH)
 		@echo -en "$(_GREEN)\t [OK]\n\n$(_DEF)"
 
 $(PS_OBJS_PATH)%.o: $(PS_SRCS_PATH)%.c $(INC)

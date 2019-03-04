@@ -6,11 +6,37 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 14:44:39 by judumay           #+#    #+#             */
-/*   Updated: 2019/03/03 19:04:14 by judumay          ###   ########.fr       */
+/*   Updated: 2019/03/04 09:48:32 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_push_swap.h>
+
+void		ft_display(t_checke *p, t_ps *comp)
+{
+	if (p)
+	{
+		ft_printf("display|\n");
+		while (p)
+		{
+			ft_printf("n : %d\t", p->n);
+			p = p->next;
+		}
+		ft_printf("\n");
+	}
+	if (comp)
+	{
+		ft_printf("|COMP display|\n");
+		while (comp)
+		{
+			ft_printf("nbblock %d\t", comp->nbblock);
+			ft_printf("size %d\t", comp->size);
+			ft_printf("mediane %d\t\n", comp->median);
+			comp = comp->next;
+		}
+		ft_printf("\n");
+	}
+}
 
 void		ft_lstdel_oklm(t_checke **a, t_checke **begina, int median)
 {

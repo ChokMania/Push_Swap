@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 15:27:09 by lramard           #+#    #+#             */
-/*   Updated: 2019/02/26 11:21:34 by judumay          ###   ########.fr       */
+/*   Updated: 2019/03/04 09:14:20 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,16 +68,15 @@ int			ft_check_av(char **av)
 
 int			main(int ac, char **av)
 {
-	t_checke	*p;
-	t_checke	*begin;
+	t_pile	pile;
 
+	pile.a = NULL;
+	pile.b = NULL;
 	if ((ac < 2 || ft_check_av(av) == 0)
 	&& write(2, "\033[31mError\033[37m\n", 17))
 		return (0);
-	p = ft_recup(ac, av);
-	begin = p;
-	p = begin;
-	p = ft_choice(begin);
-	ft_free_lst(p);
+	pile.a = ft_recup(ac, av);
+	pile.a = ft_choice(&pile);
+	ft_free_lst(pile.a);
 	return (0);
 }

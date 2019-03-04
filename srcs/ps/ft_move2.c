@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 11:17:07 by judumay           #+#    #+#             */
-/*   Updated: 2019/03/02 19:12:00 by judumay          ###   ########.fr       */
+/*   Updated: 2019/03/04 09:18:19 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_sa(t_checke **a, t_checke **begina, int n)
 		ft_printf("sa\n");
 }
 
-void	ft_sb(t_checke **b,	t_checke **beginb, int n)
+void	ft_sb(t_checke **b, t_checke **beginb, int n)
 {
 	if (ft_lstl(b) <= 1)
 		return ;
