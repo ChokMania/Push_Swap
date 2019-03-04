@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 19:11:58 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/26 10:46:34 by judumay          ###   ########.fr       */
+/*   Updated: 2019/03/04 18:41:40 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void	ft_suite(int ret, char str[1000][5], t_check *p)
 			str[++i][0] = '\0';
 		}
 	}
+	ft_check_inpute(str[i]) == 0 ? ft_error_check(p) : 0;
 	ret == -1 ? ft_error_check(p) : 0;
 	str[i][0] = 0;
 }

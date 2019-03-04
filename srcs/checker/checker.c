@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 15:54:50 by judumay           #+#    #+#             */
-/*   Updated: 2019/03/01 09:52:50 by judumay          ###   ########.fr       */
+/*   Updated: 2019/03/04 17:56:05 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ void	ft_check_value(t_check *p)
 {
 	while (p->next)
 	{
-		if (p->n > p->next->n && ft_printf("\033[31mKO\033[37m\n"))
+		if (p->n > p->next->n && ft_printf("KO\n"))
 			return ;
 		p = p->next;
 	}
-	ft_printf("\033[32mOK\033[37m\n");
+	ft_printf("OK\n");
 }
 
 t_check	*ft_recup(int ac, char **av)
@@ -97,7 +97,9 @@ int		main(int ac, char **av)
 
 	ret = 0;
 	ft_bzero(str, 1000000);
-	if ((ac < 2 || ft_check_av(av) == 0)
+	if (ac < 2)
+		return (0);
+	if ((ft_check_av(av) == 0)
 	&& write(2, "\033[31mError\033[37m\n", 17))
 		return (0);
 	p = ft_recup(ac, av);

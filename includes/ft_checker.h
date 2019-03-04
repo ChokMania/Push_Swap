@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 17:48:09 by judumay           #+#    #+#             */
-/*   Updated: 2019/03/02 17:47:21 by judumay          ###   ########.fr       */
+/*   Updated: 2019/03/04 18:41:58 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ void			ft_suite(int ret, char str[1000][5], t_check *p);
 t_check			*ft_read_inst(t_check *a, char str[1000][5]);
 t_check			*ft_create_eleme(int n);
 t_check			**ft_list_push_fronte(t_check **begin_list, int n);
+int				ft_check_inpute(char *str);
 
 #endif
