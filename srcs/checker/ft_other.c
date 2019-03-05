@@ -6,12 +6,39 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 09:05:16 by judumay           #+#    #+#             */
-/*   Updated: 2019/03/04 18:43:25 by judumay          ###   ########.fr       */
+/*   Updated: 2019/03/05 19:32:29 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_checker.h>
 #include <stdlib.h>
+
+int		ft_intput(char *av, int j, t_mem *mem)
+{
+	if (av[j] == 'v')
+	{
+		mem->memv = 1;
+		while (av[j] > '0' && av[j] < '9')
+			j++;
+		return (j);
+	}
+	else if (av[j] == 'e')
+	{
+		ft_printf("Voici quelques exemples pour tester checker seul :\n\n");
+		ft_printf("\033[32m./checker 1 2 3\n\033[0m");
+		ft_printf("\033[36mARG=`ruby -e \"puts (1..50).");
+		ft_printf("to_a.shuffle.join(' ')\"`; ./checker $ARG\n\033[0m");
+		ft_printf("\033[31mNe pas oublier les instructions.\033[0m\n\n");
+		ft_printf("Voici quelques exemples pour tester avec push_swap :\n\n");
+		ft_printf("\033[33m./push_swap 9 10 11 | ./checker 9 10 11\n\033[0m");
+		ft_printf("\033[35mARG=`ruby -e \"puts (1..100).");
+		ft_printf("to_a.shuffle.join(' ')\"`; ./push_swap $ARG |");
+		ft_printf("./checker $ARG\n\033[0m");
+	}
+	else if (av[j] == 'u')
+		ft_printf("Usage: ./push_swap [-u/r/e] <numbers_list>\n");
+	exit(0);
+}
 
 void	ft_error(t_check *p)
 {

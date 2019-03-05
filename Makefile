@@ -6,7 +6,7 @@
 #    By: judumay <judumay@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/18 15:28:18 by judumay           #+#    #+#              #
-#    Updated: 2019/03/05 11:50:36 by judumay          ###   ########.fr        #
+#    Updated: 2019/03/05 19:34:39 by judumay          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,7 @@ PS_OBJS = $(patsubst $(PS_SRCS_PATH)%.c, $(PS_OBJS_PATH)%.o, $(PS_SRCS))
 CH_SRCS = $(addprefix $(CH_SRCS_PATH), $(CH_SRCS_NAME))
 CH_OBJS = $(patsubst $(CH_SRCS_PATH)%.c, $(CH_OBJS_PATH)%.o, $(CH_SRCS))
 INC = $(addprefix $(INCS_PATH), $(INCS_NAMES))
+MLX = -I /usr/local/include -L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit
 
 # Compilation
 CC = gcc
@@ -92,17 +93,17 @@ verife = 0
 all: lib ps ch
 
 lib:
-		@make -C libft -j 113
+		@make -sC libft -j 113
 
 libre:
-		@make -C libft fclean
+		@make -sC libft fclean
 
 ps: $(PS_OBJS)
 		@$(CC) $(PS_OBJS) libft/libft.a -o $(PS)
 		@echo -en "$(_GREEN)\t [OK]\n\n$(_DEF)"
 
 ch: $(CH_OBJS)
-		@$(CC) $(CH_OBJS) libft/libft.a -o $(CH)
+		@$(CC) $(CH_OBJS) $(MLX) libft/libft.a -o $(CH)
 		@echo -en "$(_GREEN)\t [OK]\n\n$(_DEF)"
 
 $(PS): lib $(PS_OBJS)
@@ -110,7 +111,7 @@ $(PS): lib $(PS_OBJS)
 		@echo -en "$(_GREEN)\t [OK]\n\n$(_DEF)"
 
 $(CH): lib $(CH_OBJS)
-		@$(CC) $(CH_OBJS) libft/libft.a -o $(CH)
+		@$(CC) $(CH_OBJS) $(MLX) libft/libft.a -o $(CH)
 		@echo -en "$(_GREEN)\t [OK]\n\n$(_DEF)"
 
 $(PS_OBJS_PATH)%.o: $(PS_SRCS_PATH)%.c $(INC)
@@ -141,7 +142,7 @@ clean:
 		@echo -e "$(_YELLOW)Remove :\t$(_RED)" $(PS_OBJS_PATH)
 		@echo -e "$(_YELLOW)Remove :\t$(_RED)" $(CH_OBJS_PATH)
 
-fclean: libre clean
+fclean: clean
 		@rm -f $(PS)
 		@rm -f $(CH)
 		@echo -e "$(_YELLOW)Remove :\t$(_RED)" $(PS)
@@ -149,6 +150,8 @@ fclean: libre clean
 		@echo
 
 re: fclean all
+
+rel: ffclean fclean libre all
 
 norme:
 		@norminette $(PS_SRCS_PATH)

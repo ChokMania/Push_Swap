@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 17:48:09 by judumay           #+#    #+#             */
-/*   Updated: 2019/03/05 11:44:38 by judumay          ###   ########.fr       */
+/*   Updated: 2019/03/05 19:32:17 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,13 @@ typedef struct	s_check
 	struct s_check	*next;
 }				t_check;
 
+typedef	struct	s_mem
+{
+	int		memv;
+}				t_mem;
+
 int				ft_lstlene(t_check **list);
+t_check			*ft_read_instv(t_check *a, char str[BUFF_STR][5]);
 void			ft_error_check(t_check *p);
 int				ft_check_input(char *str);
 void			ft_error(t_check *p);
@@ -54,5 +60,6 @@ t_check			*ft_read_inst(t_check *a, char str[BUFF_STR][5]);
 t_check			*ft_create_eleme(int n);
 t_check			**ft_list_push_fronte(t_check **begin_list, int n);
 int				ft_check_inpute(char *str);
+int				ft_intput(char *av, int j, t_mem *mem);
 
 #endif

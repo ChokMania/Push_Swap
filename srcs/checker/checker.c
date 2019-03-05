@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 15:54:50 by judumay           #+#    #+#             */
-/*   Updated: 2019/03/05 11:58:36 by judumay          ###   ########.fr       */
+/*   Updated: 2019/03/05 19:31:59 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_check	*ft_recup(int ac, char **av)
 	return (p);
 }
 
-int		ft_check_av(char **av)
+int		ft_check_av(char **av, t_mem *mem)
 {
 	int		i;
 	int		j;
@@ -56,9 +56,8 @@ int		ft_check_av(char **av)
 	i = 0;
 	while (av[++i] && (j = -1))
 		while (av[i][++j])
-			if (j == 0 && av[i][j] == '-' && (av[i][j + 1] > '0'
-				&& av[i][j + 1] < '9'))
-				;
+			if (j == 0 && av[i][j] == '-' && ft_isalnum(av[i][j + 1]))
+				j = ft_intput(av[i], j + 1, mem);
 			else if (av[i][j] < '0' || av[i][j] > '9')
 				return (0);
 	i = 0;
@@ -94,19 +93,22 @@ int		main(int ac, char **av)
 	char	str[BUFF_STR][5];
 	t_check	*p;
 	t_check *begin;
+	t_mem	mem;
 
 	ret = 0;
+	mem.memv = 0;
 	ft_bzero(str, BUFF_STR);
 	if (ac < 2)
-		return (0);
-	if ((ft_check_av(av) == 0)
+		return (ac < 2 ? 0 : ft_printf("Usage: ./push_swap [-u/r/e]\
+		<numbers_list>\n"));
+	if ((ft_check_av(av, &mem) == 0)
 	&& write(2, "\033[31mError\033[37m\n", 17))
 		return (0);
 	p = ft_recup(ac, av);
 	begin = p;
 	ft_suite(ret, str, p);
 	p = begin;
-	begin = ft_read_inst(p, str);
+	begin = mem.memv == 0 ? ft_read_inst(p, str) : ft_read_inst(p, str);
 	p = begin;
 	ft_check_value(p);
 	ft_free_lst(begin);
