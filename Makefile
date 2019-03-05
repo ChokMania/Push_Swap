@@ -6,7 +6,7 @@
 #    By: judumay <judumay@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/18 15:28:18 by judumay           #+#    #+#              #
-#    Updated: 2019/03/05 19:34:39 by judumay          ###   ########.fr        #
+#    Updated: 2019/03/05 19:42:50 by judumay          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,7 +95,7 @@ all: lib ps ch
 lib:
 		@make -sC libft -j 113
 
-libre:
+libclean:
 		@make -sC libft fclean
 
 ps: $(PS_OBJS)
@@ -148,6 +148,8 @@ fclean: clean
 		@echo -e "$(_YELLOW)Remove :\t$(_RED)" $(PS)
 		@echo -e "$(_YELLOW)Remove :\t$(_RED)" $(CH)
 		@echo
+
+ffclean : fclean libclean
 
 re: fclean all
 
