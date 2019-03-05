@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 19:11:58 by judumay           #+#    #+#             */
-/*   Updated: 2019/03/04 18:41:40 by judumay          ###   ########.fr       */
+/*   Updated: 2019/03/05 11:39:35 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int		ft_lstlene(t_check **list)
 		return (0);
 }
 
-void	ft_suite(int ret, char str[1000][5], t_check *p)
+void	ft_suite(int ret, char str[BUFF_STR][5], t_check *p)
 {
 	char	*tmp;
 	char	buf[BUF_SIZE];

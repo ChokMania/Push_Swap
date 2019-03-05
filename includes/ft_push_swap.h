@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 11:15:37 by judumay           #+#    #+#             */
-/*   Updated: 2019/03/04 17:01:47 by judumay          ###   ########.fr       */
+/*   Updated: 2019/03/05 10:07:13 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,5 @@ t_checke		*ft_lstdup(t_checke *temp, t_pile *pile, t_begin *begin,
 	t_ps **comp);
 t_checke		*ft_lstndupa(t_pile *pile, t_begin *begin, t_ps **comp, int n);
 t_checke		*ft_lstndupb(t_pile *pile, t_begin *begin, t_ps **comp, int n);
+int				ft_is_sorted(t_checke *a);
 #endif

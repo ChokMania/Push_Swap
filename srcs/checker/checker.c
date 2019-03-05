@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 15:54:50 by judumay           #+#    #+#             */
-/*   Updated: 2019/03/04 17:56:05 by judumay          ###   ########.fr       */
+/*   Updated: 2019/03/05 11:58:36 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,16 @@ int		ft_check_av(char **av)
 	i = 0;
 	while (av[++i] && (j = -1))
 		while (av[i][++j])
-			if (j == 0 && av[i][j] == '-')
+			if (j == 0 && av[i][j] == '-' && (av[i][j + 1] > '0'
+				&& av[i][j + 1] < '9'))
 				;
 			else if (av[i][j] < '0' || av[i][j] > '9')
 				return (0);
 	i = 0;
 	while (av[++i] && (j = -1))
 	{
-		k = 0;
-		if (ft_strlen(av[i]) > 11 || ft_atol(av[i]) > INT32_MAX
-		|| ft_atol(av[i]) < INT32_MIN)
+		if (!(k = 0) && (ft_strlen(av[i]) > 11
+			|| ft_atol(av[i]) > INT32_MAX || ft_atol(av[i]) < INT32_MIN))
 			return (0);
 		while (++k != i)
 		{
@@ -91,12 +91,12 @@ int		ft_check_input(char *str)
 int		main(int ac, char **av)
 {
 	int		ret;
-	char	str[1000000][5];
+	char	str[BUFF_STR][5];
 	t_check	*p;
 	t_check *begin;
 
 	ret = 0;
-	ft_bzero(str, 1000000);
+	ft_bzero(str, BUFF_STR);
 	if (ac < 2)
 		return (0);
 	if ((ft_check_av(av) == 0)

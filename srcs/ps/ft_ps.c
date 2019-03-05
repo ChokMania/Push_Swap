@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 15:27:09 by lramard           #+#    #+#             */
-/*   Updated: 2019/03/04 19:37:18 by judumay          ###   ########.fr       */
+/*   Updated: 2019/03/05 12:03:09 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ void		ft_tuto(char c)
 		ft_printf("to_a.shuffle.join(' ')\"`; ./push_swap $ARG |");
 		ft_printf("./checker $ARG\n\033[0m");
 	}
+	else if (c == 'u')
+		ft_printf("Usage: ./push_swap [-u/r/e] <numbers_list>\n");
 	else
 		return ;
 	exit(0);
@@ -95,16 +97,15 @@ int			ft_check_av(char **av)
 	i = 0;
 	while (av[++i] && (j = -1))
 		while (av[i][++j])
-			if (j == 0 && av[i][j] == '-')
+			if (j == 0 && av[i][j] == '-' && ft_isalnum(av[i][j + 1]))
 				ft_tuto(av[i][j + 1]);
 			else if (av[i][j] < '0' || av[i][j] > '9')
 				return (0);
 	i = 0;
 	while (av[++i] && (j = -1))
 	{
-		k = 0;
-		if (ft_strlen(av[i]) > 11 || ft_atol(av[i]) > INT32_MAX
-		|| ft_atol(av[i]) < INT32_MIN)
+		if (!(k = 0) && (ft_strlen(av[i]) > 11
+			|| ft_atol(av[i]) > INT32_MAX || ft_atol(av[i]) < INT32_MIN))
 			return (0);
 		while (++k != i)
 		{
@@ -121,7 +122,9 @@ int			main(int ac, char **av)
 
 	pile.a = NULL;
 	pile.b = NULL;
-	if ((ac < 2 || ft_check_av(av) == 0)
+	if (ac < 2)
+		ft_tuto('u');
+	if ((ft_check_av(av) == 0)
 	&& write(2, "\033[31mError\033[37m\n", 17))
 		return (0);
 	pile.a = ft_recup(ac, av);

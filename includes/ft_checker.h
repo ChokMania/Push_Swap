@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 17:48:09 by judumay           #+#    #+#             */
-/*   Updated: 2019/03/04 18:41:58 by judumay          ###   ########.fr       */
+/*   Updated: 2019/03/05 11:44:38 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-# define BUF_SIZE 10000
+# define BUF_SIZE 2
+# define BUFF_STR 1000000
 
 typedef struct	s_check
 {
@@ -48,8 +49,8 @@ void			ft_rra(t_check **a, t_check **begina);
 void			ft_rrb(t_check **b, t_check **beginb);
 void			ft_rrr(t_check **a, t_check **b, t_check **begina,
 	t_check **beginb);
-void			ft_suite(int ret, char str[1000][5], t_check *p);
-t_check			*ft_read_inst(t_check *a, char str[1000][5]);
+void			ft_suite(int ret, char str[BUFF_STR][5], t_check *p);
+t_check			*ft_read_inst(t_check *a, char str[BUFF_STR][5]);
 t_check			*ft_create_eleme(int n);
 t_check			**ft_list_push_fronte(t_check **begin_list, int n);
 int				ft_check_inpute(char *str);

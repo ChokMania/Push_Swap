@@ -6,12 +6,27 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 11:16:53 by judumay           #+#    #+#             */
-/*   Updated: 2019/03/04 16:50:29 by judumay          ###   ########.fr       */
+/*   Updated: 2019/03/05 10:08:28 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_push_swap.h>
 #include <stdlib.h>
+
+int		ft_is_sorted(t_checke *a)
+{
+	t_checke	*beg;
+
+	beg = a;
+	while (a)
+	{
+		if (a->n > a->next->n)
+			return (0);
+		a = a->next;
+	}
+	a = beg;
+	return (1);
+}
 
 void	ft_free_lst(t_checke **p)
 {

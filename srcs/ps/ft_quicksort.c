@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 15:40:01 by lramard           #+#    #+#             */
-/*   Updated: 2019/03/04 17:01:27 by judumay          ###   ########.fr       */
+/*   Updated: 2019/03/05 10:40:52 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,9 @@ void		ft_size4(t_pile *pile, t_begin *begin, t_ps **comp)
 		else
 			ft_rb(&pile->b, &begin->beginb, 1);
 	}
-	while (i-- > 0)
-		ft_rrb(&pile->b, &begin->beginb, 1);
+	if ((*comp)->nbblock != 0)
+		while (i-- > 0)
+			ft_rrb(&pile->b, &begin->beginb, 1);
 	ft_tej_de_a(pile, begin, comp, new_size);
 }
 
@@ -79,10 +80,12 @@ void		ft_suite_algo(t_pile *pile, t_begin *begin, t_ps **comp,
 			*comp = (*comp)->next;
 		if ((*comp)->size <= 3)
 		{
-			begin->beginb->next && begin->beginb->n < begin->beginb->next->n
-				? ft_sb(&pile->b, &begin->beginb, 1) : 0;
 			while ((*comp)->size-- > 0)
+			{
+				begin->beginb->next && begin->beginb->n < begin->beginb->next->n
+				? ft_sb(&pile->b, &begin->beginb, 1) : 0;
 				ft_pa(&pile->a, &pile->b, &begin->begina, &begin->beginb);
+			}
 			memo->next = NULL;
 			free(*comp);
 		}

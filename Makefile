@@ -6,7 +6,7 @@
 #    By: judumay <judumay@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/18 15:28:18 by judumay           #+#    #+#              #
-#    Updated: 2019/03/04 19:03:56 by judumay          ###   ########.fr        #
+#    Updated: 2019/03/05 11:50:36 by judumay          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ INC = $(addprefix $(INCS_PATH), $(INCS_NAMES))
 CC = gcc
 CPPFLAGS = -I $(INCS_PATH)
 LIBH = -I $(LDFLAGS)includes/
-CFLAGS = -Wall -Wextra -Werror $(CPPFLAGS) $(LIBH)
+CFLAGS = -Wall -Wextra -Werror -g $(CPPFLAGS) $(LIBH)
 LDFLAGS = ./libft/
 LDLIBS = libft.a
 
@@ -89,7 +89,7 @@ _IGREY = $'\033[47m
 verif = 0
 verife = 0
 
-all: lib $(PS) $(CH)
+all: lib ps ch
 
 lib:
 		@make -C libft -j 113
@@ -97,19 +97,19 @@ lib:
 libre:
 		@make -C libft fclean
 
-$(PS): $(PS_OBJS)
-		@$(CC) $(PS_OBJS) libft/libft.a -o $@
-		@echo -en "$(_GREEN)\t [OK]\n\n$(_DEF)"
-
-$(CH): $(CH_OBJS)
-		@$(CC) $(CH_OBJS) libft/libft.a -o $@
-		@echo -en "$(_GREEN)\t [OK]\n\n$(_DEF)"
-
-ps: lib $(PS_OBJS)
+ps: $(PS_OBJS)
 		@$(CC) $(PS_OBJS) libft/libft.a -o $(PS)
 		@echo -en "$(_GREEN)\t [OK]\n\n$(_DEF)"
 
-ch: lib $(CH_OBJS)
+ch: $(CH_OBJS)
+		@$(CC) $(CH_OBJS) libft/libft.a -o $(CH)
+		@echo -en "$(_GREEN)\t [OK]\n\n$(_DEF)"
+
+$(PS): lib $(PS_OBJS)
+		@$(CC) $(PS_OBJS) libft/libft.a -o $(PS)
+		@echo -en "$(_GREEN)\t [OK]\n\n$(_DEF)"
+
+$(CH): lib $(CH_OBJS)
 		@$(CC) $(CH_OBJS) libft/libft.a -o $(CH)
 		@echo -en "$(_GREEN)\t [OK]\n\n$(_DEF)"
 

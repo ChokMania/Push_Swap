@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 19:23:15 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/26 10:00:11 by judumay          ###   ########.fr       */
+/*   Updated: 2019/03/05 11:39:27 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_checker_b(t_check *beginb, t_check *begina)
 	}
 }
 
-t_check	*ft_apply(char str[1000][5], t_check *a)
+t_check	*ft_apply(char str[BUFF_STR][5], t_check *a)
 {
 	t_check		*b;
 	t_check		*begina;
@@ -75,7 +75,7 @@ t_check	*ft_apply(char str[1000][5], t_check *a)
 	return (begina);
 }
 
-t_check	*ft_read_inst(t_check *a, char str[1000][5])
+t_check	*ft_read_inst(t_check *a, char str[BUFF_STR][5])
 {
 	a = ft_apply(str, a);
 	return (a);
