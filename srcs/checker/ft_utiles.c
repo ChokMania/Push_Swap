@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/20 19:11:58 by judumay           #+#    #+#             */
-/*   Updated: 2019/03/05 11:39:35 by judumay          ###   ########.fr       */
+/*   Created: 2019/03/11 17:55:02 by judumay           #+#    #+#             */
+/*   Updated: 2019/03/11 17:55:03 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ t_check	*ft_create_eleme(int n)
 {
 	t_check *p;
 
-	p = (t_check*)malloc(sizeof(t_check) * 1);
+	if (!(p = (t_check*)malloc(sizeof(t_check) * 1)))
+		return (0);
 	if (p)
 	{
 		p->next = NULL;
@@ -72,7 +73,7 @@ int		ft_lstlene(t_check **list)
 		return (0);
 }
 
-void	ft_suite(int ret, char str[BUFF_STR][5], t_check *p)
+void	ft_suite(int ret, char **str, t_check *p)
 {
 	char	*tmp;
 	char	buf[BUF_SIZE];
@@ -83,16 +84,16 @@ void	ft_suite(int ret, char str[BUFF_STR][5], t_check *p)
 	while ((ret = read(0, buf, 1)) > 0)
 	{
 		buf[ret] = '\0';
-		tmp = ft_strjoin(str[i], buf);
-		ft_strcpy(str[i], tmp);
+		tmp = str[i];
+		str[i] = ft_strjoin(tmp, buf);
 		free(tmp);
 		if (buf[0] == '\n')
 		{
-			ft_check_input(str[i]) == 0 ? ft_error_check(p) : 0;
+			ft_check_input(str[i]) == 0 ? ft_error_check(p, str) : 0;
 			str[++i][0] = '\0';
 		}
 	}
-	ft_check_inpute(str[i]) == 0 ? ft_error_check(p) : 0;
-	ret == -1 ? ft_error_check(p) : 0;
+	ft_check_inpute(str[i]) == 0 ? ft_error_check(p, str) : 0;
+	ret == -1 ? ft_error_check(p, str) : 0;
 	str[i][0] = 0;
 }

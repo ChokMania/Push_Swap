@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/07 11:15:37 by judumay           #+#    #+#             */
-/*   Updated: 2019/03/05 10:07:13 by judumay          ###   ########.fr       */
+/*   Created: 2019/03/11 17:53:56 by judumay           #+#    #+#             */
+/*   Updated: 2019/03/11 17:53:57 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define FT_PUSH_SWAP_H
 
 # include <libft.h>
-# include <stdio.h>
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>

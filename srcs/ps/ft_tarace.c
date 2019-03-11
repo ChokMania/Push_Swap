@@ -5,38 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/28 14:44:39 by judumay           #+#    #+#             */
-/*   Updated: 2019/03/04 16:51:28 by judumay          ###   ########.fr       */
+/*   Created: 2019/03/11 17:56:00 by judumay           #+#    #+#             */
+/*   Updated: 2019/03/11 17:56:01 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_push_swap.h>
-
-void		ft_display(t_checke *p, t_ps *comp)
-{
-	if (p)
-	{
-		ft_printf("display|\n");
-		while (p)
-		{
-			ft_printf("n : %d\t", p->n);
-			p = p->next;
-		}
-		ft_printf("\n");
-	}
-	if (comp)
-	{
-		ft_printf("|COMP display|\n");
-		while (comp)
-		{
-			ft_printf("nbblock %d\t", comp->nbblock);
-			ft_printf("size %d\t", comp->size);
-			ft_printf("mediane %d\t\n", comp->median);
-			comp = comp->next;
-		}
-		ft_printf("\n");
-	}
-}
+#include <stdlib.h>
 
 void		ft_lstdel_oklm(t_checke **a, t_checke **begina, int median)
 {
@@ -91,16 +66,16 @@ void		ft_sort3(t_checke **a, t_checke **begina)
 		if ((*a)->n > (*a)->next->n && (*a)->next->n > (*a)->next->next->n)
 			ft_1(a, begina);
 		if (((*a)->n > (*a)->next->n && (*a)->next->n
-		< (*a)->next->next->n) && (*a)->n < (*a)->next->next->n)
+			< (*a)->next->next->n) && (*a)->n < (*a)->next->next->n)
 			ft_sa(a, begina, 1);
 		if (((*a)->n > (*a)->next->n && (*a)->next->n
-		< (*a)->next->next->n) && (*a)->n > (*a)->next->next->n)
+			< (*a)->next->next->n) && (*a)->n > (*a)->next->next->n)
 			ft_2(a, begina);
 		if (((*a)->n < (*a)->next->n && (*a)->next->n
-		> (*a)->next->next->n) && (*a)->n > (*a)->next->next->n)
+			> (*a)->next->next->n) && (*a)->n > (*a)->next->next->n)
 			ft_3(a, begina);
 		if (((*a)->n < (*a)->next->n && (*a)->next->n
-		> (*a)->next->next->n) && (*a)->n < (*a)->next->next->n)
+			> (*a)->next->next->n) && (*a)->n < (*a)->next->next->n)
 			ft_4(a, begina);
 	}
 }

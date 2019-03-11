@@ -5,40 +5,38 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/20 19:09:44 by judumay           #+#    #+#             */
-/*   Updated: 2019/02/25 18:06:27 by judumay          ###   ########.fr       */
+/*   Created: 2019/03/11 17:54:44 by judumay           #+#    #+#             */
+/*   Updated: 2019/03/11 17:54:47 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_checker.h>
 #include <stdlib.h>
 
-void	ft_sa(t_check *a)
+void	ft_sa(t_check **a, t_check **begina)
 {
-	int		t1;
-
-	if (ft_lstlene(&a) <= 1)
+	if (ft_lstlene(a) <= 1)
 		return ;
-	t1 = a->n;
-	a->n = a->next->n;
-	a->next->n = t1;
+	(*a) = (*a)->next;
+	(*begina)->next = (*begina)->next->next;
+	(*a)->next = *begina;
+	*begina = *a;
 }
 
-void	ft_sb(t_check *b)
+void	ft_sb(t_check **b, t_check **beginb)
 {
-	int		t1;
-
-	if (ft_lstlene(&b) <= 1)
+	if (ft_lstlene(b) <= 1)
 		return ;
-	t1 = b->n;
-	b->n = b->next->n;
-	b->next->n = t1;
+	(*b) = (*b)->next;
+	(*beginb)->next = (*beginb)->next->next;
+	(*b)->next = *beginb;
+	*beginb = *b;
 }
 
-void	ft_ss(t_check *a, t_check *b)
+void	ft_ss(t_check **a, t_check **b, t_check **begina, t_check **beginb)
 {
-	ft_sa(a);
-	ft_sb(b);
+	ft_sa(a, begina);
+	ft_sb(b, beginb);
 }
 
 void	ft_pa(t_check **a, t_check **b, t_check **begina, t_check **beginb)

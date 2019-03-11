@@ -5,12 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/26 11:17:12 by judumay           #+#    #+#             */
-/*   Updated: 2019/03/04 17:05:01 by judumay          ###   ########.fr       */
+/*   Created: 2019/03/11 17:55:49 by judumay           #+#    #+#             */
+/*   Updated: 2019/03/11 17:55:49 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_push_swap.h>
+#include <stdlib.h>
 
 void		ft_error(t_checke *p)
 {

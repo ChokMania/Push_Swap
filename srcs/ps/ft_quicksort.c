@@ -5,12 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/21 15:40:01 by lramard           #+#    #+#             */
-/*   Updated: 2019/03/05 10:40:52 by judumay          ###   ########.fr       */
+/*   Created: 2019/03/11 17:55:56 by judumay           #+#    #+#             */
+/*   Updated: 2019/03/11 17:55:57 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_push_swap.h>
+#include <stdlib.h>
 
 void		ft_tej_de_a(t_pile *pile, t_begin *begin, t_ps **comp, int n)
 {
@@ -42,8 +43,8 @@ void		ft_tej_de_a(t_pile *pile, t_begin *begin, t_ps **comp, int n)
 
 void		ft_size4(t_pile *pile, t_begin *begin, t_ps **comp)
 {
-	int			i;
-	int			new_size;
+	int		i;
+	int		new_size;
 
 	new_size = 0;
 	pile->temp = ft_lstndupb(pile, begin, comp, (*comp)->size);
@@ -83,10 +84,11 @@ void		ft_suite_algo(t_pile *pile, t_begin *begin, t_ps **comp,
 			while ((*comp)->size-- > 0)
 			{
 				begin->beginb->next && begin->beginb->n < begin->beginb->next->n
-				? ft_sb(&pile->b, &begin->beginb, 1) : 0;
+					? ft_sb(&pile->b, &begin->beginb, 1) : 0;
 				ft_pa(&pile->a, &pile->b, &begin->begina, &begin->beginb);
 			}
-			memo->next = NULL;
+			if ((*comp)->nbblock != 0)
+				memo->next = NULL;
 			free(*comp);
 		}
 		else
@@ -108,7 +110,7 @@ t_checke	*ft_quicksort(t_pile *pile, t_begin *begin, t_ps **comp,
 		while (--i > -1)
 			(pile->a)->n < (*comp)->median && ++(*comp)->size
 				? ft_pb(&pile->a, &pile->b, &begin->begina, &begin->beginb)
-					: ft_ra(&pile->a, &begin->begina, 1);
+				: ft_ra(&pile->a, &begin->begina, 1);
 		if (ft_lstl(&pile->a) > 3 && (*comp = (*comp)->next))
 		{
 			pile->temp = ft_lstdup(pile->a, pile, begin, comp);

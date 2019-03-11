@@ -5,13 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/26 11:17:07 by judumay           #+#    #+#             */
-/*   Updated: 2019/03/04 09:18:19 by judumay          ###   ########.fr       */
+/*   Created: 2019/03/11 17:55:38 by judumay           #+#    #+#             */
+/*   Updated: 2019/03/11 17:55:39 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_push_swap.h>
-#include <stdlib.h>
 
 void	ft_sa(t_checke **a, t_checke **begina, int n)
 {

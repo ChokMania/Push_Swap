@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/26 11:16:53 by judumay           #+#    #+#             */
-/*   Updated: 2019/03/05 10:08:28 by judumay          ###   ########.fr       */
+/*   Created: 2019/03/11 17:55:24 by judumay           #+#    #+#             */
+/*   Updated: 2019/03/11 17:55:25 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,10 @@ void	ft_free_lst_ps(t_ps *p)
 int		ft_median(t_pile *pile, t_begin *begin, t_ps **comp, int n)
 {
 	t_checke	*t;
+	t_checke	*beg;
 	int			i;
 
+	beg = pile->temp;
 	t = ft_lstdup(pile->temp, pile, begin, comp);
 	ft_mergesort(&pile->temp);
 	i = ft_lstl(&t);
@@ -55,6 +57,7 @@ int		ft_median(t_pile *pile, t_begin *begin, t_ps **comp, int n)
 	while (++i < n)
 		pile->temp = pile->temp->next;
 	n = pile->temp->n;
+	pile->temp = beg;
 	ft_free_lst(&t);
 	return (n);
 }

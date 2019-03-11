@@ -5,12 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 15:33:32 by judumay           #+#    #+#             */
-/*   Updated: 2019/03/04 17:06:23 by judumay          ###   ########.fr       */
+/*   Created: 2019/03/11 17:56:04 by judumay           #+#    #+#             */
+/*   Updated: 2019/03/11 17:56:05 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_push_swap.h>
+#include <stdlib.h>
 
 t_checke	*ft_lstndupa(t_pile *pile, t_begin *begin, t_ps **comp, int n)
 {
@@ -60,11 +61,11 @@ t_checke	*ft_3fast(t_checke **a, t_begin *b)
 	{
 		((*a)->n > (*a)->next->n && (*a)->next->n < (*a)->next->next->n
 			&& (*a)->n < (*a)->next->next->n) || ((*a)->n < (*a)->next->n
-				&& (*a)->next->n > (*a)->next->next->n && (*a)->n
-					< (*a)->next->next->n) || ((*a)->n
-						> (*a)->next->n && (*a)->next->n > (*a)->next->next->n
-							&& (*a)->n > (*a)->next->next->n)
-								? ft_sa(a, &b->begina, 1) : 0;
+			&& (*a)->next->n > (*a)->next->next->n && (*a)->n
+			< (*a)->next->next->n) || ((*a)->n
+			> (*a)->next->n && (*a)->next->n > (*a)->next->next->n
+			&& (*a)->n > (*a)->next->next->n)
+			? ft_sa(a, &b->begina, 1) : 0;
 		(*a)->n < (*a)->next->n && (*a)->next->n > (*a)->next->next->n
 			&& (*a)->n > (*a)->next->next->n ? ft_rra(a, &b->begina, 1) : 0;
 		(*a)->n > (*a)->next->n && (*a)->next->n < (*a)->next->next->n

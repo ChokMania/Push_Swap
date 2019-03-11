@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/21 15:27:09 by lramard           #+#    #+#             */
-/*   Updated: 2019/03/05 12:03:09 by judumay          ###   ########.fr       */
+/*   Created: 2019/03/11 17:55:53 by judumay           #+#    #+#             */
+/*   Updated: 2019/03/11 17:55:53 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ void		ft_r(void)
 	ft_printf("temps.\n");
 }
 
-void		ft_tuto(char c)
+void		ft_tuto(char *str)
 {
-	if (c == 'r')
+	if (str[1] == 'r' && (str[2] == '\0' || str[2] == ' '))
 		ft_r();
-	else if (c == 'e')
+	else if (str[1] == 'e' && (str[2] == '\0' || str[2] == ' '))
 	{
 		ft_printf("Voici quelques exemples pour tester push_swap seul :\n\n");
 		ft_printf("\033[32m./push_swap 1 2 3\n\033[0m");
@@ -81,8 +81,9 @@ void		ft_tuto(char c)
 		ft_printf("to_a.shuffle.join(' ')\"`; ./push_swap $ARG |");
 		ft_printf("./checker $ARG\n\033[0m");
 	}
-	else if (c == 'u')
-		ft_printf("Usage: ./push_swap [-u/r/e] <numbers_list>\n");
+	else if (str[1] == 'h' && str[2] == 'e' && str[3] == 'l'
+		&& str[4] == 'p' && (str[5] == ' ' || str[5] == '\0'))
+		ft_printf("Usage: ./push_swap [-help/r/e] <numbers_list>\n");
 	else
 		return ;
 	exit(0);
@@ -97,8 +98,9 @@ int			ft_check_av(char **av)
 	i = 0;
 	while (av[++i] && (j = -1))
 		while (av[i][++j])
-			if (j == 0 && av[i][j] == '-' && ft_isalnum(av[i][j + 1]))
-				ft_tuto(av[i][j + 1]);
+			if (j == 0 && (av[i][j] == '+' || av[i][j] == '-')
+				&& ft_isalnum(av[i][j + 1]))
+				ft_tuto(av[i]);
 			else if (av[i][j] < '0' || av[i][j] > '9')
 				return (0);
 	i = 0;
@@ -123,9 +125,9 @@ int			main(int ac, char **av)
 	pile.a = NULL;
 	pile.b = NULL;
 	if (ac < 2)
-		ft_tuto('u');
+		return (ft_printf("Usage: ./push_swap [-help/r/e] <numbers_list>\n"));
 	if ((ft_check_av(av) == 0)
-	&& write(2, "\033[31mError\033[37m\n", 17))
+		&& write(2, "\033[31mError\033[37m\n", 17))
 		return (0);
 	pile.a = ft_recup(ac, av);
 	if (ft_lstl(&pile.a) > 1)

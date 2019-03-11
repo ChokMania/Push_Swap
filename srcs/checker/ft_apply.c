@@ -5,63 +5,39 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/20 19:23:15 by judumay           #+#    #+#             */
-/*   Updated: 2019/03/05 19:23:57 by judumay          ###   ########.fr       */
+/*   Created: 2019/03/11 17:54:32 by judumay           #+#    #+#             */
+/*   Updated: 2019/03/11 17:54:33 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_checker.h>
 
-void	ft_rrr(t_check **a, t_check **b, t_check **begina, t_check **beginb)
-{
-	ft_rra(a, begina);
-	ft_rrb(b, beginb);
-}
-
-void	ft_display(t_check *begina, t_check *beginb)
-{
-	ft_printf("\na\t");
-	while (begina)
-	{
-		ft_printf("%d\t", begina->n);
-		begina = begina->next;
-	}
-	ft_printf("\nb\t");
-	while (beginb)
-	{
-		ft_printf("%d\t", beginb->n);
-		beginb = beginb->next;
-	}
-	ft_printf("\n");
-}
-
-void	ft_checker_b(t_check *beginb, t_check *begina)
+static void		ft_checker_b(t_check *beginb, t_check *begina, char **str)
 {
 	if (beginb)
 	{
 		ft_free_lst(beginb);
-		ft_free_lst(begina);
-		ft_printf("\033[31mKO\033[37m\n");
+		begina ? ft_free_lst(begina) : 0;
+		ft_delstr(str, -1);
+		ft_printf("KO\n");
 		exit(0);
 	}
 }
 
-t_check	*ft_apply(char str[BUFF_STR][5], t_check *a)
+static t_check	*ft_apply(char **str, t_check *a, t_check *begina,
+	t_check *beginb)
 {
 	t_check		*b;
-	t_check		*begina;
-	t_check		*beginb;
 	int			i;
 
-	b = NULL;
+	b = beginb;
 	i = -1;
 	begina = a;
-	beginb = b;
 	while (str[++i][0] != 0)
 	{
-		!ft_strcmp(str[i], "sa\n") ? ft_sa(a) : 0;
-		!ft_strcmp(str[i], "sb\n") ? ft_sb(b) : 0;
-		!ft_strcmp(str[i], "ss\n") ? ft_ss(a, b) : 0;
+		!ft_strcmp(str[i], "sa\n") ? ft_sa(&a, &begina) : 0;
+		!ft_strcmp(str[i], "sb\n") ? ft_sb(&b, &beginb) : 0;
+		!ft_strcmp(str[i], "ss\n") ? ft_ss(&a, &b, &begina, &beginb) : 0;
 		!ft_strcmp(str[i], "pa\n") ? ft_pa(&a, &b, &begina, &beginb) : 0;
 		!ft_strcmp(str[i], "pb\n") ? ft_pb(&a, &b, &begina, &beginb) : 0;
 		!ft_strcmp(str[i], "ra\n") ? ft_ra(&a, &begina) : 0;
@@ -71,12 +47,20 @@ t_check	*ft_apply(char str[BUFF_STR][5], t_check *a)
 		!ft_strcmp(str[i], "rrb\n") ? ft_rrb(&b, &beginb) : 0;
 		!ft_strcmp(str[i], "rrr\n") ? ft_rrr(&a, &b, &begina, &beginb) : 0;
 	}
-	ft_checker_b(beginb, begina);
+	ft_checker_b(beginb, begina, str);
 	return (begina);
 }
 
-t_check	*ft_read_inst(t_check *a, char str[BUFF_STR][5])
+t_check			*ft_read_inst(t_check *a, char **str, int choix)
 {
-	a = ft_apply(str, a);
+	t_check		*begina;
+	t_check		*beginb;
+
+	beginb = NULL;
+	begina = a;
+	if (choix == 0)
+		a = ft_apply(str, a, begina, beginb);
+	else
+		ft_mlx(str, begina, beginb);
 	return (a);
 }
