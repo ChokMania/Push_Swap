@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 17:54:08 by judumay           #+#    #+#             */
-/*   Updated: 2019/03/11 17:57:41 by judumay          ###   ########.fr       */
+/*   Updated: 2019/08/12 18:15:34 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ int				deal_key(void *param)
 	if (mlx->keyboard[KEY_SPACEBAR] == 1 && mlx->str[mlx->i_str][0] != 0)
 	{
 		tareum(mlx);
-		mlx->speed == 0 ? usleep(1000) : usleep(100000);
 		mlx->str[++mlx->i_str][0] == 0 ? mlx->keyboard[KEY_SPACEBAR] = 0 : 0;
 	}
 	ft_bzero(mlx->canvas, 4 * WINX * WINY);

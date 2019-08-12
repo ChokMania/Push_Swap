@@ -6,19 +6,20 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 17:54:04 by judumay           #+#    #+#             */
-/*   Updated: 2019/03/11 17:56:44 by judumay          ###   ########.fr       */
+/*   Updated: 2019/08/12 18:12:06 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_mlx.h>
 
 void			ft_suite_mlx(t_mlx *mlx)
-{
+{ 
 	mlx->keyboard[KEY_LEFT] == 1 ? (mlx->i = 0) : 0;
 	mlx->keyboard[KEY_LEFT] == 1 ? mlx->i_str-- : 0;
 	mlx = mlx->keyboard[KEY_RIGHT] == 1 ? tareum(mlx) : tareum_inv(mlx);
 	mlx->keyboard[KEY_RIGHT] == 1 ? mlx->i_str++ : 0;
-	mlx->speed == 0 ? usleep(1000) : usleep(100000);
+	mlx->keyboard[KEY_RIGHT] = 0;
+	mlx->keyboard[KEY_LEFT] = 0;
 }
 
 double			ratio(int start, int end, int current)
