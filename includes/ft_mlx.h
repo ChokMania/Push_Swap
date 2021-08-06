@@ -6,14 +6,14 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 17:53:47 by judumay           #+#    #+#             */
-/*   Updated: 2019/03/11 17:53:51 by judumay          ###   ########.fr       */
+/*   Updated: 2021/08/06 17:50:26 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_MLX_H
 # define FT_MLX_H
 
-# include "mlx.h"
+# include <mlx.h>
 # include "ft_checker.h"
 # include "ft_keycode.h"
 # include <math.h>
@@ -28,7 +28,7 @@ typedef struct	s_mlx
 {
 	void	*mlx;
 	void	*win;
-	int		keyboard[512];
+	int		keyboard[100000];
 	void	*img;
 	char	*canvas;
 	int		bpp;

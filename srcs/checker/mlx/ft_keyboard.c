@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 17:54:08 by judumay           #+#    #+#             */
-/*   Updated: 2019/08/12 18:15:34 by judumay          ###   ########.fr       */
+/*   Updated: 2021/08/06 17:47:29 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@ int				key_press(int key, void *param)
 		;
 	else
 		mlx->keyboard[key] = 1;
+	if (key == KEY_K || key == KEY_L)
+	{
+		mlx->speed += key != KEY_K ? -1000 : 1000;
+		if (mlx->speed < 0)
+			mlx->speed= 0;
+		else if (mlx->speed > 20000)
+			mlx->speed= 20000;
+	}
 	return (0);
 }
 
@@ -31,8 +39,6 @@ int				key_release(int key, void *param)
 	mlx = (t_mlx *)param;
 	if (key == KEY_SPACEBAR)
 		mlx->keyboard[key] = mlx->keyboard[KEY_SPACEBAR] ? 0 : 1;
-	else if (key == KEY_PAD_SUB || key == KEY_PAD_ADD)
-		mlx->speed = key != KEY_PAD_SUB ? 0 : 1;
 	else
 		mlx->keyboard[key] = 0;
 	return (0);
@@ -105,5 +111,6 @@ int				deal_key(void *param)
 		, 0xFFFFFF, mlx->str[mlx->i_str]);
 	mlx->str[mlx->i_str][0] == 0 && mlx->i == 0 && (mlx->i = 1)
 		? ft_checke_value(&mlx) : 0;
+	usleep(10 * mlx->speed);
 	return (0);
 }

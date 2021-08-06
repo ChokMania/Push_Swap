@@ -6,7 +6,7 @@
 /*   By: judumay <judumay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 17:54:13 by judumay           #+#    #+#             */
-/*   Updated: 2019/03/11 17:54:14 by judumay          ###   ########.fr       */
+/*   Updated: 2021/08/06 17:45:07 by judumay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ static void	ft_init_mlx(t_mlx *mlx, char **str, t_check *a, t_check *b)
 	mlx->bega = a;
 	mlx->begb = b;
 	mlx->i = 0;
-	mlx->speed = 0;
+	mlx->speed = 1000;
 }
 
 int			ft_mlx(char **str, t_check *a, t_check *b)

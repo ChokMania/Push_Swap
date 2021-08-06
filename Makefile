@@ -54,7 +54,7 @@ CC = gcc
 CPPFLAGS = -I $(INCS_PATH)
 LIBH = -I $(LDFLAGS)includes/
 CFLAGS = -Wall -Wextra -g $(CPPFLAGS) $(LIBH)
-MLX = -I /usr/local/include -L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit
+MLX = -I /usr/X11/include -g -L /usr/X11/lib -lX11 -lmlx -lXext
 
 # Text format
 _DEF = $'\033[0m
